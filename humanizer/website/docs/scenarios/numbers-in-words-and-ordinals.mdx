@@ -1,0 +1,122 @@
+---
+id: numbers-in-words-and-ordinals
+title: Write numbers and ordinals in words
+sidebar_position: 12
+diataxis: how-to
+persona: application developer
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import numbers from '!!raw-loader!../_examples/scenarios-numbers/Program.cs';
+import numbersOutput from '!!raw-loader!../_examples/scenarios-numbers/expected-output.txt';
+
+# Write numbers and ordinals in words
+
+Use `ToWords` for cardinal words, `ToOrdinalWords` for word ordinals, and
+`Ordinalize` when the number should remain numeric with a localized ordinal
+form. `Fractionalize` approximates a decimal as a common fraction.
+`ToChineseFinancialCharacters` emits formal Chinese integer characters. Select
+culture explicitly and add grammatical gender or word form only when the
+selected locale advertises that capability. Use `ToIndianWords` when Indian
+English output needs an explicit named-scale or crore-based vocabulary.
+
+## Example
+
+The shared number example shows cardinal and ordinal words, a 64-bit ordinal,
+Indian and Estonian scale names, a common fraction, Chinese financial
+characters, and a Roman numeral:
+
+<CodeBlock language="csharp" title="Program.cs">{numbers}</CodeBlock>
+
+<CodeBlock language="text" title="Output">{numbersOutput}</CodeBlock>
+
+### Choose the output
+
+| Desired output | API |
+| --- | --- |
+| `forty-two` | `42.ToWords(culture)` |
+| `twenty-first` | `21.ToOrdinalWords(culture)` |
+| `21st` | `21.Ordinalize(culture)` |
+| `2147483651st` | `2_147_483_651L.Ordinalize(culture)` |
+| `one hundred crore` | `1_000_000_000L.ToIndianWords(IndianScaleStyle.CroreBased)` |
+| `1 1/4` | `1.25m.Fractionalize(5, 0m)` |
+| `壹拾` | `10.ToChineseFinancialCharacters(simplifiedChinese)` |
+| A locale-specific tuple word | `number.ToTuple(culture)` |
+
+`ToWords` supports `int` and `long` cardinal values. Word ordinals are `int`-based. Some overloads accept `GrammaticalGender`, `WordForm`, or `addAnd`; use named arguments so intent remains clear across overload changes.
+
+### Choose an Indian scale vocabulary
+
+`ToIndianWords` is specific to Indian English and accepts `int` or `long`.
+`IndianScaleStyle.NamedScales` is the default when no style is supplied.
+`IndianScaleStyle.NamedScales` uses names such as `arab`, `kharab`, and
+`padma`; `IndianScaleStyle.CroreBased` uses common expressions such as
+`one hundred crore` and `one lakh crore`, then falls back to named scales
+rather than inventing repeated-crore phrases. This choice is per call and does
+not change `ToWords`, configured converters, or other locales.
+
+### Format 64-bit ordinals
+
+Numeric `Ordinalize` overloads accept the full `long` range and
+retain the selected culture, gender, and `WordForm` rules. String `Ordinalize`
+remains `int`-bounded; parse to `long` first when the input can exceed that
+range.
+
+Built-in ordinalizers support 64-bit values. A custom ordinalizer registered
+through `Configurator.Ordinalizers` can continue to implement `IOrdinalizer`,
+but it is limited to `int` values. Calling a `long` overload outside that range
+throws `NotSupportedException` unless the custom implementation also
+implements `ILongOrdinalizer`.
+
+### Approximate a decimal as a common fraction
+
+`Fractionalize(maxDenominator, tolerance)` returns the closest reduced fraction
+whose denominator does not exceed `maxDenominator`. The tolerance is an
+inclusive maximum absolute error. If no candidate is close enough, the method
+returns the original decimal formatted with `CurrentCulture`.
+
+Set `useUnicode: true` to use a Unicode vulgar-fraction character when an exact
+glyph exists, such as `¾`; otherwise slash notation is retained. Fraction
+components use invariant digits. `maxDenominator` must be at least 1 and
+`tolerance` cannot be negative.
+
+### Emit Chinese financial characters
+
+`ToChineseFinancialCharacters` accepts `int` or `long`, including the full
+signed 64-bit range. A culture in the `zh-Hans` hierarchy (for example
+`zh-CN`) selects simplified characters, while a culture in the `zh-Hant`
+hierarchy (for example `zh-TW`) selects traditional characters. Neutral `zh`
+and non-Chinese cultures throw `NotSupportedException`.
+
+The result is an integer numeral only. Humanizer does not add currency names or
+units such as yuan, jiao, or fen; applications handling money must apply that
+domain policy separately.
+
+### Use the full `long` range
+
+Every built-in number-word locale supports the full signed
+`long` range. Estonian follows its authored scale names through `triljon`;
+Albanian uses `miliar`, `bilion`, `biliar`, and `trilion`, with their plural
+forms. The executable above calls `ToWords` for both `long.MaxValue` and
+`long.MinValue`; supported built-in locales no longer use magnitude ceilings
+or `NotImplementedException` as a partial-coverage boundary. Custom converters
+can retain narrower ranges when their profiles do not define the required
+scale words.
+
+## Check locale capabilities and numeric limits
+
+Grammar features differ by locale. Do not infer gender, abbreviation, Eifeler,
+or ordinal-word support from cardinal support. String `Ordinalize` parses the
+input using culture and can throw for malformed or out-of-range text; prefer
+the numeric overload when the application already has a number.
+
+## Related guides and API
+
+- [Parse number words](./parse-number-words.mdx)
+- [Metric numerals](./metric-numerals.mdx)
+- [NumberToWordsExtension API](../api/Humanizer.NumberToWordsExtension.md)
+- [OrdinalizeExtensions API](../api/Humanizer.OrdinalizeExtensions.md)
+- [ILongOrdinalizer API](../api/Humanizer.ILongOrdinalizer.md)
+- [FractionalizeExtensions API](../api/Humanizer.FractionalizeExtensions.md)
+- [ChineseFinancialNumeralExtensions API](../api/Humanizer.ChineseFinancialNumeralExtensions.md)
+- [WordForm API](../api/Humanizer.WordForm.md)

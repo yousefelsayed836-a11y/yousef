@@ -1,0 +1,145 @@
+---
+id: durations-and-ages
+title: Format durations and ages
+sidebar_position: 8
+diataxis: how-to
+persona: application developer
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import durations from '!!raw-loader!../_examples/scenarios-durations/Program.cs';
+import durationsOutput from '!!raw-loader!../_examples/scenarios-durations/expected-output.txt';
+
+# Format durations and ages
+
+Call `TimeSpan.Humanize` for elapsed time and `ToAge` for a human-readable age approximation. Precision controls how many units appear; minimum and maximum units define the allowed range. Keep calendar-sensitive calculations in date types and use this API only after the application has a duration.
+
+## Example
+
+This program shows two-unit precision, locale-aware list punctuation,
+localized compact symbols, invariant duration parsing, and an age rendered
+with number words. It also shows fractional seconds without exposing a
+separate millisecond unit:
+
+<CodeBlock language="csharp" title="Program.cs">{durations}</CodeBlock>
+
+<CodeBlock language="text" title="Output">{durationsOutput}</CodeBlock>
+
+### Control the decomposition
+
+- `precision` limits the number of returned non-empty units.
+- `countEmptyUnits: true` counts gaps after the first non-empty unit toward that limit.
+- `maxUnit` and `minUnit` constrain the decomposition.
+- `toWords: true` replaces digits with number words where the locale supports them.
+- `collectionSeparator: null` uses the localized collection formatter; any supplied string is used as a literal separator.
+
+The default maximum unit is `Week`. Ask for `Month` or `Year` explicitly when those approximate units are acceptable.
+
+### Use compact symbols
+
+`HumanizeToSymbols` applies the same precision, empty-unit,
+range, culture, and separator controls but emits localized `TimeUnit` symbols
+such as `1h, 3s, 1ms`.
+
+### Keep sub-second precision in seconds
+
+Use `HumanizeWithFractionalSeconds` or
+`HumanizeToSymbolsWithFractionalSeconds` when milliseconds should appear as a
+fraction of the seconds unit. These APIs always use `Second` as the inclusive
+minimum unit. Supply the precision, maximum unit, maximum fractional digits,
+and either `MidpointRounding.ToEven` or
+`MidpointRounding.AwayFromZero` explicitly.
+
+The entire duration is rounded before it is decomposed, so a value such as
+`59.9996` seconds rounded to three fractional digits becomes `1 minute`.
+The digit count is a maximum from zero through seven; trailing zeros are
+trimmed. Numeric text and CLDR seconds grammar follow the requested culture
+for every supported locale, including same-language parent inheritance.
+Fractional requests never fall back to English. With the default strategy,
+genuinely fractional terminal values require `IFractionalTimeSpanFormatter`
+from the configured formatter. A custom
+`IFractionalTimeSpanHumanizeStrategy` may own its fractional formatting.
+
+### Apply grammatical case
+
+`HumanizeWithCase` selects a locale-authored grammatical
+case form for each duration unit. A singular form may include a localized word
+or article, and a locale may encode a count in the inflected unit form:
+
+```csharp
+var german = CultureInfo.GetCultureInfo("de-DE");
+var duration = TimeSpan.FromDays(7).HumanizeWithCase(
+    GrammaticalCase.Dative,
+    culture: german);
+
+Console.WriteLine($"in {duration}"); // in einer Woche
+```
+
+The method returns a bare duration phrase and never adds a preposition.
+`Nominative` also uses the case-aware locale data, so an authored singular
+one-word or article can differ from ordinary `Humanize`. The API deliberately
+has no `toWords` option: singular forms are complete locale-authored phrases,
+while counted forms follow the locale's verified duration grammar. Existing
+case-free `Humanize`, including `Humanize(toWords: true)`, continues to use the
+legacy duration surface unchanged.
+
+Case coverage is explicit for every locale:
+
+- `distinct` means the locale declares an evidenced duration-case inventory and
+  explicitly realizes every case and unit in that inventory.
+- Each case or unit realization is either authored, intentionally
+  `sameRenderedAs` another verified case, or explicitly `notApplicable`.
+- Root duration-case classifications are `distinct`, `not-applicable`, or
+  inherited from a same-language, same-script parent.
+- release validation rejects missing or unsupported applicable roots, cases,
+  and units.
+
+An unavailable requested case or unit throws `NotSupportedException`; it
+never falls back to English or invents morphology. Availability can differ by
+unit. For example, Malayalam has verified case forms through seconds but only
+a nominative millisecond form. A custom strategy or formatter must implement
+the corresponding grammatical-case capability interface, or every
+`HumanizeWithCase` call fails clearly, including `Nominative`.
+
+The checked-in duration forms use explicit long-duration case data from
+[CLDR 48 at the audited commit](https://github.com/unicode-org/cldr/tree/acd6d88ae493633240e19a87a721076a8a75c310/common/main)
+where available, plus the per-locale grammar, corpus, dictionary, and
+native-review sources recorded in each locale file.
+See [Unicode LDML](https://unicode.org/reports/tr35/tr35-general.html) for the
+underlying locale-data model.
+
+### Parse invariant durations
+
+`DehumanizeTimeSpan` and `TryDehumanizeTimeSpan` accept
+standard invariant `TimeSpan` text or compact tokens using `ms`, `s`, `m`, `h`,
+`d`, and `w`. Compact tokens may have one leading sign, optional whitespace,
+fractional values that resolve to whole ticks, repeated units, and units in any
+order. A week is seven days.
+
+Use `TryDehumanizeTimeSpan` at an input boundary. It returns `false` and
+`TimeSpan.Zero` for unsupported syntax or an out-of-range value.
+`DehumanizeTimeSpan` throws `FormatException` for the same failures and
+`ArgumentNullException` for `null`.
+
+### Use `ToAge` deliberately
+
+`ToAge` adds the culture’s age phrase to a duration decomposition. It is convenient for an already computed elapsed span, but it is not a birthday calculator.
+
+## Keep calendar and parser boundaries explicit
+
+Months and years are approximated from a duration and do not know calendar month length or leap years. Negative `TimeSpan` values are rendered with positive unit counts, so preserve direction elsewhere when it matters. A precision of zero or less returns an empty string.
+
+Compact duration input is intentionally culture-invariant and is not a parser
+for localized humanized output. For example, `1.5h` is valid even under a
+comma-decimal culture, while `1,5h`, `one hour`, and `1 hour` are rejected.
+
+## Related guides and API
+
+- [Fluent dates and time spans](./fluent-dates-and-time-spans.mdx)
+- [Relative dates and times](./relative-dates-and-times.mdx)
+- [TimeSpanHumanizeExtensions API](../api/Humanizer.TimeSpanHumanizeExtensions.md)
+- [TimeSpanDehumanizeExtensions API](../api/Humanizer.TimeSpanDehumanizeExtensions.md)
+- [ITimeSpanHumanizeStrategy API](../api/Humanizer.ITimeSpanHumanizeStrategy.md)
+- [IGrammaticalCaseTimeSpanHumanizeStrategy API](../api/Humanizer.IGrammaticalCaseTimeSpanHumanizeStrategy.md)
+- [IGrammaticalCaseTimeSpanFormatter API](../api/Humanizer.IGrammaticalCaseTimeSpanFormatter.md)
+- [DefaultTimeSpanHumanizeStrategy API](../api/Humanizer.DefaultTimeSpanHumanizeStrategy.md)

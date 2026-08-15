@@ -1,0 +1,67 @@
+---
+id: dates-times-durations-and-age
+title: Date, time, duration, and age scenarios
+sidebar_position: 6
+diataxis: reference
+persona: returning developer
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import dates from '!!raw-loader!../_examples/scenarios-dates/Program.cs';
+import datesOutput from '!!raw-loader!../_examples/scenarios-dates/expected-output.txt';
+
+# Date, time, duration, and age scenarios
+
+## Choose a focused guide
+
+Choose the guide by the meaning of the value and the sentence you need:
+
+| Task | Focused guide |
+| --- | --- |
+| Produce “yesterday” or “3 hours ago” | [Relative dates and times](./relative-dates-and-times.mdx) |
+| Produce “2 hours, 5 minutes” or an age phrase | [Durations and ages](./durations-and-ages.mdx) |
+| Build a readable `TimeSpan`, `DateTime`, or `DateOnly` | [Fluent dates and time spans](./fluent-dates-and-time-spans.mdx) |
+| Produce “January 25th, 2022” or “twenty-five past one” | [Spoken dates and clock times](./spoken-dates-and-clock-times.mdx) |
+
+## Example
+
+This source demonstrates common display boundaries with explicit comparison values and culture:
+
+<CodeBlock language="csharp" title="Program.cs">{dates}</CodeBlock>
+
+<CodeBlock language="text" title="Output">{datesOutput}</CodeBlock>
+
+Follow the focused guides for the full overload contracts.
+
+### Pick a model before an API
+
+- Use `DateTimeOffset` when an instant and offset matter.
+- Use `DateOnly` for a calendar date without time-zone meaning.
+- Use `TimeOnly` for a wall-clock time without a date.
+- Use `TimeSpan` for elapsed duration, not calendar arithmetic.
+
+## Keep clocks and calendars explicit
+
+Reading `Now` inside formatting makes examples, tests, and cache behavior unstable. Inject comparison values and set culture explicitly. A `TimeSpan` has no calendar context, so months, years, and ages are approximations; use date arithmetic when leap years, month length, or birthdays must be exact.
+
+## Related guides and API
+
+- [Relative dates and times](./relative-dates-and-times.mdx)
+- [Durations and ages](./durations-and-ages.mdx)
+- [Culture and global configuration](../concepts/culture-and-configuration.mdx)
+- [DateHumanizeExtensions API](../api/Humanizer.DateHumanizeExtensions.md)
+- [TimeSpanHumanizeExtensions API](../api/Humanizer.TimeSpanHumanizeExtensions.md)
+- [TimeSpanDehumanizeExtensions API](../api/Humanizer.TimeSpanDehumanizeExtensions.md)
+- [ITimeSpanHumanizeStrategy API](../api/Humanizer.ITimeSpanHumanizeStrategy.md)
+- [IGrammaticalCaseTimeSpanHumanizeStrategy API](../api/Humanizer.IGrammaticalCaseTimeSpanHumanizeStrategy.md)
+- [IGrammaticalCaseTimeSpanFormatter API](../api/Humanizer.IGrammaticalCaseTimeSpanFormatter.md)
+- [DefaultTimeSpanHumanizeStrategy API](../api/Humanizer.DefaultTimeSpanHumanizeStrategy.md)
+- [NumberToTimeSpanExtensions API](../api/Humanizer.NumberToTimeSpanExtensions.md)
+- [Configurator API](../api/Humanizer.Configurator.md)
+- [PrepositionsExtensions API](../api/Humanizer.PrepositionsExtensions.md)
+- [In API](../api/Humanizer.In.md)
+- [On API](../api/Humanizer.On.md)
+- [InDate API](../api/Humanizer.InDate.md)
+- [OnDate API](../api/Humanizer.OnDate.md)
+- [DateToOrdinalWordsExtensions API](../api/Humanizer.DateToOrdinalWordsExtensions.md)
+- [TimeOnlyToClockNotationExtensions API](../api/Humanizer.TimeOnlyToClockNotationExtensions.md)

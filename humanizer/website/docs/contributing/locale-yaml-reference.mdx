@@ -1,0 +1,261 @@
+---
+id: locale-yaml-reference
+title: Locale YAML reference
+sidebar_position: 9
+diataxis: reference
+persona: language contributor
+example: illustrative
+---
+
+# Locale YAML reference
+
+This is the index for the v4 authoring contract on `main` under
+`src/Humanizer/Locales/*.yml`. Use the smallest reference that answers the
+question:
+
+- [File schema, inheritance, and lexical tables](./locale-yaml-schema-reference.mdx)
+- [Surface fields and shared strategy values](./locale-yaml-surface-reference.mdx)
+- [Words-to-number engines](./words-to-number-engine-reference.mdx)
+- [Number-to-words engines](./number-to-words-engine-reference.mdx)
+
+Together with [Locale YAML how-to](./locale-yaml-how-to.mdx) and
+[Add or update a locale](./adding-or-updating-a-locale.mdx), these references
+describe the checked-in locale contract without requiring contributors to
+reverse-engineer generator source.
+
+## Start with a minimal variant
+
+A regional variant declares its parent and overrides only real differences:
+
+```yaml
+locale: 'en-US'
+variantOf: 'en'
+
+surfaces:
+  list:
+    engine: 'oxford'
+```
+
+Omitted surfaces inherit from `en`. A parity claim still needs a recorded
+ownership chain and proving assertions for inherited surfaces.
+
+## Grammatical-case duration surface
+
+Every terminal locale root must classify `surfaces.durationCases`; a regional
+variant may inherit that classification only through its declared
+same-language, same-script `variantOf` chain. An authored child block replaces
+the parent's entire duration-case surface; omit the block to inherit it.
+
+The release classifications are:
+
+- `distinct`: the locale has an evidenced case inventory and explicitly
+  realizes every inventory case.
+- `invariant`: the locale has an evidenced inventory whose applicable cases
+  have the same written duration rendering.
+- `not-applicable`: grammatical case is not applicable to this locale's
+  narrowed written duration surface, with an authoritative reason.
+
+`unsupported` is available only while developing locale data. Release
+validation rejects every applicable unsupported root, case, and unit.
+
+Each non-`not-applicable` root declares:
+
+- `inventory`: every case in the language's written bare-duration scope.
+- `citationCase`: the inventory case whose authored base-duration phrases
+  provide the locale's citation rendering. It is commonly `nominative`, but
+  locales such as Basque use `absolutive`; the generator rejects a citation
+  case that is absent from the inventory.
+- `sources`: immutable CLDR, grammar, corpus, native-authored, or native-review
+  evidence with URL, revision, locator, and credit.
+- `cases`: exactly one realization for every inventory case.
+
+Checked-in locale YAML appends a same-line `DS173237` waiver to immutable
+40-hex `revision` values because DevSkim otherwise mistakes Git commit hashes
+for secrets. The waiver applies only to that revision line and rule.
+
+A case realization is exactly one of:
+
+- `authored`, with all eight units;
+- `sameRenderedAs: <case>`, for an evidenced same-written-output relationship;
+- `notApplicable: <reason>`, with provenance; or
+- development-only `unsupported: <reason>`.
+
+An authored unit is exactly one of `phrase`, `sameRenderedAs`,
+`notApplicable`, or development-only `unsupported`. Case and unit aliases are
+flattened during generation. Missing targets, self references, cycles, and
+aliases to unavailable data fail generation.
+
+```yaml
+surfaces:
+  durationCases:
+    classification: 'distinct'
+    inventory:
+      - 'nominative'
+      - 'dative'
+    citationCase: 'nominative'
+    sources:
+      cldr48:
+        kind: 'cldr'
+        url: 'https://github.com/unicode-org/cldr/blob/acd6d88ae493633240e19a87a721076a8a75c310/common/main/de.xml'
+        revision: 'acd6d88ae493633240e19a87a721076a8a75c310'
+        locator: 'long duration-unit patterns'
+        credit: 'Unicode CLDR contributors'
+    cases:
+      nominative:
+        authored: 'base-duration'
+        provenance: [cldr48]
+      dative:
+        authored:
+          units:
+            millisecond:
+              sameRenderedAs: nominative
+              provenance: [cldr48]
+            second:
+              phrase:
+                single:
+                  numeric: '1 Sekunde'
+                  words: 'einer Sekunde'
+                multiple:
+                  forms: 'Sekunden'
+              provenance: [cldr48]
+            # minute through year are also required
+        provenance: [cldr48]
+```
+
+Case-aware calls validate the requested case against `inventory` before
+looking up a phrase and fail clearly when it is unavailable. Existing
+case-free `Humanize` calls continue to use the legacy duration path unchanged.
+
+Phrase leaves use the same singular and counted-phrase grammar as
+`surfaces.phrases.duration`. Every authored leaf supplies a singular phrase and
+a numeric `multiple` phrase. When
+`surfaces.formatter.casePluralRule` is explicitly declared, every reachable
+named multiple form is also required for authored overlays and citation/base
+duration phrases. For example, `casePluralRule: arabic-cardinal` requires
+`default`, `zero`, `dual`, `plural`, and `many`; count 1 remains the separate
+singular branch. Without an explicit case plural rule, normal multiple-form
+fallback remains valid. The singular `words` variant can contain a
+locale-authored one-word or article phrase; counted forms may write the count
+or encode it in the unit morphology. Do not synthesize prepositions or
+arbitrary number-word declension.
+
+At runtime, `HumanizeWithCase` returns a bare duration phrase. `Nominative`
+also uses the case-aware singular selection. `sameRenderedAs` selects the
+evidenced same-language rendering; `notApplicable`, `unsupported`, an absent
+requested case, or an unsupported unit throws
+`NotSupportedException`. Missing classifications or incomplete overlays fail
+generation, and no path falls back to English or invents morphology.
+Case-aware duration formatting is independent of relative-date and
+date-ordinal grammar.
+
+## Generator Pipeline Touchpoints
+
+These are the main files that turn locale YAML into runtime behavior:
+
+1. `src/Humanizer.SourceGenerators/Common/LocaleYamlCatalog.cs`
+   - reads YAML
+   - resolves locale inheritance
+   - merges child mappings with parent mappings
+   - normalizes author-facing references such as `self`
+2. `src/Humanizer.SourceGenerators/Common/EngineContractCatalog.cs`
+   - defines the typed generator-side structural contracts for shared engines
+3. `src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/*.cs`
+   - emit typed profile catalogs for the supported surfaces
+4. `src/Humanizer.SourceGenerators/Generators/LocaleRegistryInput.cs`
+   - emits the locale-to-implementation registry wiring
+5. `src/Humanizer/Localisation/*`
+   - shared runtime kernels
+
+<!-- humanizer-locale-reference-fingerprint:v1
+src/Humanizer.SourceGenerators/Common/CanonicalLocaleAuthoring.cs 3b8c862b16689fe88e7c94452f2778792fd166e54e2951b5d2c7f349af45263f
+src/Humanizer.SourceGenerators/Common/DurationCaseModels.cs ec2340b7af9e2353af43fb40de3eac0be7e00ae68ac927ea6ff8acaf3a4d35be
+src/Humanizer.SourceGenerators/Common/EngineContractCatalog.cs caf48277eaacf6409eec0a8541b49ec4974fcaaab53b561a5f8c7e67506658da
+src/Humanizer.SourceGenerators/Common/EngineContractModels.cs ed56aeb32417c9f8896f72ec5627422ca364e25386cef72fb69ac64123379feb
+src/Humanizer.SourceGenerators/Common/EngineContractUtilities.cs c65c01becf23ad9c52de269d2c98b8ee1694ad76352f82cfc828abd4dd40542d
+src/Humanizer.SourceGenerators/Common/GenerationHelpers.cs 1f37fc18dbee16fe3b3d598d72209fdeb2991a27f259c9952f987a6e8196f37b
+src/Humanizer.SourceGenerators/Common/LocalePhraseModels.cs 04da99f982de658e09477f1fac1131f9922d981910745767eda5e3561a998021
+src/Humanizer.SourceGenerators/Common/LocalePhraseNormalization.cs 58673f94e68b47f889dac59484ee50bb649e07e4da99794ad721ba488190effb
+src/Humanizer.SourceGenerators/Common/LocaleYamlCatalog.cs fa14af4899e697caf4353e04cb5e90c0847542702ac00cb9edf675a53fc36efb
+src/Humanizer.SourceGenerators/Common/ProfileDefinitions.cs 49d6775d1664050ec814e87dfe7051479be5d89417e236fd3b932d0d83b01463
+src/Humanizer.SourceGenerators/Generators/LocaleRegistryInput.cs a26610c0bcf095e73925b0b1a3878f1f403876de78be029981764c8e984dda5b
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/FormatterProfileCatalogInput.cs a5e1bc7acbf5e831e228295f05a65ff8e640a88911ae1ab8a48e688362b2e977
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/InflectionCatalogEmission.cs 7dd31210dc44cf7586646958dadab2dc4e681baafdef4cf3aeab0a8c16d80807
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/InflectionCatalogInput.cs ada1e3680d5235e3280ef69ead91d75504bd2681736dde2afd5e84a0b3579031
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/InflectionCatalogParsing.cs 7d5b713531e8c4be736c4ef5ebc6b1db80104d102c4746af6c3d6b3301ce84e4
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/InflectionCatalogValidation.cs 82fe14ab149118c7b81b14843c925fc26b959513281602603b51ea07cc694c47
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/LocaleDurationCaseTableCatalogInput.cs 3c59b5cd89fe57deaef1f5aa82e5268302c68734c8df79887f124d818b3992f8
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/LocalePhraseTableCatalogInput.cs be2d2728de4b54068ac0d88c32223b692ab7735233c15238fe129a30bebf2599
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/NumberToWordsEngineContractFactory.cs d62ea9d94b5c74104a26cfddc9a1269481410867b44d39f707e10e25b1a556ff
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/OrdinalDateProfileCatalogInput.cs 6681d60bb2b4fd6c5f13bcdb74716daed1c8f9007afe0fd5c0288b4a8a5851ba
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/OrdinalizerProfileCatalogInput.cs 28228cf41d4acbdaf5fa7a8c447de4171f5df361808db9418dafa00f3b95b7d2
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/TimeOnlyToClockNotationEngineContractFactory.cs 86b133bf91e44213ea0e1614ad30222b825f3605e17e7a12ae8183fd52c06a65
+src/Humanizer.SourceGenerators/Generators/ProfileCatalogs/WordsToNumberEngineContractFactory.cs d31cb1c47152e7e447ea67652cbc8593c1f9809d94971ff306a10dd1ba005aad
+src/Humanizer.SourceGenerators/Generators/TokenMapWordsToNumberInput.cs 11ce98e5a50022edef62975341d3eaa06a04253cd11da82686f3c53bb3f0adda
+src/Humanizer/Bytes/ByteSize.cs 752b35eddf48ca8a00b5a5f1eda50b67680e04fc186f2f3a31db080a71a8ba87
+src/Humanizer/Bytes/ByteSizeExtensions.cs bc3ed85490fa6471e5417323319ce99d8189bfc20aad090cc0850edbad490f00
+src/Humanizer/Configuration/LocaliserRegistry.cs 0c5805a56d2ca20dee3fcfa05591a405beae080c71f549f0ed2f233dd7ac51d1
+src/Humanizer/GrammaticalGender.cs e223479f2d30f74e6278cff26faf46e7babc4a55efb8692e10d638bb2f50a6be
+src/Humanizer/Localisation/CollectionFormatters/CliticCollectionFormatter.cs 859bdb39ea8a1cb00accefb26b0636b9042329ad050f12a663b037242e13f1f4
+src/Humanizer/Localisation/CollectionFormatters/DefaultCollectionFormatter.cs 9c63f47db0da5cdef9e28eaca5ae4c9c7d159a61adcedfadfa22d6b2021da1ae
+src/Humanizer/Localisation/CollectionFormatters/DelimitedCollectionFormatter.cs 86baac8c6f6e7e7b8b7584f9d6d828865111cfdfb85acf02e041ac92d29c5535
+src/Humanizer/Localisation/DateToOrdinalWords/OrdinalDateCalendarMode.cs 1d614b07b825aa9a863aa18c50341ed3afcaaa2fe61a03422e695c61e3f2edf7
+src/Humanizer/Localisation/DateToOrdinalWords/OrdinalDatePattern.cs 396227e41763ab813facef6b48624005f304e30dab17eafb404f299200b21739
+src/Humanizer/Localisation/EifelerRule.cs 8f69199eb9ee94de698cb20bab2e56a02cceaf9307c6ec260e248eef7bd6ed85
+src/Humanizer/Localisation/Formatters/DefaultFormatter.cs 1e3af6e84409b4902df570e2cd051cb0dc6971db0af9ea5a49adbd323d9bb065
+src/Humanizer/Localisation/Formatters/LocaleDurationCaseTable.cs d1c322f597930957597fe9d27765c08b41a00d8bae117f8f5a5a5a8cbac37fe9
+src/Humanizer/Localisation/Formatters/LocalePhraseTable.cs 2af061bde0383b47dc7c531ffb44d63a8f310e00ffea28cf9972e706b779b36e
+src/Humanizer/Localisation/Formatters/ProfiledFormatter.cs a96d21a53239995d78aa4c9a979c0899ac24c6ac5dc5ecf8002e39219ceb9011
+src/Humanizer/Localisation/NumberToWords/BillionStrategyNumberToWordsConverter.cs aab32a64b7044a43676e31eec2bafe6519b5a3a2b66fcaa95e04909498a92c5f
+src/Humanizer/Localisation/NumberToWords/ConjunctionalScaleNumberToWordsConverter.cs 0850c93b7c7963a3e9e86b30c38774fdeaa9574f8ec18cdbf2b8ff9ffa436146
+src/Humanizer/Localisation/NumberToWords/HarmonyOrdinalNumberToWordsConverter.cs 6433579d70759185226e107045299094a7df45f489758497a9aa238b66949c90
+src/Humanizer/Localisation/NumberToWords/InvertedTensNumberToWordsConverter.cs 6e3f483f3d8c0876f10147115fd5b59f42031b0a117748a841c12dcfb3efcf91
+src/Humanizer/Localisation/NumberToWords/JoinedScaleNumberToWordsConverter.cs 3c873968c9d9da85f01b5ce1278b196e326ef7a95a38ec30522dfe6720f988a6
+src/Humanizer/Localisation/NumberToWords/PluralizedScaleNumberToWordsConverter.cs e32f1a543cd6c7b5a6a7218dfc72a5e53b5b5cba05c6a3e72e25ce2f77d53bb1
+src/Humanizer/Localisation/NumberToWords/ScaleStrategyNumberToWordsConverter.cs f162d42b9a43ad24dd51c2e0de189eabee175f1abbb1e057a47e87585d05b674
+src/Humanizer/Localisation/NumberToWords/SouthSlavicCardinalNumberToWordsConverter.cs 36c2a04550016a133f9e48c038d00516dfe31020c8bd33e9d90acd9c34487a59
+src/Humanizer/Localisation/NumberToWords/UnitLeadingCompoundNumberToWordsConverter.cs b18c372c573cdec39ed440e23a7720ebc77ec963145bb74fbb0f1ff9feabe288
+src/Humanizer/Localisation/NumberToWords/VariantDecadeNumberToWordsConverter.cs 8ce31f8128b19f7928d5de2324e110962ae8b2dede41e1f7c4b5e78762c60bc4
+src/Humanizer/Localisation/Ordinalizers/TemplateOrdinalizer.cs 94c2dba193007205050d83ed7698e0d506224881281e165098ea80db5d8c05dc
+src/Humanizer/Localisation/Ordinalizers/WordFormTemplateOrdinalizer.cs be86a8a7f76c7c5d353ef012dbcadca4e9aa07d1e5aef4e7e4209c696382c6dd
+src/Humanizer/Localisation/TimeToClockNotation/PhraseClockNotationConverter.cs 323abab79762534a6b70323391066c9a8928934c3a4a5ecff8c4beb8797b8c66
+src/Humanizer/Localisation/WordsToNumber/TokenMapWordsToNumberConverter.cs 1b223c7b59fea9c1530e814171b97d5228d94bb19931984a2fc916e1b79cd472
+src/Humanizer/Localisation/WordsToNumber/TokenMapWordsToNumberOrdinalMapBuilder.cs 3b4f4f6052a1d0cae9c6e20eaaf36f3e6ea6c5fd98e7083100c9c94dcf31feb9
+src/Humanizer/MetricNumeralExtensions.cs e7faa312f25a721a82faa24c2b8fad646b6cb9df284e1b0ddf63267e4b003d41
+src/Humanizer/OrdinalizeExtensions.cs eec79966237928edb8bc707836b96a70006fc2692e429ef7f2603913b56440e8
+-->
+
+## Regional Variant Checklist
+
+Before creating a new regional variant file:
+
+1. Do not use plain culture fallback as parity proof for a shipped locale.
+2. If the variant has no locale-owned generated overrides, do not create a YAML file.
+3. If the variant differs only in a few fields inside a feature block, declare `variantOf` and override only those fields.
+4. If the variant needs a different `engine`, replace the whole mapping intentionally.
+5. For parity work, inherited surfaces still need locale-specific proving assertions and a recorded inheritance chain to the terminal owner.
+
+A locale parity claim is invalid unless every canonical surface is explicitly accounted for as locale-owned or same-language inherited with proof. There is no shipped-locale exemption list in this repo.
+
+**Exception for no-delta regional variants:** A parity epic may ship minimum-valid no-delta variant files (`locale:` + `variantOf:`) when first-class matrix/sweep coverage is required. This makes the regional culture explicit in `LocaleRegistrySweepTests` and `LocaleTheoryMatrixCompletenessTests` rather than relying on implicit culture fallback. The no-delta file inherits all surfaces from the parent and produces identical output; its purpose is registry presence and test matrix coverage, not linguistic differentiation. The `surfaces` key may be omitted entirely for these files. Examples: `ur-PK.yml` and `ur-IN.yml` ship as no-delta variants of `ur.yml`.
+
+Examples in the current repo:
+
+- `en-US.yml` exists because U.S. ordinal date formatting differs from `en`.
+- `ru-RU.yml` does not need to exist when `ru` already covers the generated behavior.
+- `en-IN.yml` declares `variantOf: 'en'` and overrides only the `number.words` fields that genuinely differ.
+
+## Use only documented schema
+
+Do not invent fields, use empty mappings as inheritance sentinels, copy a
+parent file into every variant, or reference generator-internal profile keys.
+Changing `engine` replaces that mapped block instead of merging it.
+
+The reference describes accepted structure; it does not prove that authored
+words or inherited behavior are natural for a culture.
+
+## Related guides and API
+
+- [Add or update a locale](./adding-or-updating-a-locale.mdx)
+- [Locale YAML how-to](./locale-yaml-how-to.mdx)
+- [Choose or extend a locale engine](./choosing-or-extending-a-locale-engine.mdx)
+- [Selected-version API reference](../api/index.md)

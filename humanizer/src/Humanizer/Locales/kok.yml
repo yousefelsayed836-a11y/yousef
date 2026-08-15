@@ -1,0 +1,1571 @@
+locale: 'kok'
+
+surfaces:
+  inflection:
+    cardinalRule: 'AmharicLike'
+  durationCases:
+    classification: 'distinct'
+    citationCase: 'nominative'
+    inventory:
+      - nominative
+      - oblique
+      - genitive
+      - dative
+      - accusative
+      - instrumental
+      - ablative
+      - locative
+      - vocative
+    sources:
+      inventory:
+        kind: 'grammar'
+        url: 'https://github.com/UniversalDependencies/docs/blob/41c517cadd93e8b4872bdde7ee61f942840f9656/_kok/index.md'
+        revision: '41c517cadd93e8b4872bdde7ee61f942840f9656' # DevSkim: ignore DS173237
+        locator: 'Konkani nominal case description'
+        credit: 'Universal Dependencies Konkani contributors'
+      cldr48:
+        kind: 'cldr'
+        url: 'https://github.com/unicode-org/cldr/blob/acd6d88ae493633240e19a87a721076a8a75c310/common/main/kok.xml'
+        revision: 'acd6d88ae493633240e19a87a721076a8a75c310' # DevSkim: ignore DS173237
+        locator: 'Konkani duration lexemes and inflected forms'
+        credit: 'Unicode CLDR contributors'
+      peterson:
+        kind: 'grammar'
+        url: 'https://doi.org/10.1163/22105832-bja10019'
+        revision: 'Linguistic Discovery 12(2), Table 7'
+        locator: 'Konkani objective, instrumental, locative, and ablative paradigms'
+        credit: 'John Peterson'
+      autoParse:
+        kind: 'grammar'
+        url: 'https://aclanthology.org/W14-5136/'
+        revision: 'ACL Anthology W14-5136'
+        locator: 'Konkani noun declension classes and oblique stems'
+        credit: 'Madhavi Sardesai and AutoParSe contributors'
+    cases:
+      nominative:
+        authored: 'base-duration'
+        provenance:
+          - 'inventory'
+      oblique:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 मिलिसेकंदा'
+                  words: 'एका मिलिसेकंदा'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिलिसेकंदां'
+                    singular: '{count} मिलिसेकंदा'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            second:
+              phrase:
+                single:
+                  numeric: '1 सेकंदा'
+                  words: 'एका सेकंदा'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सेकंदां'
+                    singular: '{count} सेकंदा'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 मिनिटा'
+                  words: 'एका मिनिटा'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिनिटां'
+                    singular: '{count} मिनिटा'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 वरा'
+                  words: 'एका वरा'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वरां'
+                    singular: '{count} वरा'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            day:
+              phrase:
+                single:
+                  numeric: '1 दिसा'
+                  words: 'एका दिसा'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} दिसां'
+                    singular: '{count} दिसा'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            week:
+              phrase:
+                single:
+                  numeric: '1 सप्तका'
+                  words: 'एका सप्तका'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सप्तकां'
+                    singular: '{count} सप्तका'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            month:
+              phrase:
+                single:
+                  numeric: '1 म्हयन्या'
+                  words: 'एका म्हयन्या'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} म्हयन्यां'
+                    singular: '{count} म्हयन्या'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            year:
+              phrase:
+                single:
+                  numeric: '1 वर्सा'
+                  words: 'एका वर्सा'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वर्सां'
+                    singular: '{count} वर्सा'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+        provenance:
+          - 'inventory'
+          - 'cldr48'
+          - 'peterson'
+          - 'autoParse'
+      genitive:
+        notApplicable: 'Konkani genitive agreement requires an omitted possessed head.'
+        provenance:
+          - 'inventory'
+      dative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 मिलिसेकंदाक'
+                  words: 'एका मिलिसेकंदाक'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिलिसेकंदांक'
+                    singular: '{count} मिलिसेकंदाक'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            second:
+              phrase:
+                single:
+                  numeric: '1 सेकंदाक'
+                  words: 'एका सेकंदाक'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सेकंदांक'
+                    singular: '{count} सेकंदाक'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 मिनिटाक'
+                  words: 'एका मिनिटाक'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिनिटांक'
+                    singular: '{count} मिनिटाक'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 वराक'
+                  words: 'एका वराक'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वरांक'
+                    singular: '{count} वराक'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            day:
+              phrase:
+                single:
+                  numeric: '1 दिसाक'
+                  words: 'एका दिसाक'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} दिसांक'
+                    singular: '{count} दिसाक'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            week:
+              phrase:
+                single:
+                  numeric: '1 सप्तकाक'
+                  words: 'एका सप्तकाक'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सप्तकांक'
+                    singular: '{count} सप्तकाक'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            month:
+              phrase:
+                single:
+                  numeric: '1 म्हयन्याक'
+                  words: 'एका म्हयन्याक'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} म्हयन्यांक'
+                    singular: '{count} म्हयन्याक'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            year:
+              phrase:
+                single:
+                  numeric: '1 वर्साक'
+                  words: 'एका वर्साक'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वर्सांक'
+                    singular: '{count} वर्साक'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+        provenance:
+          - 'inventory'
+          - 'cldr48'
+          - 'peterson'
+          - 'autoParse'
+      accusative:
+        sameRenderedAs: 'dative'
+        provenance:
+          - 'inventory'
+          - 'cldr48'
+          - 'peterson'
+          - 'autoParse'
+      instrumental:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 मिलिसेकंदान'
+                  words: 'एका मिलिसेकंदान'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिलिसेकंदांनीं'
+                    singular: '{count} मिलिसेकंदान'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            second:
+              phrase:
+                single:
+                  numeric: '1 सेकंदान'
+                  words: 'एका सेकंदान'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सेकंदांनीं'
+                    singular: '{count} सेकंदान'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 मिनिटान'
+                  words: 'एका मिनिटान'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिनिटांनीं'
+                    singular: '{count} मिनिटान'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 वरान'
+                  words: 'एका वरान'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वरांनीं'
+                    singular: '{count} वरान'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            day:
+              phrase:
+                single:
+                  numeric: '1 दिसान'
+                  words: 'एका दिसान'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} दिसांनीं'
+                    singular: '{count} दिसान'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            week:
+              phrase:
+                single:
+                  numeric: '1 सप्तकान'
+                  words: 'एका सप्तकान'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सप्तकांनीं'
+                    singular: '{count} सप्तकान'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            month:
+              phrase:
+                single:
+                  numeric: '1 म्हयन्यान'
+                  words: 'एका म्हयन्यान'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} म्हयन्यांनीं'
+                    singular: '{count} म्हयन्यान'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            year:
+              phrase:
+                single:
+                  numeric: '1 वर्सान'
+                  words: 'एका वर्सान'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वर्सांनीं'
+                    singular: '{count} वर्सान'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+        provenance:
+          - 'inventory'
+          - 'cldr48'
+          - 'peterson'
+          - 'autoParse'
+      ablative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 मिलिसेकंदा सावन'
+                  words: 'एका मिलिसेकंदा सावन'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिलिसेकंदां सावन'
+                    singular: '{count} मिलिसेकंदा सावन'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            second:
+              phrase:
+                single:
+                  numeric: '1 सेकंदा सावन'
+                  words: 'एका सेकंदा सावन'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सेकंदां सावन'
+                    singular: '{count} सेकंदा सावन'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 मिनिटा सावन'
+                  words: 'एका मिनिटा सावन'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिनिटां सावन'
+                    singular: '{count} मिनिटा सावन'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 वरा सावन'
+                  words: 'एका वरा सावन'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वरां सावन'
+                    singular: '{count} वरा सावन'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            day:
+              phrase:
+                single:
+                  numeric: '1 दिसा सावन'
+                  words: 'एका दिसा सावन'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} दिसां सावन'
+                    singular: '{count} दिसा सावन'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            week:
+              phrase:
+                single:
+                  numeric: '1 सप्तका सावन'
+                  words: 'एका सप्तका सावन'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सप्तकां सावन'
+                    singular: '{count} सप्तका सावन'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            month:
+              phrase:
+                single:
+                  numeric: '1 म्हयन्या सावन'
+                  words: 'एका म्हयन्या सावन'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} म्हयन्यां सावन'
+                    singular: '{count} म्हयन्या सावन'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            year:
+              phrase:
+                single:
+                  numeric: '1 वर्सा सावन'
+                  words: 'एका वर्सा सावन'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वर्सां सावन'
+                    singular: '{count} वर्सा सावन'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+        provenance:
+          - 'inventory'
+          - 'cldr48'
+          - 'peterson'
+          - 'autoParse'
+      locative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 मिलिसेकंदांत'
+                  words: 'एका मिलिसेकंदांत'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिलिसेकंदांनीं'
+                    singular: '{count} मिलिसेकंदांत'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            second:
+              phrase:
+                single:
+                  numeric: '1 सेकंदांत'
+                  words: 'एका सेकंदांत'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सेकंदांनीं'
+                    singular: '{count} सेकंदांत'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 मिनिटांत'
+                  words: 'एका मिनिटांत'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} मिनिटांनीं'
+                    singular: '{count} मिनिटांत'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 वरांत'
+                  words: 'एका वरांत'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वरांनीं'
+                    singular: '{count} वरांत'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            day:
+              phrase:
+                single:
+                  numeric: '1 दिसांत'
+                  words: 'एका दिसांत'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} दिसांनीं'
+                    singular: '{count} दिसांत'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            week:
+              phrase:
+                single:
+                  numeric: '1 सप्तकांत'
+                  words: 'एका सप्तकांत'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} सप्तकांनीं'
+                    singular: '{count} सप्तकांत'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            month:
+              phrase:
+                single:
+                  numeric: '1 म्हयन्यांत'
+                  words: 'एका म्हयन्यांत'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} म्हयन्यांनीं'
+                    singular: '{count} म्हयन्यांत'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+            year:
+              phrase:
+                single:
+                  numeric: '1 वर्सांत'
+                  words: 'एका वर्सांत'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} वर्सांनीं'
+                    singular: '{count} वर्सांत'
+              provenance:
+                - 'inventory'
+                - 'cldr48'
+                - 'peterson'
+                - 'autoParse'
+        provenance:
+          - 'inventory'
+          - 'cldr48'
+          - 'peterson'
+          - 'autoParse'
+      vocative:
+        notApplicable: 'Direct address does not apply to a written bare quantitative duration.'
+        provenance:
+          - 'inventory'
+  list:
+    engine: 'conjunction'
+    value: 'आनी'
+
+  formatter:
+    engine: 'profiled'
+    pluralRule: 'singular-plural'
+    dataUnitPluralRule: 'singular-plural'
+    dataUnitFallbackTransform: 'trim-trailing-s'
+
+  phrases:
+    relativeDate:
+      now: 'आतां'
+      never: 'केन्नाच ना'
+      past:
+        millisecond:
+          single: 'एक मिलिसेकंद आदीं'
+          multiple:
+            forms:
+              default: 'मिलिसेकंद'
+            afterCount: 'आदीं'
+        second:
+          single: 'एक सेकंद आदीं'
+          multiple:
+            forms:
+              default: 'सेकंद'
+            afterCount: 'आदीं'
+        minute:
+          single: 'एक मिनिट आदीं'
+          multiple:
+            forms:
+              default: 'मिनिटां'
+            afterCount: 'आदीं'
+        hour:
+          single: 'एक वर आदीं'
+          multiple:
+            forms:
+              default: 'वरां'
+            afterCount: 'आदीं'
+        day:
+          single: 'काल'
+          multiple:
+            forms:
+              default: 'दीस'
+            afterCount: 'आदीं'
+        week:
+          single: 'एक सप्तक आदीं'
+          multiple:
+            forms:
+              default: 'सप्तकां'
+            afterCount: 'आदीं'
+        month:
+          single: 'एक म्हयनो आदीं'
+          multiple:
+            forms:
+              default: 'म्हयने'
+            afterCount: 'आदीं'
+        year:
+          single: 'एक वर्स आदीं'
+          multiple:
+            forms:
+              default: 'वर्सां'
+            afterCount: 'आदीं'
+      future:
+        millisecond:
+          single: 'एका मिलिसेकंदान'
+          multiple:
+            forms:
+              default: 'मिलिसेकंद'
+            afterCount: 'उपरांत'
+        second:
+          single: 'एका सेकंदान'
+          multiple:
+            forms:
+              default: 'सेकंद'
+            afterCount: 'उपरांत'
+        minute:
+          single: 'एका मिनिटान'
+          multiple:
+            forms:
+              default: 'मिनिटां'
+            afterCount: 'उपरांत'
+        hour:
+          single: 'एका वरान'
+          multiple:
+            forms:
+              default: 'वरां'
+            afterCount: 'उपरांत'
+        day:
+          single: 'फाल्यां'
+          multiple:
+            forms:
+              default: 'दीस'
+            afterCount: 'उपरांत'
+        week:
+          single: 'एका सप्तकान'
+          multiple:
+            forms:
+              default: 'सप्तकां'
+            afterCount: 'उपरांत'
+        month:
+          single: 'एका म्हयन्यान'
+          multiple:
+            forms:
+              default: 'म्हयने'
+            afterCount: 'उपरांत'
+        year:
+          single: 'एका वर्सान'
+          multiple:
+            forms:
+              default: 'वर्सां'
+            afterCount: 'उपरांत'
+    duration:
+      zero: 'आतां'
+      age:
+        template: '{value}'
+      millisecond:
+        single:
+          numeric: '1 मिलिसेकंद'
+          words: 'एक मिलिसेकंद'
+        multiple:
+          forms:
+            default: 'मिलिसेकंद'
+            singular: 'मिलिसेकंद'
+      second:
+        single:
+          numeric: '1 सेकंद'
+          words: 'एक सेकंद'
+        multiple:
+          forms:
+            default: 'सेकंद'
+            singular: 'सेकंद'
+      minute:
+        single:
+          numeric: '1 मिनिट'
+          words: 'एक मिनिट'
+        multiple:
+          forms:
+            default: 'मिनिटां'
+            singular: 'मिनिट'
+      hour:
+        single:
+          numeric: '1 वर'
+          words: 'एक वर'
+        multiple:
+          forms:
+            default: 'वरां'
+            singular: 'वर'
+      day:
+        single:
+          numeric: '1 दीस'
+          words: 'एक दीस'
+        multiple:
+          forms:
+            default: 'दीस'
+            singular: 'दीस'
+      week:
+        single:
+          numeric: '1 सप्तक'
+          words: 'एक सप्तक'
+        multiple:
+          forms:
+            default: 'सप्तकां'
+            singular: 'सप्तक'
+      month:
+        single:
+          numeric: '1 म्हयनो'
+          words: 'एक म्हयनो'
+        multiple:
+          forms:
+            default: 'म्हयने'
+            singular: 'म्हयनो'
+      year:
+        single:
+          numeric: '1 वर्स'
+          words: 'एक वर्स'
+        multiple:
+          forms:
+            default: 'वर्सां'
+            singular: 'वर्स'
+    dataUnits:
+      bit:
+        forms:
+          default: 'बिट'
+          singular: 'बिट'
+        symbol: 'b'
+      byte:
+        forms:
+          default: 'बाइट'
+          singular: 'बाइट'
+        symbol: 'B'
+      kilobyte:
+        forms:
+          default: 'किलोबाइट'
+          singular: 'किलोबाइट'
+        symbol: 'KB'
+      megabyte:
+        forms:
+          default: 'मेगाबाइट'
+          singular: 'मेगाबाइट'
+        symbol: 'MB'
+      gigabyte:
+        forms:
+          default: 'गिगाबाइट'
+          singular: 'गिगाबाइट'
+        symbol: 'GB'
+      terabyte:
+        forms:
+          default: 'टेराबाइट'
+          singular: 'टेराबाइट'
+        symbol: 'TB'
+      decimalKilobyte:
+        forms:
+          default: 'किलोबाइट'
+          singular: 'किलोबाइट'
+        symbol: 'kB'
+      decimalMegabyte:
+        forms:
+          default: 'मेगाबाइट'
+          singular: 'मेगाबाइट'
+        symbol: 'MB'
+      decimalGigabyte:
+        forms:
+          default: 'गिगाबाइट'
+          singular: 'गिगाबाइट'
+        symbol: 'GB'
+      decimalTerabyte:
+        forms:
+          default: 'टेराबाइट'
+          singular: 'टेराबाइट'
+        symbol: 'TB'
+      decimalPetabyte:
+        forms:
+          default: 'पेटाबाइट'
+          singular: 'पेटाबाइट'
+        symbol: 'PB'
+      decimalExabyte:
+        forms:
+          default: 'एक्साबाइट'
+          singular: 'एक्साबाइट'
+        symbol: 'EB'
+      binaryKibibyte:
+        forms:
+          default: 'किबिबाइट'
+          singular: 'किबिबाइट'
+        symbol: 'KiB'
+      binaryMebibyte:
+        forms:
+          default: 'मेबिबाइट'
+          singular: 'मेबिबाइट'
+        symbol: 'MiB'
+      binaryGibibyte:
+        forms:
+          default: 'गिबिबाइट'
+          singular: 'गिबिबाइट'
+        symbol: 'GiB'
+      binaryTebibyte:
+        forms:
+          default: 'टेबिबाइट'
+          singular: 'टेबिबाइट'
+        symbol: 'TiB'
+      binaryPebibyte:
+        forms:
+          default: 'पेबिबाइट'
+          singular: 'पेबिबाइट'
+        symbol: 'PiB'
+    timeUnits:
+      millisecond:
+        symbol: 'मिलिसेकंद'
+      second:
+        symbol: 'सेकंद'
+      minute:
+        symbol: 'मिनिट'
+      hour:
+        symbol: 'वर'
+      day:
+        symbol: 'दीस'
+      week:
+        symbol: 'सप्तक'
+      month:
+        symbol: 'म्हयनो'
+      year:
+        symbol: 'वर्स'
+
+  number:
+    words:
+      engine: 'joined-scale'
+      maximumValue: 9223372036854775807
+      zeroWord: 'शून्य'
+      minusWord: 'ऋणात्मक'
+      negativeJoinWord: ' '
+      joinWord: ' '
+      scaleCountJoinWord: ' '
+      underHundredJoinWord: ''
+      hundredsMap:
+        - 'शून्य'
+        - 'शंबर'
+        - 'दोनशें'
+        - 'तीनशें'
+        - 'चारशें'
+        - 'पांचशें'
+        - 'सशें'
+        - 'सातशें'
+        - 'आठशें'
+        - 'णवशें'
+      subHundredMap:
+        - 'शून्य'
+        - 'एक'
+        - 'दोन'
+        - 'तीन'
+        - 'चार'
+        - 'पांच'
+        - 'स'
+        - 'सात'
+        - 'आठ'
+        - 'णव'
+        - 'धा'
+        - 'इकरा'
+        - 'बारा'
+        - 'तेरा'
+        - 'चवदा'
+        - 'पंदरा'
+        - 'सोळा'
+        - 'सतरा'
+        - 'अठरा'
+        - 'एकोणीस'
+        - 'वीस'
+        - 'एकवीस'
+        - 'बावीस'
+        - 'तेवीस'
+        - 'चोवीस'
+        - 'पंचवीस'
+        - 'सव्वीस'
+        - 'सत्तावीस'
+        - 'अठ्ठावीस'
+        - 'एकोणतीस'
+        - 'तीस'
+        - 'एकतीस'
+        - 'बत्तीस'
+        - 'तेत्तीस'
+        - 'चवतीस'
+        - 'पस्तीस'
+        - 'छत्तीस'
+        - 'सात्तीस'
+        - 'आठ्ठीस'
+        - 'एकोणचाळीस'
+        - 'चाळीस'
+        - 'एकेचाळीस'
+        - 'बेचाळीस'
+        - 'त्रेचाळीस'
+        - 'चवेचाळीस'
+        - 'पंचेचाळीस'
+        - 'शेचाळीस'
+        - 'सत्तेचाळीस'
+        - 'अठ्ठेचाळीस'
+        - 'एकोणपन्नास'
+        - 'पन्नास'
+        - 'एकावन'
+        - 'बावन'
+        - 'त्रेप्पन'
+        - 'चवपन'
+        - 'पंचावन'
+        - 'छाप्पन'
+        - 'सत्तावन'
+        - 'अठ्ठावन'
+        - 'एकोणसाठ'
+        - 'साठ'
+        - 'एकसठ'
+        - 'बासठ'
+        - 'त्रेसठ'
+        - 'चवसठ'
+        - 'पांसठ'
+        - 'सांसठ'
+        - 'सातसठ'
+        - 'आठसठ'
+        - 'एकोणसत्तर'
+        - 'सत्तर'
+        - 'एक्यात्तर'
+        - 'ब्यात्तर'
+        - 'त्र्यात्तर'
+        - 'चवद्यात्तर'
+        - 'पंच्यात्तर'
+        - 'शात्तर'
+        - 'सत्त्यात्तर'
+        - 'अठ्ठयात्तर'
+        - 'एकोणअंयशीं'
+        - 'अंयशीं'
+        - 'एक्यांयशीं'
+        - 'ब्यांयशीं'
+        - 'त्र्यांयशीं'
+        - 'चवद्यांयशीं'
+        - 'पंच्यांयशीं'
+        - 'शांयशीं'
+        - 'सत्यांयशीं'
+        - 'अठ्ठ्यांयशीं'
+        - 'एकोणणव्वद'
+        - 'णव्वद'
+        - 'एक्याण्णव'
+        - 'ब्याण्णव'
+        - 'त्र्याण्णव'
+        - 'चवद्याण्णव'
+        - 'पंच्याण्णव'
+        - 'शाण्णव'
+        - 'सत्याण्णव'
+        - 'अठ्ठयाण्णव'
+        - 'णव्याण्णव'
+      scales:
+        -
+          value: 100000000000
+          name: 'खर्व'
+        -
+          value: 1000000000
+          name: 'अब्ज'
+        -
+          value: 10000000
+          name: 'कोटी'
+        -
+          value: 100000
+          name: 'लाख'
+        -
+          value: 1000
+          name: 'हजार'
+      ordinal:
+        masculine:
+          defaultSuffix: 'वो'
+          exactReplacements:
+            1: 'पयलो'
+            2: 'दुसरो'
+            3: 'तिसरो'
+            4: 'चवथो'
+            5: 'पांचवो'
+            6: 'सवो'
+            7: 'सातवो'
+            8: 'आठवो'
+            9: 'णववो'
+            10: 'धावो'
+            11: 'इकरावो'
+            12: 'बारावो'
+            13: 'तेरावो'
+            14: 'चवदावो'
+            15: 'पंदरावो'
+            16: 'सोळावो'
+            17: 'सतरावो'
+            18: 'अठरावो'
+            19: 'एकोणीसावो'
+            20: 'विसावो'
+            21: 'एकविसावो'
+            30: 'तिसावो'
+            32: 'बत्तीसावो'
+            100: 'शंबरावो'
+        feminine:
+          defaultSuffix: 'वी'
+          exactReplacements:
+            1: 'पयली'
+            2: 'दुसरी'
+            3: 'तिसरी'
+            4: 'चवथी'
+            5: 'पांचवी'
+            6: 'सवी'
+            7: 'सातवी'
+            8: 'आठवी'
+            9: 'णववी'
+            10: 'धावी'
+            11: 'इकरावी'
+            12: 'बारावी'
+            13: 'तेरावी'
+            14: 'चवदावी'
+            15: 'पंदरावी'
+            16: 'सोळावी'
+            17: 'सतरावी'
+            18: 'अठरावी'
+            19: 'एकोणीसावी'
+            20: 'विसावी'
+            21: 'एकविसावी'
+            30: 'तिसावी'
+            32: 'बत्तीसावी'
+            100: 'शंबरावी'
+        neuter:
+          defaultSuffix: 'वें'
+          exactReplacements:
+            1: 'पयलें'
+            2: 'दुसरें'
+            3: 'तिसरें'
+            4: 'चवथें'
+            5: 'पांचवें'
+            6: 'सवें'
+            7: 'सातवें'
+            8: 'आठवें'
+            9: 'णववें'
+            10: 'धावें'
+            11: 'इकरावें'
+            12: 'बारावें'
+            13: 'तेरावें'
+            14: 'चवदावें'
+            15: 'पंदरावें'
+            16: 'सोळावें'
+            17: 'सतरावें'
+            18: 'अठरावें'
+            19: 'एकोणीसावें'
+            20: 'विसावें'
+            21: 'एकविसावें'
+            30: 'तिसावें'
+            32: 'बत्तीसावें'
+            100: 'शंबरावें'
+        neuterFallback: 'masculine'
+
+    formatting:
+      decimalSeparator: '.'
+      groupSeparator: ','
+      negativeSign: '-'
+
+    parse:
+      decimalMarker: 'दशांश'
+      engine: 'token-map'
+      normalizationProfile: 'CollapseWhitespace'
+      ordinalNumberToWordsKind: 'self'
+      ordinalGenderVariant: 'masculine-and-feminine'
+      useHundredMultiplier: true
+      tokenSuffixesToStrip:
+        - 'वो'
+        - 'वी'
+        - 'वें'
+      cardinalMap:
+        'शून्य': 0
+        'एक': 1
+        'दोन': 2
+        'तीन': 3
+        'चार': 4
+        'पांच': 5
+        'स': 6
+        'सात': 7
+        'आठ': 8
+        'णव': 9
+        'धा': 10
+        'इकरा': 11
+        'बारा': 12
+        'तेरा': 13
+        'चवदा': 14
+        'पंदरा': 15
+        'सोळा': 16
+        'सतरा': 17
+        'अठरा': 18
+        'एकोणीस': 19
+        'वीस': 20
+        'एकवीस': 21
+        'बावीस': 22
+        'तेवीस': 23
+        'चोवीस': 24
+        'पंचवीस': 25
+        'सव्वीस': 26
+        'सत्तावीस': 27
+        'अठ्ठावीस': 28
+        'एकोणतीस': 29
+        'तीस': 30
+        'एकतीस': 31
+        'बत्तीस': 32
+        'तेत्तीस': 33
+        'चवतीस': 34
+        'पस्तीस': 35
+        'छत्तीस': 36
+        'सात्तीस': 37
+        'आठ्ठीस': 38
+        'एकोणचाळीस': 39
+        'चाळीस': 40
+        'एकेचाळीस': 41
+        'बेचाळीस': 42
+        'त्रेचाळीस': 43
+        'चवेचाळीस': 44
+        'पंचेचाळीस': 45
+        'शेचाळीस': 46
+        'सत्तेचाळीस': 47
+        'अठ्ठेचाळीस': 48
+        'एकोणपन्नास': 49
+        'पन्नास': 50
+        'एकावन': 51
+        'बावन': 52
+        'त्रेप्पन': 53
+        'चवपन': 54
+        'पंचावन': 55
+        'छाप्पन': 56
+        'सत्तावन': 57
+        'अठ्ठावन': 58
+        'एकोणसाठ': 59
+        'साठ': 60
+        'एकसठ': 61
+        'बासठ': 62
+        'त्रेसठ': 63
+        'चवसठ': 64
+        'पांसठ': 65
+        'सांसठ': 66
+        'सातसठ': 67
+        'आठसठ': 68
+        'एकोणसत्तर': 69
+        'सत्तर': 70
+        'एक्यात्तर': 71
+        'ब्यात्तर': 72
+        'त्र्यात्तर': 73
+        'चवद्यात्तर': 74
+        'पंच्यात्तर': 75
+        'शात्तर': 76
+        'सत्त्यात्तर': 77
+        'अठ्ठयात्तर': 78
+        'एकोणअंयशीं': 79
+        'अंयशीं': 80
+        'एक्यांयशीं': 81
+        'ब्यांयशीं': 82
+        'त्र्यांयशीं': 83
+        'चवद्यांयशीं': 84
+        'पंच्यांयशीं': 85
+        'शांयशीं': 86
+        'सत्यांयशीं': 87
+        'अठ्ठ्यांयशीं': 88
+        'एकोणणव्वद': 89
+        'णव्वद': 90
+        'एक्याण्णव': 91
+        'ब्याण्णव': 92
+        'त्र्याण्णव': 93
+        'चवद्याण्णव': 94
+        'पंच्याण्णव': 95
+        'शाण्णव': 96
+        'सत्याण्णव': 97
+        'अठ्ठयाण्णव': 98
+        'णव्याण्णव': 99
+        'शंबर': 100
+        'दोनशें': 200
+        'तीनशें': 300
+        'चारशें': 400
+        'पांचशें': 500
+        'सशें': 600
+        'सातशें': 700
+        'आठशें': 800
+        'णवशें': 900
+        'हजार': 1000
+        'लाख': 100000
+        'कोटी': 10000000
+        'अब्ज': 1000000000
+        'खर्व': 100000000000
+      ordinalMap:
+        'पयलो': 1
+        'दुसरो': 2
+        'तिसरो': 3
+        'चवथो': 4
+        'पांचवो': 5
+        'सवो': 6
+        'सातवो': 7
+        'आठवो': 8
+        'णववो': 9
+        'धावो': 10
+        'इकरावो': 11
+        'बारावो': 12
+        'तेरावो': 13
+        'चवदावो': 14
+        'पंदरावो': 15
+        'सोळावो': 16
+        'सतरावो': 17
+        'अठरावो': 18
+        'एकोणीसावो': 19
+        'विसावो': 20
+        'एकविसावो': 21
+        'तिसावो': 30
+        'बत्तीसावो': 32
+        'शंबरावो': 100
+        'पयली': 1
+        'दुसरी': 2
+        'तिसरी': 3
+        'चवथी': 4
+        'पांचवी': 5
+        'सवी': 6
+        'सातवी': 7
+        'आठवी': 8
+        'णववी': 9
+        'धावी': 10
+        'इकरावी': 11
+        'बारावी': 12
+        'तेरावी': 13
+        'चवदावी': 14
+        'पंदरावी': 15
+        'सोळावी': 16
+        'सतरावी': 17
+        'अठरावी': 18
+        'एकोणीसावी': 19
+        'विसावी': 20
+        'एकविसावी': 21
+        'तिसावी': 30
+        'बत्तीसावी': 32
+        'शंबरावी': 100
+        'पयलें': 1
+        'दुसरें': 2
+        'तिसरें': 3
+        'चवथें': 4
+        'पांचवें': 5
+        'सवें': 6
+        'सातवें': 7
+        'आठवें': 8
+        'णववें': 9
+        'धावें': 10
+        'इकरावें': 11
+        'बारावें': 12
+        'तेरावें': 13
+        'चवदावें': 14
+        'पंदरावें': 15
+        'सोळावें': 16
+        'सतरावें': 17
+        'अठरावें': 18
+        'एकोणीसावें': 19
+        'विसावें': 20
+        'एकविसावें': 21
+        'तिसावें': 30
+        'बत्तीसावें': 32
+        'शंबरावें': 100
+      negativePrefixes:
+        - 'ऋणात्मक'
+        - 'ऋण'
+        - 'नकारात्मक'
+        - 'मायनस'
+        - 'माइनस'
+
+  ordinal:
+    numeric:
+      engine: 'number-word-suffix'
+      useCulture: true
+      masculine:
+        defaultSuffix: 'वो'
+        exactReplacements:
+          1: 'पयलो'
+          2: 'दुसरो'
+          3: 'तिसरो'
+          4: 'चवथो'
+          5: 'पांचवो'
+          6: 'सवो'
+          7: 'सातवो'
+          8: 'आठवो'
+          9: 'णववो'
+          10: 'धावो'
+          19: 'एकोणीसावो'
+          20: 'विसावो'
+          21: 'एकविसावो'
+          30: 'तिसावो'
+          32: 'बत्तीसावो'
+          100: 'शंबरावो'
+      feminine:
+        defaultSuffix: 'वी'
+        exactReplacements:
+          1: 'पयली'
+          2: 'दुसरी'
+          3: 'तिसरी'
+          4: 'चवथी'
+          5: 'पांचवी'
+          6: 'सवी'
+          7: 'सातवी'
+          8: 'आठवी'
+          9: 'णववी'
+          10: 'धावी'
+          19: 'एकोणीसावी'
+          20: 'विसावी'
+          21: 'एकविसावी'
+          30: 'तिसावी'
+          32: 'बत्तीसावी'
+          100: 'शंबरावी'
+      neuter:
+        defaultSuffix: 'वें'
+        exactReplacements:
+          1: 'पयलें'
+          2: 'दुसरें'
+          3: 'तिसरें'
+          4: 'चवथें'
+          5: 'पांचवें'
+          6: 'सवें'
+          7: 'सातवें'
+          8: 'आठवें'
+          9: 'णववें'
+          10: 'धावें'
+          19: 'एकोणीसावें'
+          20: 'विसावें'
+          21: 'एकविसावें'
+          30: 'तिसावें'
+          32: 'बत्तीसावें'
+          100: 'शंबरावें'
+      neuterFallback: 'masculine'
+    date:
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'Numeric'
+      calendarMode: 'Native'
+    dateOnly:
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'Numeric'
+      calendarMode: 'Native'
+
+  clock:
+    engine: 'phrase-clock'
+    hourMode: 'h12'
+    dayPeriodPosition: 'prefix'
+    hourGender: 'masculine'
+    minuteGender: 'feminine'
+    hourWordsMap:
+      - ''
+      - 'एक'
+      - 'दोन'
+      - 'तीन'
+      - 'चार'
+      - 'पांच'
+      - 'स'
+      - 'सात'
+      - 'आठ'
+      - 'णव'
+      - 'धा'
+      - 'इकरा'
+      - 'बारा'
+    min0: '{hour} वरां'
+    defaultTemplate: '{hour} वर जावन {minutes} मिनिटां'
+    earlyMorning: 'पहाटे'
+    morning: 'सकाळीं'
+    afternoon: 'दनपारां'
+    night: 'रातीं'
+    evening: 'सांजे'
+    eveningStartHour: 17
+    nightStartHour: 21
+
+  compass:
+    full:
+      - 'उत्तर'
+      - 'उत्तर-ईशान्य'
+      - 'ईशान्य'
+      - 'पूर्व-ईशान्य'
+      - 'पूर्व'
+      - 'पूर्व-आग्नेय'
+      - 'आग्नेय'
+      - 'दक्षिण-आग्नेय'
+      - 'दक्षिण'
+      - 'दक्षिण-नैऋत्य'
+      - 'नैऋत्य'
+      - 'पश्चिम-नैऋत्य'
+      - 'पश्चिम'
+      - 'पश्चिम-वायव्य'
+      - 'वायव्य'
+      - 'उत्तर-वायव्य'
+    short:
+      - 'उ'
+      - 'उ-ई'
+      - 'ई'
+      - 'पू-ई'
+      - 'पू'
+      - 'पू-आ'
+      - 'आ'
+      - 'द-आ'
+      - 'द'
+      - 'द-नै'
+      - 'नै'
+      - 'प-नै'
+      - 'प'
+      - 'प-वा'
+      - 'वा'
+      - 'उ-वा'
+
+  calendar:
+    months:
+      - 'जानेवारी'
+      - 'फेब्रुवारी'
+      - 'मार्च'
+      - 'एप्रील'
+      - 'मे'
+      - 'जून'
+      - 'जुलय'
+      - 'ऑगस्ट'
+      - 'सप्टेंबर'
+      - 'ऑक्टोबर'
+      - 'नोव्हेंबर'
+      - 'डिसेंबर'

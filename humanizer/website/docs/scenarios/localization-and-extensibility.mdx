@@ -1,0 +1,98 @@
+---
+id: localization-and-extensibility
+title: Localization and extensibility
+sidebar_position: 19
+diataxis: how-to
+persona: application developer
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import localization from '!!raw-loader!../_examples/scenarios-localization/Program.cs';
+import localizationOutput from '!!raw-loader!../_examples/scenarios-localization/expected-output.txt';
+import configuration from '!!raw-loader!../_examples/configuration/Program.cs';
+import configurationOutput from '!!raw-loader!../_examples/configuration/expected-output.txt';
+
+# Localization and extensibility
+
+Start with culture selection, then choose the narrowest extension point. Pass `CultureInfo` per call when possible. Establish `CurrentCulture` and `CurrentUICulture` at a request or job boundary for ambient APIs. Use a local interface implementation for one operation and reserve `Configurator` registries or strategies for process-wide application policy.
+
+## Example
+
+This example produces French number words and supplies a per-call culture-aware transformer:
+
+<CodeBlock language="csharp" title="Program.cs">{localization}</CodeBlock>
+
+<CodeBlock language="text" title="Output">{localizationOutput}</CodeBlock>
+
+A per-call transformer is isolated and easy to test.
+
+### Choose an extension point
+
+| Need | Preferred extension |
+| --- | --- |
+| One local string operation | `IStringTransformer` or `ICulturedStringTransformer` |
+| A custom truncation rule | `ITruncator` passed to `Truncate` |
+| Relative date thresholds | A date/time strategy assigned once |
+| Application-wide locale component | The matching `LocaliserRegistry<T>` |
+| Case-aware duration policy | `IGrammaticalCaseTimeSpanHumanizeStrategy` and `IGrammaticalCaseTimeSpanFormatter` |
+| Enum metadata property | `UseEnumDescriptionPropertyLocator` at startup |
+
+Registries cover collection formatters, general formatters, number-word converters, ordinalizers, date-ordinal converters, and clock-notation converters. Built-in registries resolve exact accepted-culture names through the generated map before using the registry default. Caller-created registries retain parent-chain fallback.
+
+### Set a global time-span policy
+
+Assign `Configurator.TimeSpanHumanizeStrategy` once during
+application startup to route every `TimeSpan.Humanize` and
+`HumanizeToSymbols` call through an application-wide policy. Fractional-second
+calls use `IFractionalTimeSpanHumanizeStrategy` when the configured strategy
+implements it; integral results remain compatible with legacy strategies.
+With the default strategy, genuinely fractional terminal values require
+`IFractionalTimeSpanFormatter` from a configured custom formatter. A custom
+`IFractionalTimeSpanHumanizeStrategy` may own its fractional formatting.
+Humanizer does not fall back to English. The fractional strategy receives the
+requested precision, empty-unit behavior, culture, unit range, separator,
+maximum fractional digits, rounding mode, and symbol mode.
+
+This runnable configuration keeps the built-in date strategy example and adds
+a custom time-span strategy that delegates all behavior to
+`DefaultTimeSpanHumanizeStrategy` after limiting output to one part:
+
+<CodeBlock language="csharp" title="Program.cs">{configuration}</CodeBlock>
+
+<CodeBlock language="text" title="Output">{configurationOutput}</CodeBlock>
+
+`HumanizeWithCase` uses a separate optional capability so existing custom
+components remain source- and binary-compatible. A configured strategy must
+implement `IGrammaticalCaseTimeSpanHumanizeStrategy`, and its selected
+formatter must implement `IGrammaticalCaseTimeSpanFormatter`. Otherwise the
+case-aware call throws `NotSupportedException`, including when the requested
+case is `Nominative`. Existing `Humanize` and `HumanizeToSymbols` calls
+continue to use `ITimeSpanHumanizeStrategy` and `IFormatter` unchanged.
+
+The case-aware formatter receives the duration unit, numeric count, and
+grammatical case. It returns a complete locale-authored unit-case phrase:
+singular output may contain a localized one-word or article, while a counted
+form may render the count explicitly or encode it in the unit form. It must
+not add a preposition. Install custom
+strategies and formatters during startup, before registry resolution freezes.
+
+## Register global behavior before first use
+
+Localizer registries freeze on first resolution. Register components before any Humanizer call can resolve that registry. Do not mutate global strategies per request; concurrent callers can observe the change.
+
+Parent-culture fallback identifies where behavior was resolved. It does not prove that inherited wording is correct for every region.
+
+## Related guides and API
+
+- [Configuration basics](../start/configuration.mdx)
+- [Choose explicit and ambient cultures](../languages/using-cultures.mdx)
+- [Custom localization](../languages/custom-localization.mdx)
+- [Culture and global configuration](../concepts/culture-and-configuration.mdx)
+- [Configurator API](../api/Humanizer.Configurator.md)
+- [LocaliserRegistry API](../api/Humanizer.LocaliserRegistry_TLocaliser_.md)
+- [ICulturedStringTransformer API](../api/Humanizer.ICulturedStringTransformer.md)
+- [ITruncator API](../api/Humanizer.ITruncator.md)
+- [ITimeSpanHumanizeStrategy API](../api/Humanizer.ITimeSpanHumanizeStrategy.md)
+- [IGrammaticalCaseTimeSpanHumanizeStrategy API](../api/Humanizer.IGrammaticalCaseTimeSpanHumanizeStrategy.md)
+- [IGrammaticalCaseTimeSpanFormatter API](../api/Humanizer.IGrammaticalCaseTimeSpanFormatter.md)
+- [DefaultTimeSpanHumanizeStrategy API](../api/Humanizer.DefaultTimeSpanHumanizeStrategy.md)

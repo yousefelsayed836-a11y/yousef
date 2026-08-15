@@ -1,0 +1,145 @@
+using System.Collections.Frozen;
+
+namespace Humanizer.Tests.Localisation;
+
+public class JoinedScaleNumberToWordsConverterTests
+{
+    [Theory]
+    [InlineData(100, "hundred")]
+    [InlineData(101, "hundred-r one")]
+    [InlineData(1000, "thousand")]
+    [InlineData(1001, "thousand-r one")]
+    [InlineData(2001, "two thousand-r one")]
+    public void SupportsExactAndRemainderScaleAndHundredForms(long number, string expected)
+    {
+        var converter = new JoinedScaleNumberToWordsConverter(CreateProfile(
+            [new(1000, "thousand", "thousand-r", OmitOneWhenSingular: true)],
+            ["", "hundred"],
+            ["", "hundred-r"]));
+
+        Assert.Equal(expected, converter.Convert(number));
+    }
+
+    [Theory]
+    [InlineData(1_000_000, "one million")]
+    [InlineData(2_000_000, "two millions")]
+    [InlineData(1_000_001, "one million-r one")]
+    [InlineData(2_000_001, "two millions-r one")]
+    public void SupportsSingularPluralExactAndRemainderScaleForms(long number, string expected)
+    {
+        var converter = new JoinedScaleNumberToWordsConverter(CreateProfile(
+            [new(1_000_000, "million", "million-r", "millions", "millions-r"), new(1000, "thousand")],
+            ["", "hundred"],
+            []));
+
+        Assert.Equal(expected, converter.Convert(number));
+    }
+
+    [Fact]
+    public void SupportsCompoundOrdinalFallback()
+    {
+        var converter = new JoinedScaleNumberToWordsConverter(CreateProfile(
+            [],
+            ["", "hundred"],
+            [],
+            compoundOrdinalRemainder: 1,
+            compoundOrdinalWord: "first"));
+
+        Assert.Equal("20 first", converter.ConvertToOrdinal(21));
+    }
+
+    [Fact]
+    public void SupportsGenderedOrdinalFallbackAndExactReplacements()
+    {
+        var converter = new JoinedScaleNumberToWordsConverter(CreateProfile(
+            [],
+            ["", "hundred"],
+            [],
+            ordinal: new JoinedScaleOrdinalProfile(
+                new("", "th", new Dictionary<int, string> { [1] = "first" }.ToFrozenDictionary()),
+                null,
+                null,
+                GrammaticalGender.Masculine)));
+
+        Assert.Equal("first", converter.ConvertToOrdinal(1));
+        Assert.Equal("twoth", converter.ConvertToOrdinal(2));
+    }
+
+    [Theory]
+    [InlineData(1001, "thousand-ofirst")]
+    [InlineData(-1001, "minus thousand-ofirst")]
+    public void SupportsCompositionalOrdinalTokenReplacementAndCompaction(int number, string expected)
+    {
+        var converter = new JoinedScaleNumberToWordsConverter(CreateProfile(
+            [new(1000, "thousand", "thousand-r", OmitOneWhenSingular: true)],
+            ["", "hundred"],
+            ["", "hundred-r"],
+            compositionalOrdinal: new(
+                new Dictionary<string, string> { ["thousand-r"] = "thousand-o" }.ToFrozenDictionary(),
+                new Dictionary<string, string> { ["one"] = "first" }.ToFrozenDictionary(),
+                ["one"]),
+            joinWord: "  "));
+
+        Assert.Equal(expected, converter.ConvertToOrdinal(number));
+    }
+
+    [Theory]
+    [InlineData(2_000_002)]
+    [InlineData(long.MinValue)]
+    public void RejectsValuesOutsideTheConfiguredProfileRange(long number)
+    {
+        var converter = new JoinedScaleNumberToWordsConverter(CreateProfile([], ["", "hundred"], []));
+
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => converter.Convert(number));
+
+        Assert.Equal("number", exception.ParamName);
+    }
+
+    static JoinedScaleNumberToWordsProfile CreateProfile(
+        JoinedScale[] scales,
+        string[] hundredsMap,
+        string[] hundredsMapWithRemainder,
+        JoinedScaleOrdinalProfile? ordinal = null,
+        JoinedScaleCompositionalOrdinalProfile? compositionalOrdinal = null,
+        int? compoundOrdinalRemainder = null,
+        string? compoundOrdinalWord = null,
+        string joinWord = " ") =>
+        new(
+            2_000_001,
+            "zero",
+            "minus",
+            " ",
+            joinWord,
+            " ",
+            "",
+            false,
+            "",
+            null,
+            null,
+            [],
+            [],
+            hundredsMap,
+            hundredsMapWithRemainder,
+            CreateSubHundredMap(),
+            FrozenDictionary<int, string>.Empty,
+            FrozenDictionary<int, string>.Empty,
+            scales,
+            ordinal: ordinal,
+            compositionalOrdinal: compositionalOrdinal,
+            compoundOrdinalRemainder: compoundOrdinalRemainder,
+            compoundOrdinalWord: compoundOrdinalWord);
+
+    static string[] CreateSubHundredMap()
+    {
+        var values = new string[100];
+        values[0] = "zero";
+        values[1] = "one";
+        values[2] = "two";
+        for (var index = 3; index < values.Length; index++)
+        {
+            values[index] = index.ToString(CultureInfo.InvariantCulture);
+        }
+
+        return values;
+    }
+}

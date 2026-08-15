@@ -1,0 +1,63 @@
+---
+id: culture-and-configuration
+title: Culture and global configuration
+sidebar_position: 1
+diataxis: explanation
+persona: application architect
+example: illustrative
+---
+
+# Culture and global configuration
+
+When an API accepts a `CultureInfo`, Humanizer uses it directly. Otherwise the
+API uses `CurrentCulture` or `CurrentUICulture`. A localiser registry then
+resolves the selected culture's exact name through Humanizer's generated
+accepted-culture map and uses its default when no mapping matches. A
+caller-created `LocaliserRegistry<TLocaliser>` still walks its registered parent
+chain.
+
+Per-call culture is the narrowest and safest choice. Ambient culture is useful
+when a request pipeline already establishes it. Global `Configurator` changes
+are process-wide policy.
+
+## Example
+
+```csharp
+using System.Globalization;
+using Humanizer;
+
+var french = CultureInfo.GetCultureInfo("fr-FR");
+Console.WriteLine(42.ToWords(french));
+
+CultureInfo.CurrentCulture = french;
+CultureInfo.CurrentUICulture = french;
+Console.WriteLine(42.ToWords());
+```
+
+Both calls print `quarante-deux`. The first makes its culture explicit; the
+second relies on the ambient culture established for the current operation.
+
+## Configure global behavior once
+
+`LocaliserRegistry<TLocaliser>` resolves and caches components by culture. On
+first resolution it freezes the registration table, making subsequent reads
+predictable and safe. A later `Register` call throws instead of silently
+changing behavior for only some cultures or requests.
+
+Date and time humanization strategies are mutable properties rather than
+registries, but they should still be set once during startup. Call
+`UseEnumDescriptionPropertyLocator` before any enum humanization for the same
+reason.
+
+## Keep ambient cultures aligned
+
+Different Humanizer APIs use `CurrentCulture` or `CurrentUICulture`. Set both
+at a request, message, or job boundary when ambient output must be consistent.
+Prefer an explicit culture inside shared services when the API accepts one.
+
+## Related guides and API
+
+- [Configuration basics](../start/configuration.mdx)
+- [Localization and extensibility](../scenarios/localization-and-extensibility.mdx)
+- [Configurator API](../api/Humanizer.Configurator.md)
+- [LocaliserRegistry API](../api/Humanizer.LocaliserRegistry_TLocaliser_.md)

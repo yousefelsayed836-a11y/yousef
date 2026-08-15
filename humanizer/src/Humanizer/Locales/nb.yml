@@ -1,0 +1,621 @@
+locale: 'nb'
+
+surfaces:
+  inflection:
+    cardinalRule: 'One'
+  durationCases:
+    classification: 'distinct'
+    citationCase: 'nominative'
+    inventory:
+      - 'nominative'
+      - 'genitive'
+    sources:
+      cldr48:
+        kind: 'cldr'
+        url: 'https://github.com/unicode-org/cldr/blob/acd6d88ae493633240e19a87a721076a8a75c310/common/main/nb.xml'
+        revision: 'acd6d88ae493633240e19a87a721076a8a75c310' # DevSkim: ignore DS173237
+        locator: 'long duration-unit case patterns'
+        credit: 'Unicode CLDR contributors'
+    cases:
+      nominative:
+        authored: 'base-duration'
+        provenance:
+          - 'cldr48'
+      genitive:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 millisekunds'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} millisekunders'
+                    singular: '{count} millisekunds'
+                    dual: '{count} millisekunders'
+                    paucal: '{count} millisekunders'
+                    plural: '{count} millisekunders'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekunds'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} sekunders'
+                    singular: '{count} sekunds'
+                    dual: '{count} sekunders'
+                    paucal: '{count} sekunders'
+                    plural: '{count} sekunders'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minutts'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} minutters'
+                    singular: '{count} minutts'
+                    dual: '{count} minutters'
+                    paucal: '{count} minutters'
+                    plural: '{count} minutters'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 times'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} timers'
+                    singular: '{count} times'
+                    dual: '{count} timers'
+                    paucal: '{count} timers'
+                    plural: '{count} timers'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 døgns'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} døgns'
+                    singular: '{count} døgns'
+                    dual: '{count} døgns'
+                    paucal: '{count} døgns'
+                    plural: '{count} døgns'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 ukes'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} ukers'
+                    singular: '{count} ukes'
+                    dual: '{count} ukers'
+                    paucal: '{count} ukers'
+                    plural: '{count} ukers'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 måneds'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} måneders'
+                    singular: '{count} måneds'
+                    dual: '{count} måneders'
+                    paucal: '{count} måneders'
+                    plural: '{count} måneders'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 års'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} års'
+                    singular: '{count} års'
+                    dual: '{count} års'
+                    paucal: '{count} års'
+                    plural: '{count} års'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+
+  list:
+    engine: 'conjunction'
+    value: 'og'
+
+  formatter:
+    engine: 'profiled'
+    dataUnitFallbackTransform: 'trim-trailing-s'
+
+  phrases:
+    relativeDate:
+      now: 'nå'
+      never: 'aldri'
+      past:
+        millisecond:
+          single: 'ett millisekund siden'
+          multiple:
+            forms:
+              default: 'millisekunder'
+            afterCount: 'siden'
+        second:
+          single: 'ett sekund siden'
+          multiple:
+            forms:
+              default: 'sekunder'
+            afterCount: 'siden'
+        minute:
+          single: 'ett minutt siden'
+          multiple:
+            forms:
+              default: 'minutter'
+            afterCount: 'siden'
+        hour:
+          single: 'en time siden'
+          multiple:
+            forms:
+              default: 'timer'
+            afterCount: 'siden'
+        day:
+          single: 'i går'
+          multiple:
+            forms:
+              default: 'dager'
+            afterCount: 'siden'
+          template:
+            name: 'two'
+            value: 'i forgårs'
+        week:
+          single: 'en uke siden'
+          multiple:
+            forms:
+              default: 'uker'
+            afterCount: 'siden'
+        month:
+          single: 'en måned siden'
+          multiple:
+            forms:
+              default: 'måneder'
+            afterCount: 'siden'
+        year:
+          single: 'ett år siden'
+          multiple:
+            forms:
+              default: 'år'
+            afterCount: 'siden'
+      future:
+        millisecond:
+          single: 'ett millisekund fra nå'
+          multiple:
+            forms:
+              default: 'millisekunder'
+            afterCount: 'fra nå'
+        second:
+          single: 'ett sekund fra nå'
+          multiple:
+            forms:
+              default: 'sekunder'
+            afterCount: 'fra nå'
+        minute:
+          single: 'ett minutt fra nå'
+          multiple:
+            forms:
+              default: 'minutter'
+            afterCount: 'fra nå'
+        hour:
+          single: 'en time fra nå'
+          multiple:
+            forms:
+              default: 'timer'
+            afterCount: 'fra nå'
+        day:
+          single: 'i morgen'
+          multiple:
+            forms:
+              default: 'dager'
+            afterCount: 'fra nå'
+          template:
+            name: 'two'
+            value: 'i overmorgen'
+        week:
+          single: 'en uke fra nå'
+          multiple:
+            forms:
+              default: 'uker'
+            afterCount: 'fra nå'
+        month:
+          single: 'en måned fra nå'
+          multiple:
+            forms:
+              default: 'måneder'
+            afterCount: 'fra nå'
+        year:
+          single: 'ett år fra nå'
+          multiple:
+            forms:
+              default: 'år'
+            afterCount: 'fra nå'
+    duration:
+      zero: 'ingen tid'
+      age:
+        template: '{value} gammel'
+      millisecond:
+        single:
+          numeric: '1 millisekund'
+          words: 'ett millisekund'
+        multiple:
+          forms:
+            default: 'millisekunder'
+      second:
+        single:
+          numeric: '1 sekund'
+          words: 'ett sekund'
+        multiple:
+          forms:
+            default: 'sekunder'
+      minute:
+        single:
+          numeric: '1 minutt'
+          words: 'ett minutt'
+        multiple:
+          forms:
+            default: 'minutter'
+      hour:
+        single:
+          numeric: '1 time'
+          words: 'en time'
+        multiple:
+          forms:
+            default: 'timer'
+      day:
+        single:
+          numeric: '1 dag'
+          words: 'en dag'
+        multiple:
+          forms:
+            default: 'dager'
+      week:
+        single:
+          numeric: '1 uke'
+          words: 'en uke'
+        multiple:
+          forms:
+            default: 'uker'
+      month:
+        single:
+          numeric: '1 måned'
+          words: 'en måned'
+        multiple:
+          forms:
+            default: 'måneder'
+      year:
+        single:
+          numeric: '1 år'
+          words: 'ett år'
+        multiple:
+          forms:
+            default: 'år'
+    dataUnits:
+      bit:
+        forms:
+          default: 'bit'
+        symbol: 'b'
+      byte:
+        forms:
+          default: 'byte'
+        symbol: 'B'
+      kilobyte:
+        forms:
+          default: 'kilobyte'
+        symbol: 'KB'
+      megabyte:
+        forms:
+          default: 'megabyte'
+        symbol: 'MB'
+      gigabyte:
+        forms:
+          default: 'gigabyte'
+        symbol: 'GB'
+      terabyte:
+        forms:
+          default: 'terabyte'
+        symbol: 'TB'
+      decimalKilobyte:
+        forms:
+          default: 'kilobyte'
+        symbol: 'kB'
+      decimalMegabyte:
+        forms:
+          default: 'megabyte'
+        symbol: 'MB'
+      decimalGigabyte:
+        forms:
+          default: 'gigabyte'
+        symbol: 'GB'
+      decimalTerabyte:
+        forms:
+          default: 'terabyte'
+        symbol: 'TB'
+      decimalPetabyte:
+        forms:
+          default: 'petabyte'
+        symbol: 'PB'
+      decimalExabyte:
+        forms:
+          default: 'exabyte'
+        symbol: 'EB'
+      binaryKibibyte:
+        forms:
+          default: 'kibibyte'
+        symbol: 'KiB'
+      binaryMebibyte:
+        forms:
+          default: 'mebibyte'
+        symbol: 'MiB'
+      binaryGibibyte:
+        forms:
+          default: 'gibibyte'
+        symbol: 'GiB'
+      binaryTebibyte:
+        forms:
+          default: 'tebibyte'
+        symbol: 'TiB'
+      binaryPebibyte:
+        forms:
+          default: 'pebibyte'
+        symbol: 'PiB'
+    timeUnits:
+      millisecond:
+        symbol: 'ms'
+      second:
+        symbol: 'sek.'
+      minute:
+        symbol: 'min.'
+      hour:
+        symbol: 'time'
+      day:
+        symbol: 'dag'
+      week:
+        symbol: 'uke'
+      month:
+        symbol: 'måned'
+      year:
+        symbol: 'år'
+
+  number:
+    words:
+      engine: 'scale-strategy'
+      cardinalStrategy: 'norwegian-bokmal'
+      ordinalStrategy: 'norwegian-bokmal'
+      maximumValue: 9223372036854775807
+      defaultGender: 'masculine'
+      zeroWord: 'null'
+      minusWord: 'minus'
+      oneDefault: 'en'
+      oneMasculine: 'en'
+      oneFeminine: 'ei'
+      oneNeuter: 'et'
+      tensLinker: 'og'
+      largeScaleRemainderJoiner: 'og '
+      exactLargeScaleOrdinalSuffix: 'te'
+      exactDefaultOrdinalSuffix: 'de'
+      tensOrdinalTrimEndCharacters: 'e'
+      tensOrdinalSuffix: 'ende'
+      shortOrdinalUpperBoundExclusive: 13
+      shortOrdinalTrimEndCharacters: 'e'
+      shortOrdinalTrimmedSuffix: 'ende'
+      shortOrdinalSuffix: 'de'
+      hundredWord: 'hundre'
+      hundredCompositeSingularWord: 'ethundre'
+      thousandWord: 'tusen'
+      thousandSingularWord: 'tusen'
+      thousandCompositeSingularWord: 'ettusen'
+      unitsMap:
+        1: 'en'
+        2: 'to'
+        3: 'tre'
+        4: 'fire'
+        5: 'fem'
+        6: 'seks'
+        7: 'sju'
+        8: 'åtte'
+        9: 'ni'
+        10: 'ti'
+        11: 'elleve'
+        12: 'tolv'
+        13: 'tretten'
+        14: 'fjorten'
+        15: 'femten'
+        16: 'seksten'
+        17: 'sytten'
+        18: 'atten'
+        19: 'nitten'
+      tensMap:
+        1: 'ti'
+        2: 'tjue'
+        3: 'tretti'
+        4: 'førti'
+        5: 'femti'
+        6: 'seksti'
+        7: 'sytti'
+        8: 'åtti'
+        9: 'nitti'
+      hundredUnitMap: []
+      scales:
+        -
+          value: 1000000000000
+          name: 'billion'
+          plural: 'billioner'
+          prefix: ' '
+          postfix: ' '
+          displayOneUnit: true
+          gender: 'masculine'
+        -
+          value: 1000000000
+          name: 'milliard'
+          plural: 'milliarder'
+          prefix: ' '
+          postfix: ' '
+          displayOneUnit: true
+          gender: 'masculine'
+        -
+          value: 1000000
+          name: 'million'
+          plural: 'millioner'
+          prefix: ' '
+          postfix: ' '
+          displayOneUnit: true
+          gender: 'masculine'
+      ordinalExceptions:
+        0: 'nullte'
+        1: 'første'
+        2: 'andre'
+        3: 'tredje'
+        4: 'fjerde'
+        5: 'femte'
+        6: 'sjette'
+        11: 'ellevte'
+        12: 'tolvte'
+
+    formatting:
+      negativeSign: '−'
+
+    parse:
+      decimalMarker: 'komma'
+      engine: 'compound-scale'
+      cardinalMap:
+        'null': 0
+        en: 1
+        ei: 1
+        et: 1
+        to: 2
+        tre: 3
+        fire: 4
+        fem: 5
+        seks: 6
+        sju: 7
+        'åtte': 8
+        ni: 9
+        ti: 10
+        elleve: 11
+        tolv: 12
+        tretten: 13
+        fjorten: 14
+        femten: 15
+        seksten: 16
+        sytten: 17
+        atten: 18
+        nitten: 19
+        tjue: 20
+        tretti: 30
+        'førti': 40
+        femti: 50
+        seksti: 60
+        sytti: 70
+        'åtti': 80
+        nitti: 90
+        hundre: 100
+        tusen: 1000
+        million: 1000000
+        millioner: 1000000
+        milliard: 1000000000
+        milliarder: 1000000000
+      tens:
+        - 'tjue'
+        - 'tretti'
+        - 'førti'
+        - 'femti'
+        - 'seksti'
+        - 'sytti'
+        - 'åtti'
+        - 'nitti'
+      largeScales:
+        - 'milliard'
+        - 'millioner'
+        - 'million'
+        - 'tusen'
+        - 'hundre'
+      ignoredToken: 'og'
+      ordinalNumberToWordsKind: 'self'
+      negativePrefixes:
+        - 'minus '
+
+  ordinal:
+    numeric:
+      engine: 'suffix'
+      masculineSuffix: '.'
+      feminineSuffix: '.'
+      neuterSuffix: '.'
+
+    date:
+      engine: 'pattern'
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'DotSuffix'
+    dateOnly:
+      engine: 'pattern'
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'DotSuffix'
+
+  clock:
+    engine: 'phrase-clock'
+    hourMode: 'h24'
+    hourGender: 'neuter'
+    hourOneWord: 'ett'
+    zeroFiller: 'null'
+    defaultTemplate: '{hour} {minutes}'
+
+  compass:
+    full:
+      - 'nord'
+      - 'nord-nordøst'
+      - 'nordøst'
+      - 'øst-nordøst'
+      - 'øst'
+      - 'øst-sørøst'
+      - 'sørøst'
+      - 'sør-sørøst'
+      - 'sør'
+      - 'sør-sørvest'
+      - 'sørvest'
+      - 'vest-sørvest'
+      - 'vest'
+      - 'vest-nordvest'
+      - 'nordvest'
+      - 'nord-nordvest'
+    short:
+      - 'N'
+      - 'NNØ'
+      - 'NØ'
+      - 'ØNØ'
+      - 'Ø'
+      - 'ØSØ'
+      - 'SØ'
+      - 'SSØ'
+      - 'S'
+      - 'SSV'
+      - 'SV'
+      - 'VSV'
+      - 'V'
+      - 'VNV'
+      - 'NV'
+      - 'NNV'

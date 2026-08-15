@@ -1,0 +1,865 @@
+locale: 'ta'
+
+surfaces:
+  inflection:
+    cardinalRule: 'One'
+  durationCases:
+    classification: 'distinct'
+    citationCase: 'nominative'
+    inventory:
+      - 'nominative'
+      - 'dative'
+      - 'accusative'
+      - 'ablative'
+    sources:
+      cldr48:
+        kind: 'cldr'
+        url: 'https://github.com/unicode-org/cldr/blob/acd6d88ae493633240e19a87a721076a8a75c310/common/main/ta.xml'
+        revision: 'acd6d88ae493633240e19a87a721076a8a75c310' # DevSkim: ignore DS173237
+        locator: 'long duration-unit case patterns'
+        credit: 'Unicode CLDR contributors'
+    cases:
+      nominative:
+        authored: 'base-duration'
+        provenance:
+          - 'cldr48'
+      dative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 மில்லிவிநாடிக்கு'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மில்லிவிநாடிகளுக்கு'
+                    singular: '{count} மில்லிவிநாடிக்கு'
+                    dual: '{count} மில்லிவிநாடிகளுக்கு'
+                    paucal: '{count} மில்லிவிநாடிகளுக்கு'
+                    plural: '{count} மில்லிவிநாடிகளுக்கு'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 விநாடிக்கு'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} விநாடிகளுக்கு'
+                    singular: '{count} விநாடிக்கு'
+                    dual: '{count} விநாடிகளுக்கு'
+                    paucal: '{count} விநாடிகளுக்கு'
+                    plural: '{count} விநாடிகளுக்கு'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 நிமிடத்திற்கு'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} நிமிடங்களுக்கு'
+                    singular: '{count} நிமிடத்திற்கு'
+                    dual: '{count} நிமிடங்களுக்கு'
+                    paucal: '{count} நிமிடங்களுக்கு'
+                    plural: '{count} நிமிடங்களுக்கு'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 மணிநேரத்திற்கு'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மணிநேரத்திற்கு'
+                    singular: '{count} மணிநேரத்திற்கு'
+                    dual: '{count} மணிநேரத்திற்கு'
+                    paucal: '{count} மணிநேரத்திற்கு'
+                    plural: '{count} மணிநேரத்திற்கு'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 நாளுக்கு'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} நாட்களுக்கு'
+                    singular: '{count} நாளுக்கு'
+                    dual: '{count} நாட்களுக்கு'
+                    paucal: '{count} நாட்களுக்கு'
+                    plural: '{count} நாட்களுக்கு'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 வாரத்திற்கு'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} வாரங்களுக்கு'
+                    singular: '{count} வாரத்திற்கு'
+                    dual: '{count} வாரங்களுக்கு'
+                    paucal: '{count} வாரங்களுக்கு'
+                    plural: '{count} வாரங்களுக்கு'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 மாதத்திற்கு'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மாதங்களுக்கு'
+                    singular: '{count} மாதத்திற்கு'
+                    dual: '{count} மாதங்களுக்கு'
+                    paucal: '{count} மாதங்களுக்கு'
+                    plural: '{count} மாதங்களுக்கு'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 ஆண்டுக்கு'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} ஆண்டுகளுக்கு'
+                    singular: '{count} ஆண்டுக்கு'
+                    dual: '{count} ஆண்டுகளுக்கு'
+                    paucal: '{count} ஆண்டுகளுக்கு'
+                    plural: '{count} ஆண்டுகளுக்கு'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+      accusative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 மில்லிவிநாடியை'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மில்லிவிநாடிகளை'
+                    singular: '{count} மில்லிவிநாடியை'
+                    dual: '{count} மில்லிவிநாடிகளை'
+                    paucal: '{count} மில்லிவிநாடிகளை'
+                    plural: '{count} மில்லிவிநாடிகளை'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 விநாடியை'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} விநாடிகளை'
+                    singular: '{count} விநாடியை'
+                    dual: '{count} விநாடிகளை'
+                    paucal: '{count} விநாடிகளை'
+                    plural: '{count} விநாடிகளை'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 நிமிடத்தை'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} நிமிடங்களை'
+                    singular: '{count} நிமிடத்தை'
+                    dual: '{count} நிமிடங்களை'
+                    paucal: '{count} நிமிடங்களை'
+                    plural: '{count} நிமிடங்களை'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 மணிநேரத்தை'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மணிநேரத்தை'
+                    singular: '{count} மணிநேரத்தை'
+                    dual: '{count} மணிநேரத்தை'
+                    paucal: '{count} மணிநேரத்தை'
+                    plural: '{count} மணிநேரத்தை'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 நாளை'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} நாட்களை'
+                    singular: '{count} நாளை'
+                    dual: '{count} நாட்களை'
+                    paucal: '{count} நாட்களை'
+                    plural: '{count} நாட்களை'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 வாரத்தை'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} வாரங்களை'
+                    singular: '{count} வாரத்தை'
+                    dual: '{count} வாரங்களை'
+                    paucal: '{count} வாரங்களை'
+                    plural: '{count} வாரங்களை'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 மாதத்தை'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மாதங்களை'
+                    singular: '{count} மாதத்தை'
+                    dual: '{count} மாதங்களை'
+                    paucal: '{count} மாதங்களை'
+                    plural: '{count} மாதங்களை'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 ஆண்டை'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} ஆண்டுகளை'
+                    singular: '{count} ஆண்டை'
+                    dual: '{count} ஆண்டுகளை'
+                    paucal: '{count} ஆண்டுகளை'
+                    plural: '{count} ஆண்டுகளை'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+      ablative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 மில்லிவிநாடியில்'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மில்லிவிநாடிகளில்'
+                    singular: '{count} மில்லிவிநாடியில்'
+                    dual: '{count} மில்லிவிநாடிகளில்'
+                    paucal: '{count} மில்லிவிநாடிகளில்'
+                    plural: '{count} மில்லிவிநாடிகளில்'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 விநாடியில்'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} விநாடிகளில்'
+                    singular: '{count} விநாடியில்'
+                    dual: '{count} விநாடிகளில்'
+                    paucal: '{count} விநாடிகளில்'
+                    plural: '{count} விநாடிகளில்'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 நிமிடத்தில்'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} நிமிடங்களில்'
+                    singular: '{count} நிமிடத்தில்'
+                    dual: '{count} நிமிடங்களில்'
+                    paucal: '{count} நிமிடங்களில்'
+                    plural: '{count} நிமிடங்களில்'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 மணிநேரத்தில்'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மணிநேரத்தில்'
+                    singular: '{count} மணிநேரத்தில்'
+                    dual: '{count} மணிநேரத்தில்'
+                    paucal: '{count} மணிநேரத்தில்'
+                    plural: '{count} மணிநேரத்தில்'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 நாளில்'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} நாட்களில்'
+                    singular: '{count} நாளில்'
+                    dual: '{count} நாட்களில்'
+                    paucal: '{count} நாட்களில்'
+                    plural: '{count} நாட்களில்'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 வாரத்தில்'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} வாரங்களில்'
+                    singular: '{count} வாரத்தில்'
+                    dual: '{count} வாரங்களில்'
+                    paucal: '{count} வாரங்களில்'
+                    plural: '{count} வாரங்களில்'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 மாதத்தில்'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} மாதங்களில்'
+                    singular: '{count} மாதத்தில்'
+                    dual: '{count} மாதங்களில்'
+                    paucal: '{count} மாதங்களில்'
+                    plural: '{count} மாதங்களில்'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 ஆண்டில்'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} ஆண்டுகளில்'
+                    singular: '{count} ஆண்டில்'
+                    dual: '{count} ஆண்டுகளில்'
+                    paucal: '{count} ஆண்டுகளில்'
+                    plural: '{count} ஆண்டுகளில்'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+
+  list:
+    engine: 'conjunction'
+    value: 'மற்றும்'
+
+  formatter:
+    engine: 'profiled'
+    pluralRule: 'singular-plural'
+    dataUnitPluralRule: 'singular-plural'
+
+  phrases:
+    relativeDate:
+      now: 'இப்போது'
+      never: 'ஒருபோதும் இல்லை'
+      past:
+        millisecond:
+          single: '1 மில்லிவிநாடி முன்'
+          multiple:
+            forms:
+              default: 'மில்லிவிநாடிகள்'
+            afterCount: 'முன்'
+        second:
+          single: '1 வினாடி முன்'
+          multiple:
+            forms:
+              default: 'வினாடிகள்'
+            afterCount: 'முன்'
+        minute:
+          single: '1 நிமிடம் முன்'
+          multiple:
+            forms:
+              default: 'நிமிடங்கள்'
+            afterCount: 'முன்'
+        hour:
+          single: '1 மணி முன்'
+          multiple:
+            forms:
+              default: 'மணிகள்'
+            afterCount: 'முன்'
+        day:
+          single: 'நேற்று'
+          multiple:
+            forms:
+              default: 'நாட்கள்'
+            afterCount: 'முன்'
+        week:
+          single: '1 வாரம் முன்'
+          multiple:
+            forms:
+              default: 'வாரங்கள்'
+            afterCount: 'முன்'
+        month:
+          single: '1 மாதம் முன்'
+          multiple:
+            forms:
+              default: 'மாதங்கள்'
+            afterCount: 'முன்'
+        year:
+          single: '1 ஆண்டு முன்'
+          multiple:
+            forms:
+              default: 'ஆண்டுகள்'
+            afterCount: 'முன்'
+      future:
+        millisecond:
+          single: '1 மில்லிவிநாடி'
+          multiple:
+            forms:
+              default: 'மில்லிவிநாடிகளில்'
+        second:
+          single: '1 வினாடி'
+          multiple:
+            forms:
+              default: 'வினாடிகளில்'
+        minute:
+          single: '1 நிமிடம்'
+          multiple:
+            forms:
+              default: 'நிமிடங்களில்'
+        hour:
+          single: '1 மணி'
+          multiple:
+            forms:
+              default: 'மணிகளில்'
+        day:
+          single: 'நாளை'
+          multiple:
+            forms:
+              default: 'நாட்களில்'
+        week:
+          single: '1 வாரம்'
+          multiple:
+            forms:
+              default: 'வாரங்களில்'
+        month:
+          single: '1 மாதம்'
+          multiple:
+            forms:
+              default: 'மாதங்களில்'
+        year:
+          single: '1 ஆண்டு'
+          multiple:
+            forms:
+              default: 'ஆண்டுகளில்'
+    duration:
+      zero: 'நேரமில்லை'
+      age:
+        template: '{value} வயது'
+      millisecond:
+        single:
+          numeric: '1 மில்லிவிநாடி'
+          words: 'ஒரு மில்லிவிநாடி'
+        multiple:
+          forms:
+            default: 'மில்லிவிநாடிகள்'
+            singular: 'மில்லிவிநாடி'
+      second:
+        single:
+          numeric: '1 வினாடி'
+          words: 'ஒரு வினாடி'
+        multiple:
+          forms:
+            default: 'வினாடிகள்'
+            singular: 'வினாடி'
+      minute:
+        single:
+          numeric: '1 நிமிடம்'
+          words: 'ஒரு நிமிடம்'
+        multiple:
+          forms:
+            default: 'நிமிடங்கள்'
+            singular: 'நிமிடம்'
+      hour:
+        single:
+          numeric: '1 மணி'
+          words: 'ஒரு மணி'
+        multiple:
+          forms:
+            default: 'மணிகள்'
+            singular: 'மணி'
+      day:
+        single:
+          numeric: '1 நாள்'
+          words: 'ஒரு நாள்'
+        multiple:
+          forms:
+            default: 'நாட்கள்'
+            singular: 'நாள்'
+      week:
+        single:
+          numeric: '1 வாரம்'
+          words: 'ஒரு வாரம்'
+        multiple:
+          forms:
+            default: 'வாரங்கள்'
+            singular: 'வாரம்'
+      month:
+        single:
+          numeric: '1 மாதம்'
+          words: 'ஒரு மாதம்'
+        multiple:
+          forms:
+            default: 'மாதங்கள்'
+            singular: 'மாதம்'
+      year:
+        single:
+          numeric: '1 ஆண்டு'
+          words: 'ஒரு ஆண்டு'
+        multiple:
+          forms:
+            default: 'ஆண்டுகள்'
+            singular: 'ஆண்டு'
+    dataUnits:
+      bit:
+        forms:
+          default: 'பிட்கள்'
+          singular: 'பிட்'
+        symbol: 'b'
+      byte:
+        forms:
+          default: 'பைட்கள்'
+          singular: 'பைட்'
+        symbol: 'B'
+      kilobyte:
+        forms:
+          default: 'கிலோபைட்கள்'
+          singular: 'கிலோபைட்'
+        symbol: 'KB'
+      megabyte:
+        forms:
+          default: 'மெகாபைட்கள்'
+          singular: 'மெகாபைட்'
+        symbol: 'MB'
+      gigabyte:
+        forms:
+          default: 'கிகாபைட்கள்'
+          singular: 'கிகாபைட்'
+        symbol: 'GB'
+      terabyte:
+        forms:
+          default: 'டெராபைட்கள்'
+          singular: 'டெராபைட்'
+        symbol: 'TB'
+      decimalKilobyte:
+        forms:
+          default: 'கிலோபைட்கள்'
+          singular: 'கிலோபைட்'
+        symbol: 'kB'
+      decimalMegabyte:
+        forms:
+          default: 'மெகாபைட்கள்'
+          singular: 'மெகாபைட்'
+        symbol: 'MB'
+      decimalGigabyte:
+        forms:
+          default: 'கிகாபைட்கள்'
+          singular: 'கிகாபைட்'
+        symbol: 'GB'
+      decimalTerabyte:
+        forms:
+          default: 'டெராபைட்கள்'
+          singular: 'டெராபைட்'
+        symbol: 'TB'
+      decimalPetabyte:
+        forms:
+          default: 'பெடாபைட்கள்'
+          singular: 'பெடாபைட்'
+        symbol: 'PB'
+      decimalExabyte:
+        forms:
+          default: 'எக்ஸாபைட்கள்'
+          singular: 'எக்ஸாபைட்'
+        symbol: 'EB'
+      binaryKibibyte:
+        forms:
+          default: 'கிபிபைட்கள்'
+          singular: 'கிபிபைட்'
+        symbol: 'KiB'
+      binaryMebibyte:
+        forms:
+          default: 'மெபிபைட்கள்'
+          singular: 'மெபிபைட்'
+        symbol: 'MiB'
+      binaryGibibyte:
+        forms:
+          default: 'ஜிபிபைட்கள்'
+          singular: 'ஜிபிபைட்'
+        symbol: 'GiB'
+      binaryTebibyte:
+        forms:
+          default: 'டெபிபைட்கள்'
+          singular: 'டெபிபைட்'
+        symbol: 'TiB'
+      binaryPebibyte:
+        forms:
+          default: 'பெபிபைட்கள்'
+          singular: 'பெபிபைட்'
+        symbol: 'PiB'
+    timeUnits:
+      millisecond:
+        symbol: 'மில்லிவிநாடி'
+      second:
+        symbol: 'விநாடி'
+      minute:
+        symbol: 'நிமிடம்'
+      hour:
+        symbol: 'மணி'
+      day:
+        symbol: 'நாள்'
+      week:
+        symbol: 'வாரம்'
+      month:
+        symbol: 'மாதம்'
+      year:
+        symbol: 'ஆண்டு'
+
+  number:
+    words:
+      engine: 'indian-grouping'
+      zeroWord: 'சுழியம்'
+      negativeWord: 'கழித்தல்'
+      ordinalSuffix: 'வது'
+      quintillionWord: 'அர்த்தம்'
+      quadrillionWord: 'சங்கம்'
+      lakhWord: 'இலட்ச'
+      singleLakhWord: 'ஒரு'
+      croreWord: 'கோடி'
+      defaultTensWithRemainderSuffix: 'த்து '
+      specialTensWithRemainderSuffix: 'த்தி '
+      nineTensWithRemainderSuffix: 'ற்றி '
+      exactTensDefaultSuffix: 'து'
+      exactTensNineSuffix: 'று'
+      exactThousandsDefaultSuffix: 'தா'
+      exactThousandsNineSuffix: 'றா'
+      thousandContinuingSuffix: 'யிரத்து'
+      thousandExactSuffix: 'யிரம்'
+      thousandsOneBridge: 'ஓரா'
+      lakhContinuingSuffix: 'த்து'
+      lakhExactSuffix: 'ம்'
+      croreContinuingSuffix: 'யே'
+      hundredsContinuingSuffix: 'ற்று'
+      hundredsExactSuffix: 'று'
+      hundredsNineContinuingSuffix: 'த்து'
+      hundredsNineExactSuffix: 'ம்'
+      unitsMap:
+        - 'சுழியம்'
+        - 'ஒன்று'
+        - 'இரண்டு'
+        - 'மூன்று'
+        - 'நான்கு'
+        - 'ஐந்து'
+        - 'ஆறு'
+        - 'ஏழு'
+        - 'எட்டு'
+        - 'ஒன்பது'
+        - 'பத்து'
+        - 'பதினொன்று'
+        - 'பனிரெண்டு'
+        - 'பதிமூன்று'
+        - 'பதினான்கு'
+        - 'பதினைந்து'
+        - 'பதினாறு'
+        - 'பதினேழு'
+        - 'பதினெட்டு'
+        - 'பத்தொன்பது'
+      tensMap:
+        - 'சுழியம்'
+        - 'பத்து'
+        - 'இருப'
+        - 'முப்ப'
+        - 'நாற்ப'
+        - 'ஐம்ப'
+        - 'அறுப'
+        - 'எழுப'
+        - 'எண்ப'
+        - 'தொண்ணூ'
+      hundredsMap:
+        - 'நூ'
+        - 'இருநூ'
+        - 'முன்னூ'
+        - 'நானூ'
+        - 'ஐந்நூ'
+        - 'அறுநூ'
+        - 'எழுநூ'
+        - 'எண்ணூ'
+        - 'தொள்ளாயிர'
+      thousandsMap:
+        - 'ஆ'
+        - 'இரண்டா'
+        - 'மூன்றா'
+        - 'நான்கா'
+        - 'ஐந்தா'
+        - 'ஆறா'
+        - 'ஏழா'
+        - 'எட்டா'
+        - 'ஒன்பதா'
+        - 'பத்தா'
+        - 'பதினொன்றா'
+        - 'பனிரெண்டா'
+        - 'பதிமூன்றா'
+        - 'பதினான்கா'
+        - 'பதினைந்தா'
+        - 'பதினாறா'
+        - 'பதினேழா'
+        - 'பதினெட்டா'
+        - 'பத்தொன்பதா'
+      ordinalExceptions:
+        1: 'முதலாவது'
+        2: 'இரண்டாவது'
+        3: 'மூன்றாவது'
+        4: 'நான்காவது'
+        5: 'ஐந்தாவது'
+        8: 'எட்டாவது'
+        9: 'ஒன்பதாவது'
+        12: 'பனிரெண்டாவது'
+    parse:
+      decimalMarker: 'புள்ளி'
+      engine: 'token-map'
+      normalizationProfile: 'CollapseWhitespace'
+      cardinalMap:
+        'சுழியம்': 0
+        'ஒன்று': 1
+        'ஒரு': 1
+        'இருபத்து ஒன்று': 21
+        'இரண்டு': 2
+        'மூன்று': 3
+        'நான்கு': 4
+        'ஐந்து': 5
+        'ஆறு': 6
+        'ஏழு': 7
+        'எட்டு': 8
+        'ஒன்பது': 9
+        'பத்து': 10
+        'பதினெட்டு': 18
+        'நூறு': 100
+        'நூற்று': 100
+        'இலட்சம்': 100000
+        'இலட்சத்து': 100000
+        'கோடியே': 10000000
+        'ஆயிரம்': 1000
+        'ஆயிரத்து': 1000
+        'கோடி': 10000000
+        'சங்கம்': 1000000000000000
+        'அர்த்தம்': 1000000000000000000
+        'ஒன்று சங்கம்': 1000000000000000
+        'ஒன்று அர்த்தம்': 1000000000000000000
+        'நூறு கோடியே பத்து இலட்சத்து ஒன்று': 1001000001
+        'ஒரு கோடியே ஏழாயிரத்து பதினெட்டு': 4325010007018
+      negativePrefixes:
+        - 'கழித்தல் '
+
+  ordinal:
+    numeric:
+      engine: 'template'
+      masculine:
+        defaultSuffix: 'வது'
+    date:
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'Numeric'
+    dateOnly:
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'Numeric'
+
+  clock:
+    engine: 'phrase-clock'
+    hourMode: 'h12'
+    dayPeriodPosition: 'prefix'
+    hourOneWord: 'ஒரு மணி'
+    hourSuffixSingular: 'மணி'
+    hourSuffixPlural: 'மணி'
+    minuteSuffixSingular: 'நிமிடம்'
+    minuteSuffixPlural: 'நிமிடம்'
+    min0: '{hour}'
+    defaultTemplate: '{hour} {minutes} {minuteSuffix}'
+    earlyMorning: 'அதிகாலை'
+    morning: 'காலை'
+    afternoon: 'பிற்பகல்'
+    night: 'இரவு'
+
+  compass:
+    full:
+      - 'வடக்கு'
+      - 'வட-வடகிழக்கு'
+      - 'வடகிழக்கு'
+      - 'கிழக்கு-வடகிழக்கு'
+      - 'கிழக்கு'
+      - 'கிழக்கு-தென்கிழக்கு'
+      - 'தென்கிழக்கு'
+      - 'தென்-தென்கிழக்கு'
+      - 'தெற்கு'
+      - 'தென்-தென்மேற்கு'
+      - 'தென்மேற்கு'
+      - 'மேற்கு-தென்மேற்கு'
+      - 'மேற்கு'
+      - 'மேற்கு-வடமேற்கு'
+      - 'வடமேற்கு'
+      - 'வட-வடமேற்கு'
+    short:
+      - 'வடக்கு'
+      - 'வட-வடகிழக்கு'
+      - 'வடகிழக்கு'
+      - 'கிழக்கு-வடகிழக்கு'
+      - 'கிழக்கு'
+      - 'கிழக்கு-தென்கிழக்கு'
+      - 'தென்கிழக்கு'
+      - 'தென்-தென்கிழக்கு'
+      - 'தெற்கு'
+      - 'தென்-தென்மேற்கு'
+      - 'தென்மேற்கு'
+      - 'மேற்கு-தென்மேற்கு'
+      - 'மேற்கு'
+      - 'மேற்கு-வடமேற்கு'
+      - 'வடமேற்கு'
+      - 'வட-வடமேற்கு'
+
+  calendar:
+    months:
+      - 'ஜனவரி'
+      - 'பிப்ரவரி'
+      - 'மார்ச்'
+      - 'ஏப்ரல்'
+      - 'மே'
+      - 'ஜூன்'
+      - 'ஜூலை'
+      - 'ஆகஸ்ட்'
+      - 'செப்டம்பர்'
+      - 'அக்டோபர்'
+      - 'நவம்பர்'
+      - 'டிசம்பர்'

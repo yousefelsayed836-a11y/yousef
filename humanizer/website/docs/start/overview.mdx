@@ -1,0 +1,44 @@
+---
+id: overview
+title: What Humanizer does
+sidebar_position: 1
+diataxis: explanation
+persona: evaluating developer
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import quickStart from '!!raw-loader!../_examples/quick-start/Program.cs';
+
+# What Humanizer does
+
+Humanizer is a .NET library for turning program-shaped values into text people can read. Its extension methods cover identifiers, enums, dates and times, durations, numbers, byte sizes, quantities, and collections. Localization is part of those operations rather than a separate formatting pass.
+
+Use Humanizer at display boundaries: view models, messages, reports, logs intended for people, and other presentation code. Keep stored values and protocol payloads in their typed forms.
+
+## See the result
+
+This program is compiled and run during documentation validation:
+
+<CodeBlock language="csharp" title="Program.cs">{quickStart}</CodeBlock>
+
+It prints:
+
+```text
+2 minutes
+```
+
+The culture is explicit, so the result does not change with the machine running
+the example.
+
+## Choose a path
+
+- New to the library: [install Humanizer](./installation.mdx), then run the [developer quick start](./quick-start.mdx).
+- Looking for a feature: use the [scenario finder](../scenarios/index.mdx).
+- Something failed: start with [troubleshooting](./troubleshooting.mdx).
+- Need exact signatures: open the [API reference](../api/index.md).
+
+Humanized text is presentation output, not a stable serialization format.
+Persist the typed value, then humanize it for the current culture and context.
+
+For confirmed bugs and support questions, use the
+[issue tracker](https://github.com/Humanizr/Humanizer/issues).

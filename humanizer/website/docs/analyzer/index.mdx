@@ -1,0 +1,143 @@
+---
+id: analyzer
+title: Migrate namespaces with the analyzer
+sidebar_position: 1
+diataxis: how-to
+persona: developer updating Humanizer namespaces
+example: illustrative
+---
+
+# Migrate namespaces with the analyzer
+
+Humanizer 4 includes its analyzers in the `Humanizer` package; no separate
+analyzer package is required. `HUMANIZER001` finds old Humanizer sub-namespace
+using directives and qualified names that must move to the root `Humanizer`
+namespace.
+
+The diagnostic is enabled by default with severity `error`, so it can fail a
+local or CI build even when `TreatWarningsAsErrors` is false.
+
+## Apply the automated migration
+
+Update the package, restore, and apply the fix:
+
+```console
+dotnet add <app-project.csproj> package Humanizer --version 4.0.0
+dotnet restore <app-project.csproj>
+dotnet format <solution-or-project> analyzers --diagnostics HUMANIZER001 --severity info
+dotnet build <app-project.csproj> --no-restore
+dotnet test <test-project-or-solution>
+```
+
+Replace the placeholders with paths relative to the repository root. The test
+path must identify the repository's test project or a solution that includes
+its tests.
+
+The code action is named **Update to Humanizer namespace** and supports Roslyn
+Fix All. Review the result: Fix All replaces each matching directive or
+qualified prefix, but it can leave duplicate `using Humanizer;` directives.
+
+## Example
+
+Before the fix, a build reports `HUMANIZER001`:
+
+```csharp
+using Humanizer.Bytes;
+
+var size = new Humanizer.Bytes.ByteSize(10 * 1024);
+```
+
+```text
+Build result: HUMANIZER001 reports both old namespace references.
+```
+
+After the fix:
+
+```csharp
+using Humanizer;
+
+var size = new Humanizer.ByteSize(10 * 1024);
+Console.WriteLine(size);
+```
+
+The namespace diagnostic is gone and the application prints `10 KB`.
+
+## Configure or suppress the diagnostic
+
+Use ordinary Roslyn configuration; Humanizer has no custom analyzer options.
+During a staged migration, lower the severity in the narrowest applicable
+`.editorconfig`:
+
+```ini
+[*.cs]
+dotnet_diagnostic.HUMANIZER001.severity = warning
+```
+
+For a narrow source exception:
+
+```csharp
+#pragma warning disable HUMANIZER001
+using Humanizer.Bytes;
+#pragma warning restore HUMANIZER001
+```
+
+MSBuild's project-wide equivalent is
+`<NoWarn>$(NoWarn);HUMANIZER001</NoWarn>`. Prefer `.editorconfig` or a pragma
+because its scope makes a temporary exception visible.
+
+## Enforce the migration in CI
+
+Run restore and the normal build first. Because the diagnostic defaults to an
+error, the build is the enforcement gate. Add a no-change format check when CI
+must also prove that the code fix has been applied:
+
+```console
+dotnet build --no-restore
+dotnet format <solution-or-project> analyzers --no-restore --diagnostics HUMANIZER001 --severity info --verify-no-changes
+```
+
+Pin the .NET SDK used locally and in CI. Humanizer selects a compatible
+analyzer build automatically.
+
+## Convert narrowed words-to-number results
+
+Humanizer 4's words-to-number APIs return `long`. When an assignment requires
+an `int`, compiler diagnostic `CS0029` or `CS0266` offers the separate
+**Wrap with checked int cast** action:
+
+```csharp
+using System.Globalization;
+using Humanizer;
+
+var culture = CultureInfo.GetCultureInfo("en");
+int number = "one hundred".ToNumber(culture);
+```
+
+The action produces:
+
+```csharp
+int number = checked((int)"one hundred".ToNumber(culture));
+Console.WriteLine(number);
+```
+
+The application prints `100`. This compiler-diagnostic fix is separate from
+`HUMANIZER001`.
+
+## Troubleshoot analyzer loading
+
+| Symptom | Consumer action |
+| --- | --- |
+| `HUMANIZER001` | Apply the namespace code fix or configure an intentional exception. |
+| No diagnostic for an old namespace | Confirm the project references Humanizer 4, then clean, restore, and rebuild. |
+| `CS8032` or `AD0001` | Confirm the pinned SDK is supported, restore the current package, and rebuild before reporting the diagnostic. |
+| IDE and CI disagree | Compare SDK and MSBuild versions, then restart the IDE after a clean restore. |
+
+The namespace fix changes syntax only. It does not replace removed APIs,
+repair custom formatter implementations, or validate other behavior changes.
+
+## Related guides and API
+
+- [Upgrade to Humanizer 4](../upgrading/version-4-migration.mdx)
+- [Configuration](../start/configuration.mdx)
+- [Troubleshooting](../start/troubleshooting.mdx)
+- [API reference](../api/index.md)

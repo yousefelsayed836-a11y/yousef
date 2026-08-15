@@ -1,0 +1,1163 @@
+locale: 'as'
+
+surfaces:
+  inflection:
+    cardinalRule: 'AmharicLike'
+  durationCases:
+    classification: 'distinct'
+    citationCase: 'nominative'
+    inventory:
+      - nominative
+      - accusative
+      - dative
+      - genitive
+      - locative
+      - ablative
+      - ergative
+      - allative
+    sources:
+      inventory:
+        kind: 'grammar'
+        url: 'https://github.com/UniversalDependencies/docs/blob/44f7cd2edacc6ef2e38b7f9ef5435907fe4efcf9/_as/index.md'
+        revision: '44f7cd2edacc6ef2e38b7f9ef5435907fe4efcf9' # DevSkim: ignore DS173237
+        locator: 'Assamese nominal case inventory'
+        credit: 'Universal Dependencies Assamese contributors'
+      morphology:
+        kind: 'grammar'
+        url: 'https://www.languageinindia.com/feb2019/v19i2feb2019PART2.pdf'
+        revision: 'sha256:8a8e601b3b4d944e0bd818c63f553278cff5005df03e88b56b14b6533bdbd05f'
+        locator: 'pp. 101-102, Assamese case suffixes; terminology differs from UD, which supplies the API labels'
+        credit: 'Palash Das, Madhumita Barbora, and Utpal Sharma'
+      nativeUsage:
+        kind: 'corpus'
+        url: 'https://www.aiimsguwahati.ac.in/uploads/publications/AMFE.pdf'
+        revision: 'sha256:1693320408e13e5b40b239b69e40c00f36582433b1cc6e2cf1ef641d1e16e148'
+        locator: 'Assamese medical phrase “কিমান দিনৰ পৰা জ্বৰ আছে?” attesting spaced genitive + পৰা'
+        credit: 'All India Institute of Medical Sciences Guwahati'
+    cases:
+      nominative:
+        authored: 'base-duration'
+        provenance:
+          - 'inventory'
+      accusative:
+        sameRenderedAs: 'dative'
+        provenance:
+          - 'inventory'
+      dative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: 'এক মিলিছেকেণ্ডক'
+                multiple:
+                  forms: '{count} মিলিছেকেণ্ডক'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            second:
+              phrase:
+                single:
+                  numeric: 'এক ছেকেণ্ডক'
+                multiple:
+                  forms: '{count} ছেকেণ্ডক'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            minute:
+              phrase:
+                single:
+                  numeric: 'এক মিনিটক'
+                multiple:
+                  forms: '{count} মিনিটক'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            hour:
+              phrase:
+                single:
+                  numeric: 'এক ঘণ্টাক'
+                multiple:
+                  forms: '{count} ঘণ্টাক'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            day:
+              phrase:
+                single:
+                  numeric: 'এক দিনক'
+                multiple:
+                  forms: '{count} দিনক'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            week:
+              phrase:
+                single:
+                  numeric: 'এক সপ্তাহক'
+                multiple:
+                  forms: '{count} সপ্তাহক'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            month:
+              phrase:
+                single:
+                  numeric: 'এক মাহক'
+                multiple:
+                  forms: '{count} মাহক'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            year:
+              phrase:
+                single:
+                  numeric: 'এক বছৰক'
+                multiple:
+                  forms: '{count} বছৰক'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+        provenance:
+          - 'inventory'
+      genitive:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: 'এক মিলিছেকেণ্ডৰ'
+                multiple:
+                  forms: '{count} মিলিছেকেণ্ডৰ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            second:
+              phrase:
+                single:
+                  numeric: 'এক ছেকেণ্ডৰ'
+                multiple:
+                  forms: '{count} ছেকেণ্ডৰ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            minute:
+              phrase:
+                single:
+                  numeric: 'এক মিনিটৰ'
+                multiple:
+                  forms: '{count} মিনিটৰ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            hour:
+              phrase:
+                single:
+                  numeric: 'এক ঘণ্টাৰ'
+                multiple:
+                  forms: '{count} ঘণ্টাৰ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            day:
+              phrase:
+                single:
+                  numeric: 'এক দিনৰ'
+                multiple:
+                  forms: '{count} দিনৰ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            week:
+              phrase:
+                single:
+                  numeric: 'এক সপ্তাহৰ'
+                multiple:
+                  forms: '{count} সপ্তাহৰ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            month:
+              phrase:
+                single:
+                  numeric: 'এক মাহৰ'
+                multiple:
+                  forms: '{count} মাহৰ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            year:
+              phrase:
+                single:
+                  numeric: 'এক বছৰৰ'
+                multiple:
+                  forms: '{count} বছৰৰ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+        provenance:
+          - 'inventory'
+      locative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: 'এক মিলিছেকেণ্ডত'
+                multiple:
+                  forms: '{count} মিলিছেকেণ্ডত'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            second:
+              phrase:
+                single:
+                  numeric: 'এক ছেকেণ্ডত'
+                multiple:
+                  forms: '{count} ছেকেণ্ডত'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            minute:
+              phrase:
+                single:
+                  numeric: 'এক মিনিটত'
+                multiple:
+                  forms: '{count} মিনিটত'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            hour:
+              phrase:
+                single:
+                  numeric: 'এক ঘণ্টাত'
+                multiple:
+                  forms: '{count} ঘণ্টাত'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            day:
+              phrase:
+                single:
+                  numeric: 'এক দিনত'
+                multiple:
+                  forms: '{count} দিনত'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            week:
+              phrase:
+                single:
+                  numeric: 'এক সপ্তাহত'
+                multiple:
+                  forms: '{count} সপ্তাহত'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            month:
+              phrase:
+                single:
+                  numeric: 'এক মাহত'
+                multiple:
+                  forms: '{count} মাহত'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            year:
+              phrase:
+                single:
+                  numeric: 'এক বছৰত'
+                multiple:
+                  forms: '{count} বছৰত'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+        provenance:
+          - 'inventory'
+      ablative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: 'এক মিলিছেকেণ্ডৰ পৰা'
+                multiple:
+                  forms: '{count} মিলিছেকেণ্ডৰ পৰা'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            second:
+              phrase:
+                single:
+                  numeric: 'এক ছেকেণ্ডৰ পৰা'
+                multiple:
+                  forms: '{count} ছেকেণ্ডৰ পৰা'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            minute:
+              phrase:
+                single:
+                  numeric: 'এক মিনিটৰ পৰা'
+                multiple:
+                  forms: '{count} মিনিটৰ পৰা'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            hour:
+              phrase:
+                single:
+                  numeric: 'এক ঘণ্টাৰ পৰা'
+                multiple:
+                  forms: '{count} ঘণ্টাৰ পৰা'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            day:
+              phrase:
+                single:
+                  numeric: 'এক দিনৰ পৰা'
+                multiple:
+                  forms: '{count} দিনৰ পৰা'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            week:
+              phrase:
+                single:
+                  numeric: 'এক সপ্তাহৰ পৰা'
+                multiple:
+                  forms: '{count} সপ্তাহৰ পৰা'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            month:
+              phrase:
+                single:
+                  numeric: 'এক মাহৰ পৰা'
+                multiple:
+                  forms: '{count} মাহৰ পৰা'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            year:
+              phrase:
+                single:
+                  numeric: 'এক বছৰৰ পৰা'
+                multiple:
+                  forms: '{count} বছৰৰ পৰা'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+        provenance:
+          - 'inventory'
+          - 'nativeUsage'
+      ergative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: 'এক মিলিছেকেণ্ডে'
+                multiple:
+                  forms: '{count} মিলিছেকেণ্ডে'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            second:
+              phrase:
+                single:
+                  numeric: 'এক ছেকেণ্ডে'
+                multiple:
+                  forms: '{count} ছেকেণ্ডে'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            minute:
+              phrase:
+                single:
+                  numeric: 'এক মিনিটে'
+                multiple:
+                  forms: '{count} মিনিটে'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            hour:
+              phrase:
+                single:
+                  numeric: 'এক ঘণ্টাই'
+                multiple:
+                  forms: '{count} ঘণ্টাই'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            day:
+              phrase:
+                single:
+                  numeric: 'এক দিনে'
+                multiple:
+                  forms: '{count} দিনে'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            week:
+              phrase:
+                single:
+                  numeric: 'এক সপ্তাহে'
+                multiple:
+                  forms: '{count} সপ্তাহে'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            month:
+              phrase:
+                single:
+                  numeric: 'এক মাহে'
+                multiple:
+                  forms: '{count} মাহে'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            year:
+              phrase:
+                single:
+                  numeric: 'এক বছৰে'
+                multiple:
+                  forms: '{count} বছৰে'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+        provenance:
+          - 'inventory'
+      allative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: 'এক মিলিছেকেণ্ডলৈ'
+                multiple:
+                  forms: '{count} মিলিছেকেণ্ডলৈ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            second:
+              phrase:
+                single:
+                  numeric: 'এক ছেকেণ্ডলৈ'
+                multiple:
+                  forms: '{count} ছেকেণ্ডলৈ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            minute:
+              phrase:
+                single:
+                  numeric: 'এক মিনিটলৈ'
+                multiple:
+                  forms: '{count} মিনিটলৈ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            hour:
+              phrase:
+                single:
+                  numeric: 'এক ঘণ্টালৈ'
+                multiple:
+                  forms: '{count} ঘণ্টালৈ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            day:
+              phrase:
+                single:
+                  numeric: 'এক দিনলৈ'
+                multiple:
+                  forms: '{count} দিনলৈ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            week:
+              phrase:
+                single:
+                  numeric: 'এক সপ্তাহলৈ'
+                multiple:
+                  forms: '{count} সপ্তাহলৈ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            month:
+              phrase:
+                single:
+                  numeric: 'এক মাহলৈ'
+                multiple:
+                  forms: '{count} মাহলৈ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+            year:
+              phrase:
+                single:
+                  numeric: 'এক বছৰলৈ'
+                multiple:
+                  forms: '{count} বছৰলৈ'
+                  countPlacement: none
+              provenance:
+                - 'inventory'
+        provenance:
+          - 'inventory'
+          - 'morphology'
+
+  list:
+    engine: 'conjunction'
+    value: 'আৰু'
+
+  formatter:
+    engine: 'profiled'
+    dataUnitFallbackTransform: 'trim-trailing-s'
+
+  phrases:
+    relativeDate:
+      now: 'এতিয়া'
+      never: 'কেতিয়াও নহয়'
+      past:
+        millisecond:
+          single: 'এক মিলিছেকেণ্ড আগতে'
+          multiple:
+            forms:
+              default: 'মিলিছেকেণ্ড'
+            afterCount: 'আগতে'
+        second:
+          single: 'এক ছেকেণ্ড আগতে'
+          multiple:
+            forms:
+              default: 'ছেকেণ্ড'
+            afterCount: 'আগতে'
+        minute:
+          single: 'এক মিনিট আগতে'
+          multiple:
+            forms:
+              default: 'মিনিট'
+            afterCount: 'আগতে'
+        hour:
+          single: 'এক ঘণ্টা আগতে'
+          multiple:
+            forms:
+              default: 'ঘণ্টা'
+            afterCount: 'আগতে'
+        day:
+          single: 'কালি'
+          multiple:
+            forms:
+              default: 'দিন'
+            afterCount: 'আগতে'
+        week:
+          single: 'এক সপ্তাহ আগতে'
+          multiple:
+            forms:
+              default: 'সপ্তাহ'
+            afterCount: 'আগতে'
+        month:
+          single: 'এক মাহ আগতে'
+          multiple:
+            forms:
+              default: 'মাহ'
+            afterCount: 'আগতে'
+        year:
+          single: 'এক বছৰ আগতে'
+          multiple:
+            forms:
+              default: 'বছৰ'
+            afterCount: 'আগতে'
+      future:
+        millisecond:
+          single: 'এক মিলিছেকেণ্ড পাছত'
+          multiple:
+            forms:
+              default: 'মিলিছেকেণ্ড'
+            afterCount: 'পাছত'
+        second:
+          single: 'এক ছেকেণ্ড পাছত'
+          multiple:
+            forms:
+              default: 'ছেকেণ্ড'
+            afterCount: 'পাছত'
+        minute:
+          single: 'এক মিনিট পাছত'
+          multiple:
+            forms:
+              default: 'মিনিট'
+            afterCount: 'পাছত'
+        hour:
+          single: 'এক ঘণ্টা পাছত'
+          multiple:
+            forms:
+              default: 'ঘণ্টা'
+            afterCount: 'পাছত'
+        day:
+          single: 'কাইলৈ'
+          multiple:
+            forms:
+              default: 'দিন'
+            afterCount: 'পাছত'
+        week:
+          single: 'এক সপ্তাহ পাছত'
+          multiple:
+            forms:
+              default: 'সপ্তাহ'
+            afterCount: 'পাছত'
+        month:
+          single: 'এক মাহ পাছত'
+          multiple:
+            forms:
+              default: 'মাহ'
+            afterCount: 'পাছত'
+        year:
+          single: 'এক বছৰ পাছত'
+          multiple:
+            forms:
+              default: 'বছৰ'
+            afterCount: 'পাছত'
+    duration:
+      zero: 'সময় নাই'
+      age:
+        template: '{value} বয়স'
+      millisecond:
+        single:
+          numeric: 'এক মিলিছেকেণ্ড'
+          words: 'এক মিলিছেকেণ্ড'
+        multiple:
+          forms:
+            default: 'মিলিছেকেণ্ড'
+      second:
+        single:
+          numeric: 'এক ছেকেণ্ড'
+          words: 'এক ছেকেণ্ড'
+        multiple:
+          forms:
+            default: 'ছেকেণ্ড'
+      minute:
+        single:
+          numeric: 'এক মিনিট'
+          words: 'এক মিনিট'
+        multiple:
+          forms:
+            default: 'মিনিট'
+      hour:
+        single:
+          numeric: 'এক ঘণ্টা'
+          words: 'এক ঘণ্টা'
+        multiple:
+          forms:
+            default: 'ঘণ্টা'
+      day:
+        single:
+          numeric: 'এক দিন'
+          words: 'এক দিন'
+        multiple:
+          forms:
+            default: 'দিন'
+      week:
+        single:
+          numeric: 'এক সপ্তাহ'
+          words: 'এক সপ্তাহ'
+        multiple:
+          forms:
+            default: 'সপ্তাহ'
+      month:
+        single:
+          numeric: 'এক মাহ'
+          words: 'এক মাহ'
+        multiple:
+          forms:
+            default: 'মাহ'
+      year:
+        single:
+          numeric: 'এক বছৰ'
+          words: 'এক বছৰ'
+        multiple:
+          forms:
+            default: 'বছৰ'
+    dataUnits:
+      bit:
+        forms:
+          default: 'বিট'
+        symbol: 'b'
+      byte:
+        forms:
+          default: 'বাইট'
+        symbol: 'B'
+      kilobyte:
+        forms:
+          default: 'কিলোবাইট'
+        symbol: 'KB'
+      megabyte:
+        forms:
+          default: 'মেগাবাইট'
+        symbol: 'MB'
+      gigabyte:
+        forms:
+          default: 'গিগাবাইট'
+        symbol: 'GB'
+      terabyte:
+        forms:
+          default: 'টেৰাবাইট'
+        symbol: 'TB'
+      decimalKilobyte:
+        forms: 'কিলোবাইট'
+        symbol: 'kB'
+      decimalMegabyte:
+        forms: 'মেগাবাইট'
+        symbol: 'MB'
+      decimalGigabyte:
+        forms: 'গিগাবাইট'
+        symbol: 'GB'
+      decimalTerabyte:
+        forms: 'টেৰাবাইট'
+        symbol: 'TB'
+      decimalPetabyte:
+        forms: 'পেটাবাইট'
+        symbol: 'PB'
+      decimalExabyte:
+        forms: 'এক্সাবাইট'
+        symbol: 'EB'
+      binaryKibibyte:
+        forms: 'কিবিবাইট'
+        symbol: 'KiB'
+      binaryMebibyte:
+        forms: 'মেবিবাইট'
+        symbol: 'MiB'
+      binaryGibibyte:
+        forms: 'গিবিবাইট'
+        symbol: 'GiB'
+      binaryTebibyte:
+        forms: 'টেবিবাইট'
+        symbol: 'TiB'
+      binaryPebibyte:
+        forms: 'পেবিবাইট'
+        symbol: 'PiB'
+    timeUnits:
+      millisecond:
+        symbol: 'মিলিছেকেণ্ড'
+      second:
+        symbol: 'ছেকেণ্ড'
+      minute:
+        symbol: 'মিনিট'
+      hour:
+        symbol: 'ঘণ্টা'
+      day:
+        symbol: 'দিন'
+      week:
+        symbol: 'সপ্তাহ'
+      month:
+        symbol: 'মাহ'
+      year:
+        symbol: 'বছৰ'
+
+  number:
+    words:
+      engine: 'joined-scale'
+      maximumValue: 9223372036854775807
+      zeroWord: 'শূণ্য'
+      minusWord: 'ঋণাত্মক'
+      negativeJoinWord: ' '
+      joinWord: ' '
+      defaultOrdinalSuffix: 'তম'
+      matchingOrdinalSuffix: null
+      ordinalSuffixMatchCharacters: null
+      hundredsMap:
+        - 'শূণ্য'
+        - 'এশ'
+        - 'দুশ'
+        - 'তিনিশ'
+        - 'চাৰিশ'
+        - 'পাঁচশ'
+        - 'ছয়শ'
+        - 'সাতশ'
+        - 'আঠশ'
+        - 'নশ'
+      subHundredMap:
+        - 'শূণ্য'
+        - 'এক'
+        - 'দুই'
+        - 'তিনি'
+        - 'চাৰি'
+        - 'পাঁচ'
+        - 'ছয়'
+        - 'সাত'
+        - 'আঠ'
+        - 'ন'
+        - 'দহ'
+        - 'এঘাৰ'
+        - 'বাৰ'
+        - 'তেৰ'
+        - 'চৈধ্য'
+        - 'পোন্ধৰ'
+        - 'ষোল্ল'
+        - 'সোতৰ'
+        - 'ওঠৰ'
+        - 'ঊনৈছ'
+        - 'বিশ'
+        - 'একৈছ'
+        - 'বাইছ'
+        - 'তেইছ'
+        - 'চৌব্বিশ'
+        - 'পঁচিশ'
+        - 'ছাব্বিশ'
+        - 'সাতাইছ'
+        - 'আঠাইছ'
+        - 'ঊনত্ৰিশ'
+        - 'ত্ৰিশ'
+        - 'একত্ৰিশ'
+        - 'বত্ৰিশ'
+        - 'তেত্ৰিশ'
+        - 'চৌত্ৰিশ'
+        - 'পঁয়ত্ৰিশ'
+        - 'ছয়ত্ৰিশ'
+        - 'সাঁইত্ৰিশ'
+        - 'আঠত্ৰিশ'
+        - 'ঊনচল্লিশ'
+        - 'চল্লিশ'
+        - 'একচল্লিশ'
+        - 'বিয়াল্লিশ'
+        - 'তেতাল্লিশ'
+        - 'চৌৱাল্লিশ'
+        - 'পঁয়তাল্লিশ'
+        - 'ছয়চল্লিশ'
+        - 'সাতচল্লিশ'
+        - 'আঠচল্লিশ'
+        - 'ঊনপঞ্চাশ'
+        - 'পঞ্চাশ'
+        - 'একাৱন'
+        - 'বাৱন'
+        - 'তেপ্পন'
+        - 'চৌৱন্ন'
+        - 'পঞ্চান্ন'
+        - 'ছাপ্পন'
+        - 'সাতাৱন'
+        - 'আঠাৱন'
+        - 'ঊনষাঠি'
+        - 'ষাঠি'
+        - 'একষষ্ঠি'
+        - 'বাষষ্ঠি'
+        - 'তেষষ্ঠি'
+        - 'চৌষষ্ঠি'
+        - 'পঁয়ষষ্ঠি'
+        - 'ছয়ষষ্ঠি'
+        - 'সাতষষ্ঠি'
+        - 'আঠষষ্ঠি'
+        - 'ঊনসত্তৰ'
+        - 'সত্তৰ'
+        - 'একাত্তৰ'
+        - 'বাহাত্তৰ'
+        - 'তিয়াত্তৰ'
+        - 'চৌসত্তৰ'
+        - 'পঁচাত্তৰ'
+        - 'ছিয়াত্তৰ'
+        - 'সাতসত্তৰ'
+        - 'আঠসত্তৰ'
+        - 'ঊনাশী'
+        - 'আশী'
+        - 'একাশী'
+        - 'বিৰাশী'
+        - 'তিৰাশী'
+        - 'চৌৰাশী'
+        - 'পঁচাশী'
+        - 'ছিয়াশী'
+        - 'সাতাশী'
+        - 'আঠাশী'
+        - 'ঊননব্বৈ'
+        - 'নব্বৈ'
+        - 'একানব্বৈ'
+        - 'বিৰানব্বৈ'
+        - 'তিৰানব্বৈ'
+        - 'চৌৰানব্বৈ'
+        - 'পঁচানব্বৈ'
+        - 'ছিয়ানব্বৈ'
+        - 'সাতানব্বৈ'
+        - 'আঠানব্বৈ'
+        - 'নিৰানব্বৈ'
+      scales:
+        -
+          value: 100000000000000
+          name: 'মহাপদ্ম'
+        -
+          value: 10000000000000
+          name: 'পদ্ম'
+        -
+          value: 1000000000000
+          name: 'শঙ্খ'
+        -
+          value: 100000000000
+          name: 'মহাখৰ্ব'
+        -
+          value: 10000000000
+          name: 'খৰ্ব'
+        -
+          value: 10000000
+          name: 'কোটি'
+        -
+          value: 100000
+          name: 'লাখ'
+        -
+          value: 1000
+          name: 'হাজাৰ'
+      ordinalExceptions:
+        1: 'প্ৰথম'
+        2: 'দ্বিতীয়'
+        3: 'তৃতীয়'
+        4: 'চতুৰ্থ'
+        5: 'পঞ্চম'
+        6: 'ষষ্ঠ'
+        7: 'সপ্তম'
+        8: 'অষ্টম'
+        9: 'নৱম'
+        10: 'দশম'
+        11: 'একাদশ'
+        12: 'দ্বাদশ'
+        13: 'ত্ৰয়োদশ'
+        14: 'চতুৰ্দশ'
+        15: 'পঞ্চদশ'
+        16: 'ষোড়শ'
+        17: 'সপ্তদশ'
+        18: 'অষ্টাদশ'
+        100: 'শতম'
+        1000: 'হাজাৰতম'
+        100000: 'লাখতম'
+        10000000: 'কোটিতম'
+
+    parse:
+      decimalMarker: 'দশমিক'
+      engine: 'token-map'
+      normalizationProfile: 'CollapseWhitespace'
+      cardinalMap:
+        'শূণ্য': 0
+        'এক': 1
+        'দুই': 2
+        'তিনি': 3
+        'চাৰি': 4
+        'পাঁচ': 5
+        'ছয়': 6
+        'সাত': 7
+        'আঠ': 8
+        'ন': 9
+        'দহ': 10
+        'এঘাৰ': 11
+        'বাৰ': 12
+        'তেৰ': 13
+        'চৈধ্য': 14
+        'পোন্ধৰ': 15
+        'ষোল্ল': 16
+        'সোতৰ': 17
+        'ওঠৰ': 18
+        'ঊনৈছ': 19
+        'বিশ': 20
+        'একৈছ': 21
+        'বাইছ': 22
+        'তেইছ': 23
+        'চৌব্বিশ': 24
+        'পঁচিশ': 25
+        'ছাব্বিশ': 26
+        'সাতাইছ': 27
+        'আঠাইছ': 28
+        'ঊনত্ৰিশ': 29
+        'ত্ৰিশ': 30
+        'একত্ৰিশ': 31
+        'বত্ৰিশ': 32
+        'তেত্ৰিশ': 33
+        'চৌত্ৰিশ': 34
+        'পঁয়ত্ৰিশ': 35
+        'ছয়ত্ৰিশ': 36
+        'সাঁইত্ৰিশ': 37
+        'আঠত্ৰিশ': 38
+        'ঊনচল্লিশ': 39
+        'চল্লিশ': 40
+        'একচল্লিশ': 41
+        'বিয়াল্লিশ': 42
+        'তেতাল্লিশ': 43
+        'চৌৱাল্লিশ': 44
+        'পঁয়তাল্লিশ': 45
+        'ছয়চল্লিশ': 46
+        'সাতচল্লিশ': 47
+        'আঠচল্লিশ': 48
+        'ঊনপঞ্চাশ': 49
+        'পঞ্চাশ': 50
+        'একাৱন': 51
+        'বাৱন': 52
+        'তেপ্পন': 53
+        'চৌৱন্ন': 54
+        'পঞ্চান্ন': 55
+        'ছাপ্পন': 56
+        'সাতাৱন': 57
+        'আঠাৱন': 58
+        'ঊনষাঠি': 59
+        'ষাঠি': 60
+        'একষষ্ঠি': 61
+        'বাষষ্ঠি': 62
+        'তেষষ্ঠি': 63
+        'চৌষষ্ঠি': 64
+        'পঁয়ষষ্ঠি': 65
+        'ছয়ষষ্ঠি': 66
+        'সাতষষ্ঠি': 67
+        'আঠষষ্ঠি': 68
+        'ঊনসত্তৰ': 69
+        'সত্তৰ': 70
+        'একাত্তৰ': 71
+        'বাহাত্তৰ': 72
+        'তিয়াত্তৰ': 73
+        'চৌসত্তৰ': 74
+        'পঁচাত্তৰ': 75
+        'ছিয়াত্তৰ': 76
+        'সাতসত্তৰ': 77
+        'আঠসত্তৰ': 78
+        'ঊনাশী': 79
+        'আশী': 80
+        'একাশী': 81
+        'বিৰাশী': 82
+        'তিৰাশী': 83
+        'চৌৰাশী': 84
+        'পঁচাশী': 85
+        'ছিয়াশী': 86
+        'সাতাশী': 87
+        'আঠাশী': 88
+        'ঊননব্বৈ': 89
+        'নব্বৈ': 90
+        'একানব্বৈ': 91
+        'বিৰানব্বৈ': 92
+        'তিৰানব্বৈ': 93
+        'চৌৰানব্বৈ': 94
+        'পঁচানব্বৈ': 95
+        'ছিয়ানব্বৈ': 96
+        'সাতানব্বৈ': 97
+        'আঠানব্বৈ': 98
+        'নিৰানব্বৈ': 99
+        'এশ': 100
+        'দুশ': 200
+        'তিনিশ': 300
+        'চাৰিশ': 400
+        'পাঁচশ': 500
+        'ছয়শ': 600
+        'সাতশ': 700
+        'আঠশ': 800
+        'নশ': 900
+        'হাজাৰ': 1000
+        'লাখ': 100000
+        'কোটি': 10000000
+        'খৰ্ব': 10000000000
+        'মহাখৰ্ব': 100000000000
+        'শঙ্খ': 1000000000000
+        'পদ্ম': 10000000000000
+        'মহাপদ্ম': 100000000000000
+      ordinalMap:
+        'প্ৰথম': 1
+        'দ্বিতীয়': 2
+        'তৃতীয়': 3
+        'চতুৰ্থ': 4
+        'পঞ্চম': 5
+        'ষষ্ঠ': 6
+        'সপ্তম': 7
+        'অষ্টম': 8
+        'নৱম': 9
+        'দশম': 10
+        'একাদশ': 11
+        'দ্বাদশ': 12
+        'ত্ৰয়োদশ': 13
+        'চতুৰ্দশ': 14
+        'পঞ্চদশ': 15
+        'ষোড়শ': 16
+        'সপ্তদশ': 17
+        'অষ্টাদশ': 18
+        'শতম': 100
+        'হাজাৰতম': 1000
+        'লাখতম': 100000
+        'কোটিতম': 10000000
+      tokenSuffixesToStrip:
+        - 'তম'
+      negativePrefixes:
+        - 'ঋণাত্মক '
+
+  compass:
+    full:
+      - 'উত্তৰ'
+      - 'উত্তৰ-উত্তৰ-পূৱ'
+      - 'উত্তৰ-পূৱ'
+      - 'পূৱ-উত্তৰ-পূৱ'
+      - 'পূৱ'
+      - 'পূৱ-দক্ষিণ-পূৱ'
+      - 'দক্ষিণ-পূৱ'
+      - 'দক্ষিণ-দক্ষিণ-পূৱ'
+      - 'দক্ষিণ'
+      - 'দক্ষিণ-দক্ষিণ-পশ্চিম'
+      - 'দক্ষিণ-পশ্চিম'
+      - 'পশ্চিম-দক্ষিণ-পশ্চিম'
+      - 'পশ্চিম'
+      - 'পশ্চিম-উত্তৰ-পশ্চিম'
+      - 'উত্তৰ-পশ্চিম'
+      - 'উত্তৰ-উত্তৰ-পশ্চিম'
+    short:
+      - 'উ'
+      - 'উ-উ-পূ'
+      - 'উ-পূ'
+      - 'পূ-উ-পূ'
+      - 'পূ'
+      - 'পূ-দ-পূ'
+      - 'দ-পূ'
+      - 'দ-দ-পূ'
+      - 'দ'
+      - 'দ-দ-প'
+      - 'দ-প'
+      - 'প-দ-প'
+      - 'প'
+      - 'প-উ-প'
+      - 'উ-প'
+      - 'উ-উ-প'
+
+  ordinal:
+    numeric:
+      engine: 'template'
+      masculine:
+        defaultSuffix: 'তম'
+        exactSuffixes:
+          1: 'ম'
+          2: 'য়'
+          3: 'য়'
+          4: 'ৰ্থ'
+          5: 'ম'
+          6: 'ষ্ঠ'
+          7: 'ম'
+          8: 'ম'
+          9: 'ম'
+          10: 'ম'
+    date:
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'Numeric'
+    dateOnly:
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'Numeric'
+
+  clock:
+    engine: 'phrase-clock'
+    hourMode: 'h12'
+    dayPeriodPosition: 'prefix'
+    hourOneWord: 'এটা'
+    min0: '{hour} বজা'
+    defaultTemplate: '{hour} বাজি {minutes} মিনিট'
+    earlyMorning: 'ৰাতি'
+    morning: 'ৰাতিপুৱা'
+    afternoon: 'দুপৰীয়া'
+    night: 'ৰাতি'
+
+  calendar:
+    months:
+      - 'জানুৱাৰী'
+      - 'ফেব্ৰুৱাৰী'
+      - 'মাৰ্চ'
+      - 'এপ্ৰিল'
+      - 'মে'
+      - 'জুন'
+      - 'জুলাই'
+      - 'আগষ্ট'
+      - 'ছেপ্তেম্বৰ'
+      - 'অক্টোবৰ'
+      - 'নৱেম্বৰ'
+      - 'ডিচেম্বৰ'

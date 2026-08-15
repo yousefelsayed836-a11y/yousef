@@ -1,0 +1,1279 @@
+locale: 'sk'
+
+surfaces:
+  inflection:
+    cardinalRule: 'CzechSlovak'
+  durationCases:
+    classification: 'distinct'
+    citationCase: 'nominative'
+    inventory:
+      - 'nominative'
+      - 'genitive'
+      - 'dative'
+      - 'accusative'
+      - 'instrumental'
+      - 'locative'
+    sources:
+      cldr48:
+        kind: 'cldr'
+        url: 'https://github.com/unicode-org/cldr/blob/acd6d88ae493633240e19a87a721076a8a75c310/common/main/sk.xml'
+        revision: 'acd6d88ae493633240e19a87a721076a8a75c310' # DevSkim: ignore DS173237
+        locator: 'long duration-unit case patterns'
+        credit: 'Unicode CLDR contributors'
+    cases:
+      nominative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 milisekunda'
+                  words: 'jedna milisekunda'
+                multiple:
+                  forms:
+                    default: 'milisekúnd'
+                    singular: 'milisekundy'
+                    dual: 'milisekundy'
+                    paucal: 'milisekundy'
+                    plural: 'milisekundy'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekunda'
+                  words: 'jedna sekunda'
+                multiple:
+                  forms:
+                    default: 'sekúnd'
+                    singular: 'sekundy'
+                    dual: 'sekundy'
+                    paucal: 'sekundy'
+                    plural: 'sekundy'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minúta'
+                  words: 'jedna minúta'
+                multiple:
+                  forms:
+                    default: 'minút'
+                    singular: 'minúty'
+                    dual: 'minúty'
+                    paucal: 'minúty'
+                    plural: 'minúty'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 hodina'
+                  words: 'jedna hodina'
+                multiple:
+                  forms:
+                    default: 'hodín'
+                    singular: 'hodiny'
+                    dual: 'hodiny'
+                    paucal: 'hodiny'
+                    plural: 'hodiny'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 deň'
+                  words: 'jeden deň'
+                multiple:
+                  forms:
+                    default: 'dní'
+                    singular: 'dni'
+                    dual: 'dni'
+                    paucal: 'dni'
+                    plural: 'dni'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 týždeň'
+                  words: 'jeden týždeň'
+                multiple:
+                  forms:
+                    default: 'týždňov'
+                    singular: 'týždne'
+                    dual: 'týždne'
+                    paucal: 'týždne'
+                    plural: 'týždne'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 mesiac'
+                  words: 'jeden mesiac'
+                multiple:
+                  forms:
+                    default: 'mesiacov'
+                    singular: 'mesiace'
+                    dual: 'mesiace'
+                    paucal: 'mesiace'
+                    plural: 'mesiace'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 rok'
+                  words: 'jeden rok'
+                multiple:
+                  forms:
+                    default: 'rokov'
+                    singular: 'roky'
+                    dual: 'roky'
+                    paucal: 'roky'
+                    plural: 'roky'
+
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+      genitive:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 milisekundy'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} milisekúnd'
+                    singular: '{count} milisekundy'
+                    dual: '{count} milisekúnd'
+                    paucal: '{count} milisekúnd'
+                    plural: '{count} milisekundy'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekundy'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} sekúnd'
+                    singular: '{count} sekundy'
+                    dual: '{count} sekúnd'
+                    paucal: '{count} sekúnd'
+                    plural: '{count} sekundy'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minúty'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} minút'
+                    singular: '{count} minúty'
+                    dual: '{count} minút'
+                    paucal: '{count} minút'
+                    plural: '{count} minúty'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 hodiny'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} hodín'
+                    singular: '{count} hodiny'
+                    dual: '{count} hodín'
+                    paucal: '{count} hodín'
+                    plural: '{count} hodiny'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 dňa'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} dní'
+                    singular: '{count} dňa'
+                    dual: '{count} dní'
+                    paucal: '{count} dní'
+                    plural: '{count} dní'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 týždňa'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} týždňov'
+                    singular: '{count} týždňa'
+                    dual: '{count} týždňov'
+                    paucal: '{count} týždňov'
+                    plural: '{count} týždňa'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 mesiaca'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} mesiacov'
+                    singular: '{count} mesiaca'
+                    dual: '{count} mesiacov'
+                    paucal: '{count} mesiacov'
+                    plural: '{count} mesiaca'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 roka'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} rokov'
+                    singular: '{count} roka'
+                    dual: '{count} rokov'
+                    paucal: '{count} rokov'
+                    plural: '{count} roka'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+      dative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 milisekunde'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} milisekundám'
+                    singular: '{count} milisekunde'
+                    dual: '{count} milisekundám'
+                    paucal: '{count} milisekundám'
+                    plural: '{count} milisekundy'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekunde'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} sekundám'
+                    singular: '{count} sekunde'
+                    dual: '{count} sekundám'
+                    paucal: '{count} sekundám'
+                    plural: '{count} sekundy'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minúte'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} minútam'
+                    singular: '{count} minúte'
+                    dual: '{count} minútam'
+                    paucal: '{count} minútam'
+                    plural: '{count} minúty'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 hodine'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} hodinám'
+                    singular: '{count} hodine'
+                    dual: '{count} hodinám'
+                    paucal: '{count} hodinám'
+                    plural: '{count} hodiny'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 dňu'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} dňom'
+                    singular: '{count} dňu'
+                    dual: '{count} dňom'
+                    paucal: '{count} dňom'
+                    plural: '{count} dňom'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 týždňu'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} týždňom'
+                    singular: '{count} týždňu'
+                    dual: '{count} týždňom'
+                    paucal: '{count} týždňom'
+                    plural: '{count} týždňa'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 mesiacu'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} mesiacom'
+                    singular: '{count} mesiacu'
+                    dual: '{count} mesiacom'
+                    paucal: '{count} mesiacom'
+                    plural: '{count} mesiaca'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 roku'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} rokom'
+                    singular: '{count} roku'
+                    dual: '{count} rokom'
+                    paucal: '{count} rokom'
+                    plural: '{count} roka'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+      accusative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 milisekundu'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} milisekúnd'
+                    singular: '{count} milisekundu'
+                    dual: '{count} milisekúnd'
+                    paucal: '{count} milisekundy'
+                    plural: '{count} milisekundy'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekundu'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} sekúnd'
+                    singular: '{count} sekundu'
+                    dual: '{count} sekúnd'
+                    paucal: '{count} sekundy'
+                    plural: '{count} sekundy'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minútu'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} minút'
+                    singular: '{count} minútu'
+                    dual: '{count} minút'
+                    paucal: '{count} minúty'
+                    plural: '{count} minúty'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 hodinu'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} hodín'
+                    singular: '{count} hodinu'
+                    dual: '{count} hodín'
+                    paucal: '{count} hodiny'
+                    plural: '{count} hodiny'
+              provenance:
+                - 'cldr48'
+            day:
+              sameRenderedAs: 'nominative'
+              provenance:
+                - 'cldr48'
+            week:
+              sameRenderedAs: 'nominative'
+              provenance:
+                - 'cldr48'
+            month:
+              sameRenderedAs: 'nominative'
+              provenance:
+                - 'cldr48'
+            year:
+              sameRenderedAs: 'nominative'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+      instrumental:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 milisekundou'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} milisekundami'
+                    singular: '{count} milisekundou'
+                    dual: '{count} milisekundami'
+                    paucal: '{count} milisekundami'
+                    plural: '{count} milisekundy'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekundou'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} sekundami'
+                    singular: '{count} sekundou'
+                    dual: '{count} sekundami'
+                    paucal: '{count} sekundami'
+                    plural: '{count} sekundy'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minútou'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} minútami'
+                    singular: '{count} minútou'
+                    dual: '{count} minútami'
+                    paucal: '{count} minútami'
+                    plural: '{count} minúty'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 hodinou'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} hodinami'
+                    singular: '{count} hodinou'
+                    dual: '{count} hodinami'
+                    paucal: '{count} hodinami'
+                    plural: '{count} hodiny'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 dňom'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} dňami'
+                    singular: '{count} dňom'
+                    dual: '{count} dňami'
+                    paucal: '{count} dňami'
+                    plural: '{count} dňami'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 týždňom'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} týždňami'
+                    singular: '{count} týždňom'
+                    dual: '{count} týždňami'
+                    paucal: '{count} týždňami'
+                    plural: '{count} týždňa'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 mesiacom'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} mesiacmi'
+                    singular: '{count} mesiacom'
+                    dual: '{count} mesiacmi'
+                    paucal: '{count} mesiacmi'
+                    plural: '{count} mesiaca'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 rokom'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} rokmi'
+                    singular: '{count} rokom'
+                    dual: '{count} rokmi'
+                    paucal: '{count} rokmi'
+                    plural: '{count} roka'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+      locative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 milisekunde'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} milisekundách'
+                    singular: '{count} milisekunde'
+                    dual: '{count} milisekundách'
+                    paucal: '{count} milisekundách'
+                    plural: '{count} milisekundy'
+              provenance:
+                - 'cldr48'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekunde'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} sekundách'
+                    singular: '{count} sekunde'
+                    dual: '{count} sekundách'
+                    paucal: '{count} sekundách'
+                    plural: '{count} sekundy'
+              provenance:
+                - 'cldr48'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minúte'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} minútach'
+                    singular: '{count} minúte'
+                    dual: '{count} minútach'
+                    paucal: '{count} minútach'
+                    plural: '{count} minúty'
+              provenance:
+                - 'cldr48'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 hodine'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} hodinách'
+                    singular: '{count} hodine'
+                    dual: '{count} hodinách'
+                    paucal: '{count} hodinách'
+                    plural: '{count} hodiny'
+              provenance:
+                - 'cldr48'
+            day:
+              phrase:
+                single:
+                  numeric: '1 dni'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} dňoch'
+                    singular: '{count} dni'
+                    dual: '{count} dňoch'
+                    paucal: '{count} dňoch'
+                    plural: '{count} dňoch'
+              provenance:
+                - 'cldr48'
+            week:
+              phrase:
+                single:
+                  numeric: '1 týždni'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} týždňoch'
+                    singular: '{count} týždni'
+                    dual: '{count} týždňoch'
+                    paucal: '{count} týždňoch'
+                    plural: '{count} týždňa'
+              provenance:
+                - 'cldr48'
+            month:
+              phrase:
+                single:
+                  numeric: '1 mesiaci'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} mesiacoch'
+                    singular: '{count} mesiaci'
+                    dual: '{count} mesiacoch'
+                    paucal: '{count} mesiacoch'
+                    plural: '{count} mesiaca'
+              provenance:
+                - 'cldr48'
+            year:
+              phrase:
+                single:
+                  numeric: '1 roku'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} rokoch'
+                    singular: '{count} roku'
+                    dual: '{count} rokoch'
+                    paucal: '{count} rokoch'
+                    plural: '{count} roka'
+              provenance:
+                - 'cldr48'
+        provenance:
+          - 'cldr48'
+
+  list:
+    engine: 'conjunction'
+    value: 'a'
+
+  formatter:
+    engine: 'profiled'
+    resourceKeyDetector: 'between2-and4-paucal'
+    resourceKeySuffixes:
+      paucal: '_Paucal'
+    dataUnitDetector: 'between2-and4-paucal'
+    dataUnitSuffixes:
+      singular: '_Singular'
+      paucal: '_Paucal'
+    dataUnitFallbackTransform: 'trim-trailing-s'
+
+  phrases:
+    relativeDate:
+      now: 'teraz'
+      never: 'nikdy'
+      past:
+        millisecond:
+          single: 'pred milisekundou'
+          multiple:
+            forms:
+              default: 'milisekundami'
+            beforeCount: 'pred'
+        second:
+          single: 'pred sekundou'
+          multiple:
+            forms:
+              default: 'sekundami'
+            beforeCount: 'pred'
+        minute:
+          single: 'pred minútou'
+          multiple:
+            forms:
+              default: 'minútami'
+            beforeCount: 'pred'
+        hour:
+          single: 'pred hodinou'
+          multiple:
+            forms:
+              default: 'hodinami'
+            beforeCount: 'pred'
+        day:
+          single: 'včera'
+          multiple:
+            forms:
+              default: 'dňami'
+            beforeCount: 'pred'
+          template:
+            name: 'two'
+            value: 'pred 2 dňami'
+        week:
+          single: 'pred týždňom'
+          multiple:
+            forms:
+              default: 'týždňami'
+            beforeCount: 'pred'
+        month:
+          single: 'pred mesiacom'
+          multiple:
+            forms:
+              default: 'mesiacmi'
+            beforeCount: 'pred'
+        year:
+          single: 'pred rokom'
+          multiple:
+            forms:
+              default: 'rokmi'
+            beforeCount: 'pred'
+      future:
+        millisecond:
+          single: 'o milisekundu'
+          multiple:
+            forms:
+              default: 'milisekúnd'
+            beforeCount: 'o'
+        second:
+          single: 'o sekundu'
+          multiple:
+            forms:
+              default: 'sekúnd'
+              singular: 'sekundy'
+              dual: 'sekundy'
+              paucal: 'sekundy'
+              plural: 'sekundy'
+            beforeCount: 'o'
+        minute:
+          single: 'o minútu'
+          multiple:
+            forms:
+              default: 'minút'
+              singular: 'minúty'
+              dual: 'minúty'
+              paucal: 'minúty'
+              plural: 'minúty'
+            beforeCount: 'o'
+        hour:
+          single: 'o hodinu'
+          multiple:
+            forms:
+              default: 'hodín'
+              singular: 'hodiny'
+              dual: 'hodiny'
+              paucal: 'hodiny'
+              plural: 'hodiny'
+            beforeCount: 'o'
+        day:
+          single: 'zajtra'
+          multiple:
+            forms:
+              default: 'dní'
+              singular: 'dni'
+              dual: 'dni'
+              paucal: 'dni'
+              plural: 'dni'
+            beforeCount: 'o'
+          template:
+            name: 'two'
+            value: 'o 2 dni'
+        week:
+          single: 'o týždeň'
+          multiple:
+            forms:
+              default: 'týždňov'
+            beforeCount: 'o'
+        month:
+          single: 'o mesiac'
+          multiple:
+            forms:
+              default: 'mesiacov'
+              singular: 'mesiace'
+              dual: 'mesiace'
+              paucal: 'mesiace'
+              plural: 'mesiace'
+            beforeCount: 'o'
+        year:
+          single: 'o rok'
+          multiple:
+            forms:
+              default: 'rokov'
+              singular: 'roky'
+              dual: 'roky'
+              paucal: 'roky'
+              plural: 'roky'
+            beforeCount: 'o'
+    duration:
+      zero: 'žiadny čas'
+      age:
+        template: '{value}'
+      millisecond:
+        single:
+          numeric: '1 milisekunda'
+          words: 'one milisekunda'
+        multiple:
+          forms:
+            default: 'milisekúnd'
+            singular: 'milisekundy'
+            dual: 'milisekundy'
+            paucal: 'milisekundy'
+            plural: 'milisekundy'
+      second:
+        single:
+          numeric: '1 sekunda'
+          words: 'one sekunda'
+        multiple:
+          forms:
+            default: 'sekúnd'
+            singular: 'sekundy'
+            dual: 'sekundy'
+            paucal: 'sekundy'
+            plural: 'sekundy'
+      minute:
+        single:
+          numeric: '1 minúta'
+          words: 'one minúta'
+        multiple:
+          forms:
+            default: 'minút'
+            singular: 'minúty'
+            dual: 'minúty'
+            paucal: 'minúty'
+            plural: 'minúty'
+      hour:
+        single:
+          numeric: '1 hodina'
+          words: 'one hodina'
+        multiple:
+          forms:
+            default: 'hodín'
+            singular: 'hodiny'
+            dual: 'hodiny'
+            paucal: 'hodiny'
+            plural: 'hodiny'
+      day:
+        single:
+          numeric: '1 deň'
+          words: 'one deň'
+        multiple:
+          forms:
+            default: 'dní'
+            singular: 'dni'
+            dual: 'dni'
+            paucal: 'dni'
+            plural: 'dni'
+      week:
+        single:
+          numeric: '1 týždeň'
+          words: 'one týždeň'
+        multiple:
+          forms:
+            default: 'týždňov'
+            singular: 'týždne'
+            dual: 'týždne'
+            paucal: 'týždne'
+            plural: 'týždne'
+      month:
+        single:
+          numeric: '1 mesiac'
+          words: 'one mesiac'
+        multiple:
+          forms:
+            default: 'mesiacov'
+            singular: 'mesiace'
+            dual: 'mesiace'
+            paucal: 'mesiace'
+            plural: 'mesiace'
+      year:
+        single:
+          numeric: '1 rok'
+          words: 'one rok'
+        multiple:
+          forms:
+            default: 'rokov'
+            singular: 'roky'
+            dual: 'roky'
+            paucal: 'roky'
+            plural: 'roky'
+    dataUnits:
+      bit:
+        forms:
+          default: 'bitov'
+        symbol: 'b'
+      byte:
+        forms:
+          default: 'bajtov'
+          singular: 'bajt'
+          paucal: 'bajty'
+        symbol: 'B'
+      kilobyte:
+        forms:
+          default: 'kilobajtov'
+          singular: 'kilobajt'
+          paucal: 'kilobajty'
+        symbol: 'KB'
+      megabyte:
+        forms:
+          default: 'megabajtov'
+          singular: 'megabajt'
+          paucal: 'megabajty'
+        symbol: 'MB'
+      gigabyte:
+        forms:
+          default: 'gigabajtov'
+          singular: 'gigabajt'
+          paucal: 'gigabajty'
+        symbol: 'GB'
+      terabyte:
+        forms:
+          default: 'terabajtov'
+          singular: 'terabajt'
+          paucal: 'terabajty'
+        symbol: 'TB'
+      decimalKilobyte:
+        forms:
+          default: 'kilobajtov'
+          singular: 'kilobajt'
+          paucal: 'kilobajty'
+        symbol: 'kB'
+      decimalMegabyte:
+        forms:
+          default: 'megabajtov'
+          singular: 'megabajt'
+          paucal: 'megabajty'
+        symbol: 'MB'
+      decimalGigabyte:
+        forms:
+          default: 'gigabajtov'
+          singular: 'gigabajt'
+          paucal: 'gigabajty'
+        symbol: 'GB'
+      decimalTerabyte:
+        forms:
+          default: 'terabajtov'
+          singular: 'terabajt'
+          paucal: 'terabajty'
+        symbol: 'TB'
+      decimalPetabyte:
+        forms:
+          default: 'petabajtov'
+          singular: 'petabajt'
+          paucal: 'petabajty'
+        symbol: 'PB'
+      decimalExabyte:
+        forms:
+          default: 'exabajtov'
+          singular: 'exabajt'
+          paucal: 'exabajty'
+        symbol: 'EB'
+      binaryKibibyte:
+        forms:
+          default: 'kibibajtov'
+          singular: 'kibibajt'
+          paucal: 'kibibajty'
+        symbol: 'KiB'
+      binaryMebibyte:
+        forms:
+          default: 'mebibajtov'
+          singular: 'mebibajt'
+          paucal: 'mebibajty'
+        symbol: 'MiB'
+      binaryGibibyte:
+        forms:
+          default: 'gibibajtov'
+          singular: 'gibibajt'
+          paucal: 'gibibajty'
+        symbol: 'GiB'
+      binaryTebibyte:
+        forms:
+          default: 'tebibajtov'
+          singular: 'tebibajt'
+          paucal: 'tebibajty'
+        symbol: 'TiB'
+      binaryPebibyte:
+        forms:
+          default: 'pebibajtov'
+          singular: 'pebibajt'
+          paucal: 'pebibajty'
+        symbol: 'PiB'
+    timeUnits:
+      millisecond:
+        symbol: 'ms'
+      second:
+        symbol: 's'
+      minute:
+        symbol: 'min'
+      hour:
+        symbol: 'h'
+      day:
+        symbol: 'deň'
+      week:
+        symbol: 'týždeň'
+      month:
+        symbol: 'mesiac'
+      year:
+        symbol: 'rok'
+
+  number:
+    words:
+      engine: 'west-slavic-gendered'
+      useCulture: true
+      minusWord: 'mínus'
+      unitsMap:
+        - 'nula'
+        - 'jeden'
+        - 'dva'
+        - 'tri'
+        - 'štyri'
+        - 'päť'
+        - 'šesť'
+        - 'sedem'
+        - 'osem'
+        - 'deväť'
+        - 'desať'
+        - 'jedenásť'
+        - 'dvanásť'
+        - 'trinásť'
+        - 'štrnásť'
+        - 'pätnásť'
+        - 'šestnásť'
+        - 'sedemnásť'
+        - 'osemnásť'
+        - 'devätnásť'
+      tensMap:
+        - 'nula'
+        - 'desať'
+        - 'dvadsať'
+        - 'tridsať'
+        - 'štyridsať'
+        - 'päťdesiat'
+        - 'šesťdesiat'
+        - 'sedemdesiat'
+        - 'osemdesiat'
+        - 'deväťdesiat'
+      hundredsMap:
+        - 'nula'
+        - 'sto'
+        - 'dvesto'
+        - 'tristo'
+        - 'štyristo'
+        - 'päťsto'
+        - 'šesťsto'
+        - 'sedemsto'
+        - 'osemsto'
+        - 'deväťsto'
+      unitsMasculineForms:
+        - 'jeden'
+        - 'dva'
+      unitsFeminineForms:
+        - 'jedna'
+        - 'dve'
+      unitsNeuterForms:
+        - 'jedno'
+        - 'dva'
+      unitsInvariantForms:
+        - 'jedna'
+        - 'dva'
+      thousands:
+        singular: 'tisíc'
+        paucal: 'tisíce'
+        plural: 'tisíc'
+        omitLeadingOne: true
+      millions:
+        singular: 'milión'
+        paucal: 'milióny'
+        plural: 'miliónov'
+      trillions:
+        singular: 'bilión'
+        paucal: 'bilióny'
+        plural: 'biliónov'
+      billions:
+        singular: 'miliarda'
+        paucal: 'miliardy'
+        plural: 'miliárd'
+
+    parse:
+      decimalMarker: 'čiarka'
+      engine: 'token-map'
+      normalizationProfile: 'LowercaseRemovePeriods'
+      cardinalMap:
+        nula: 0
+        jeden: 1
+        jedna: 1
+        jedno: 1
+        dva: 2
+        dve: 2
+        tri: 3
+        'štyri': 4
+        styri: 4
+        'päť': 5
+        pat: 5
+        'šesť': 6
+        sest: 6
+        sedem: 7
+        osem: 8
+        'deväť': 9
+        devat: 9
+        'desať': 10
+        desat: 10
+        'jedenásť': 11
+        jedenast: 11
+        'dvanásť': 12
+        dvanast: 12
+        'trinásť': 13
+        trinast: 13
+        'štrnásť': 14
+        strnast: 14
+        'pätnásť': 15
+        patnast: 15
+        'šestnásť': 16
+        sestnast: 16
+        'sedemnásť': 17
+        sedemnast: 17
+        'osemnásť': 18
+        osemnast: 18
+        'devätnásť': 19
+        devatnast: 19
+        'dvadsať': 20
+        dvadsat: 20
+        'tridsať': 30
+        tridsat: 30
+        'štyridsať': 40
+        styridsat: 40
+        'päťdesiat': 50
+        patdesiat: 50
+        'šesťdesiat': 60
+        sestdesiat: 60
+        sedemdesiat: 70
+        osemdesiat: 80
+        'deväťdesiat': 90
+        devatdesiat: 90
+        sto: 100
+        dvesto: 200
+        tristo: 300
+        'štyristo': 400
+        styristo: 400
+        'päťsto': 500
+        patsto: 500
+        'šesťsto': 600
+        seststo: 600
+        sedemsto: 700
+        osemsto: 800
+        'deväťsto': 900
+        devatsto: 900
+        'tisíc': 1000
+        tisic: 1000
+        'tisíce': 1000
+        tisice: 1000
+        'milión': 1000000
+        milion: 1000000
+        'milióny': 1000000
+        miliony: 1000000
+        'miliónov': 1000000
+        milionov: 1000000
+        miliarda: 1000000000
+        miliardy: 1000000000
+        'miliárd': 1000000000
+        miliard: 1000000000
+      negativePrefixes:
+        - 'mínus '
+        - 'minus '
+
+  ordinal:
+    numeric:
+      engine: 'suffix'
+      masculineSuffix: '.'
+      feminineSuffix: '.'
+      neuterSuffix: '.'
+
+    date:
+      engine: 'pattern'
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'DotSuffix'
+    dateOnly:
+      engine: 'pattern'
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'DotSuffix'
+
+  clock:
+    engine: 'phrase-clock'
+    hourMode: 'h24'
+    hourGender: 'feminine'
+    minuteWordsMap:
+      1: 'jedna'
+      2: 'dve'
+    hourSuffixSingular: 'hodina'
+    hourSuffixPaucal: 'hodiny'
+    hourSuffixPlural: 'hodín'
+    minuteSuffixSingular: 'minúta'
+    minuteSuffixPaucal: 'minúty'
+    minuteSuffixPlural: 'minút'
+    paucalLowOnly: true
+    compactMinuteWords: true
+    min0: '{hour}'
+    defaultTemplate: '{hour} {minutes} {minuteSuffix}'
+
+  compass:
+    full:
+      - 'sever'
+      - 'severoseverovýchod'
+      - 'severovýchod'
+      - 'východoseverovýchod'
+      - 'východ'
+      - 'východojuhovýchod'
+      - 'juhovýchod'
+      - 'juhojuhovýchod'
+      - 'juh'
+      - 'juhojuhozápad'
+      - 'juhozápad'
+      - 'západojuhozápad'
+      - 'západ'
+      - 'západoseverozápad'
+      - 'severozápad'
+      - 'severoseverozápad'
+    short:
+      - 'S'
+      - 'SSV'
+      - 'SV'
+      - 'VSV'
+      - 'V'
+      - 'VJV'
+      - 'JV'
+      - 'JJV'
+      - 'J'
+      - 'JJZ'
+      - 'JZ'
+      - 'ZJZ'
+      - 'Z'
+      - 'ZSZ'
+      - 'SZ'
+      - 'SSZ'

@@ -1,0 +1,75 @@
+---
+id: troubleshooting
+title: Troubleshoot Humanizer
+sidebar_position: 6
+diataxis: how-to
+persona: application developer
+example: illustrative
+---
+
+# Troubleshoot Humanizer
+
+Start with the Humanizer package version, target framework, culture, exact API
+call, and platform. Most apparent failures come from resolving an unexpected
+package version, leaving ambient culture implicit, or treating locale-dependent
+presentation text as invariant data.
+
+## Capture a minimal reproduction
+
+Capture a minimal reproduction before changing configuration:
+
+```csharp
+using System.Globalization;
+using Humanizer;
+
+var culture = CultureInfo.GetCultureInfo("en-US");
+var value = 42.ToWords(culture);
+Console.WriteLine(value);
+```
+
+The output should be:
+
+```text
+forty-two
+```
+
+From the application project directory, run
+`dotnet list package --include-transitive` to confirm that the project resolved
+Humanizer 4.
+
+## Symptoms and actions
+
+| Symptom | Evidence to collect | Action |
+| --- | --- | --- |
+| API page or method is missing | Package version and TFM | Confirm the project resolved Humanizer 4, then check the [API reference](../api/index.md). |
+| `MissingMethodException` or `TypeLoadException` | Direct and transitive Humanizer versions | Align the `Humanizer` version, clean `bin` and `obj`, restore, and rebuild. |
+| Output is English or the wrong regional form | `CurrentCulture`, `CurrentUICulture`, explicit argument, package version | Pass culture directly where possible; otherwise set both ambient cultures at the request or job boundary. If the culture is listed as supported, the wrong language is a bug. |
+| Output differs on Windows, Linux, or macOS | OS, TFM, culture, ICU/NLS mode | Run the same input and culture on each affected OS and TFM, then compare the complete output and .NET globalization settings. Use the [platform formatting guide](../languages/grammar-and-platform-formatting.mdx) to decide whether an override is required; avoid asserting platform-owned text without one. |
+| A parser rejects input | Exact text and culture/provider | Use its `Try` form when available, then inspect the first unrecognized token or unit. |
+| Enum input throws `NoMatchFoundException` | Enum members, metadata, and input | Use an unambiguous label; pass `OnNoMatch.ReturnsNull` when failure is expected. Matching is case-insensitive. |
+| `HUMANIZER001` | Package version and source location | Apply the namespace code fix or configure a narrow intentional exception. |
+| `CS8032` or `AD0001` from the Humanizer analyzer | SDK, MSBuild, and package version | Follow the analyzer guide, clear stale build outputs, and restore. Do not add Roslyn dependencies to the application. |
+| `IL2026` or `IL3050` around enum parsing | Exact overload | Replace runtime `DehumanizeTo(string, Type, ...)` with generic `DehumanizeTo<TEnum>`. |
+
+## Reduce culture issues
+
+Set culture explicitly in a one-file reproduction. If the wrong result
+persists, confirm that the culture is [supported](../languages/supported-cultures.mdx)
+and report the bug with the platform and TFM.
+
+## Reduce package and analyzer issues
+
+Use `dotnet restore --force-evaluate` after aligning versions. A compiler
+diagnostic from the analyzer proves it loaded; a loader diagnostic means the
+host could not load the packaged analyzer.
+
+## Avoid global fixes
+
+Do not “fix” a localized output difference by persisting the current humanized string or by setting process-wide culture inside a request. That hides the input boundary and creates concurrent, version-dependent behavior. Keep typed values, scope culture, and assert only output the application intentionally owns.
+
+## Related guides and API
+
+- [Install Humanizer](./installation.mdx)
+- [Choose explicit and ambient cultures](../languages/using-cultures.mdx)
+- [Analyzer migration and CI](../analyzer/index.mdx)
+- [API reference](../api/index.md)

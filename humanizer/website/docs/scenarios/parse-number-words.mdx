@@ -1,0 +1,98 @@
+---
+id: parse-number-words
+title: Parse localized number words
+sidebar_position: 13
+diataxis: how-to
+persona: application developer
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import parseNumberWords from '!!raw-loader!../_examples/scenarios-parse-number-words/Program.cs';
+import parseNumberWordsOutput from '!!raw-loader!../_examples/scenarios-parse-number-words/expected-output.txt';
+
+# Parse localized number words
+
+Use `TryToNumber` at an input boundary where invalid integer words are expected.
+Use `ToNumber` when invalid text is exceptional and should throw.
+The corresponding decimal APIs are `TryToDecimalNumber` and
+`ToDecimalNumber`. All four require an explicit `CultureInfo`, because the
+same words, magnitude system, and token rules do not mean the same thing in
+every culture.
+
+## Example
+
+This executable parses positive and negative integers, handles an unrecognized
+word, parses English and French decimal words, and preserves an authored
+decimal scale:
+
+<CodeBlock language="csharp" title="Program.cs">{parseNumberWords}</CodeBlock>
+
+<CodeBlock language="text" title="Output">{parseNumberWordsOutput}</CodeBlock>
+
+### Handle expected failure
+
+The longest `TryToNumber` overload returns:
+
+- `false` when a token cannot be recognized.
+- `0` in the numeric result.
+- The first unrecognized word in the final `out` parameter.
+
+That token is useful for field validation messages. Do not catch `FormatException` for routine input when `TryToNumber` expresses the branch directly.
+
+### Parse localized decimal words
+
+`ToDecimalNumber` accepts a localized integer phrase followed by exactly one
+locale-specific decimal marker and between 1 and 28 localized fractional digit
+words. English accepts `one point two`, French accepts `un virgule deux`,
+Hindi accepts `एक दशमलव दो`, and Urdu accepts `ایک اعشاریہ دو`. The integer
+part may be omitted, and a locale-supported negative affix applies to the
+complete value. The authored decimal scale is preserved, including trailing
+zeros and signed zero. Whitespace-tokenized grammars require boundaries around
+the decimal marker and each fractional digit, while negative affixes keep their
+profile-authored boundary. Joined-script profiles such as Chinese use their
+authored joined tokenization instead.
+
+The integer side and each fractional digit reuse the selected culture's
+generated number-word profiles. For example, `en-IN` accepts
+`ninety-three shankh point one`, while `en-US` does not. Locale variants and
+same-language descendants inherit their localized parent profile; unsupported
+languages never fall back to English. English preserves scale composition past
+the `long` range when the final value fits in `decimal`; other cultures use the
+range accepted by their own words-to-number grammar.
+
+Locale-authored decimal markers use reviewed spoken terms where available.
+Locales without a spoken marker use their standard decimal separator token.
+
+For malformed input, unsupported cultures, or values that cannot fit in
+`decimal`, `TryToDecimalNumber` returns `false`, sets the result to `0m`, and
+reports a best-effort unrecognized token or phrase when that overload is used.
+For `null` or empty input, that reported value is an empty string.
+`ToDecimalNumber` instead throws:
+
+| Condition | Exception |
+| --- | --- |
+| `null` input | `ArgumentNullException` |
+| Malformed or out-of-range phrase | `FormatException` |
+| Unsupported culture | `NotSupportedException` |
+
+### Convert to a narrower type
+
+`ToNumber` returns `long`. If the application requires `int`, use a checked conversion after successful parsing:
+
+```csharp
+var value = checked((int)parsedLong);
+```
+
+## Treat number words as a defined input format
+
+The parsers support only the locales and word forms represented by Humanizer's
+generated profiles. They are not general natural-language parsers.
+Preserve the explicit culture from the user-input boundary.
+
+## Related guides and API
+
+- [Numbers in words and ordinals](./numbers-in-words-and-ordinals.mdx)
+- [Troubleshooting](../start/troubleshooting.mdx)
+- [WordsToNumberExtension API](../api/Humanizer.WordsToNumberExtension.md)
+- [WordsToDecimalNumberExtension API](../api/Humanizer.WordsToDecimalNumberExtension.md)
+- [IWordsToDecimalNumberConverter API](../api/Humanizer.IWordsToDecimalNumberConverter.md)

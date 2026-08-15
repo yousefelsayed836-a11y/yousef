@@ -1,0 +1,38 @@
+---
+id: installation
+title: Install Humanizer
+sidebar_position: 2
+diataxis: how-to
+persona: new developer
+---
+
+# Install Humanizer
+
+Humanizer 4 ships as one NuGet package. Install it in the project that produces
+user-facing text:
+
+```console
+dotnet add package Humanizer --version 4.0.0
+```
+
+Add `using Humanizer;` where you use its extension methods. The package includes
+the library, locale data, and analyzers; there is no package choice to make.
+
+Humanizer 4 ships `net11.0`, `net10.0`, `net8.0`, `net48`, and
+`netstandard2.0` assets.
+
+## Confirm the reference {#example}
+
+```console
+dotnet list package
+```
+
+The project should list `Humanizer` at version `4.0.0`. In a centrally managed
+repository, put the version in `Directory.Packages.props` and omit `--version`
+from the project command.
+
+## Related guides and API
+
+- [Quick start](./quick-start.mdx)
+- [Troubleshooting](./troubleshooting.mdx)
+- [API reference](../api/index.md)

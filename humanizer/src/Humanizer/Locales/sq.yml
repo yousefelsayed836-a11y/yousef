@@ -1,0 +1,837 @@
+locale: 'sq'
+
+surfaces:
+  inflection:
+    cardinalRule: 'One'
+  durationCases:
+    classification: 'distinct'
+    citationCase: 'nominative'
+    inventory:
+      - 'nominative'
+      - 'genitive'
+      - 'dative'
+      - 'accusative'
+      - 'ablative'
+      - 'vocative'
+    sources:
+      grammar:
+        kind: 'grammar'
+        url: 'https://universaldependencies.org/udw20/papers/2020.udw2020-1.20.pdf'
+        revision: '2020'
+        locator: 'Albanian case morphology and genitive linker agreement'
+        credit: 'Universal Dependencies Albanian contributors'
+      corpus:
+        kind: 'corpus'
+        url: 'https://github.com/UniversalDependencies/UD_Albanian-TSA/tree/f9f4cf1be5564b5d50bafe7d4d6234d5552cdfce'
+        revision: 'f9f4cf1be5564b5d50bafe7d4d6234d5552cdfce' # DevSkim: ignore DS173237
+        locator: 'duration noun dative and ablative forms'
+        credit: 'Universal Dependencies Albanian TSA contributors'
+    cases:
+      nominative:
+        authored: 'base-duration'
+        provenance:
+          - 'corpus'
+      genitive:
+        notApplicable: 'A context-free bare duration cannot supply the governor-agreeing Albanian genitive linker.'
+        provenance:
+          - 'grammar'
+      dative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 milisekonde'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} milisekondave'
+              provenance:
+                - 'corpus'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekonde'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} sekondave'
+              provenance:
+                - 'corpus'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minute'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} minutave'
+              provenance:
+                - 'corpus'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 ore'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} orëve'
+              provenance:
+                - 'corpus'
+            day:
+              phrase:
+                single:
+                  numeric: '1 dite'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} ditëve'
+              provenance:
+                - 'corpus'
+            week:
+              phrase:
+                single:
+                  numeric: '1 jave'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} javëve'
+              provenance:
+                - 'corpus'
+            month:
+              phrase:
+                single:
+                  numeric: '1 muaji'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} muajve'
+              provenance:
+                - 'corpus'
+            year:
+              phrase:
+                single:
+                  numeric: '1 viti'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} viteve'
+              provenance:
+                - 'corpus'
+        provenance:
+          - 'corpus'
+      accusative:
+        sameRenderedAs: 'nominative'
+        provenance:
+          - 'corpus'
+      ablative:
+        authored:
+          units:
+            millisecond:
+              phrase:
+                single:
+                  numeric: '1 milisekonde'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} milisekondash'
+              provenance:
+                - 'corpus'
+            second:
+              phrase:
+                single:
+                  numeric: '1 sekonde'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} sekondash'
+              provenance:
+                - 'corpus'
+            minute:
+              phrase:
+                single:
+                  numeric: '1 minute'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} minutash'
+              provenance:
+                - 'corpus'
+            hour:
+              phrase:
+                single:
+                  numeric: '1 ore'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} orësh'
+              provenance:
+                - 'corpus'
+            day:
+              phrase:
+                single:
+                  numeric: '1 dite'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} ditësh'
+              provenance:
+                - 'corpus'
+            week:
+              phrase:
+                single:
+                  numeric: '1 jave'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} javësh'
+              provenance:
+                - 'corpus'
+            month:
+              phrase:
+                single:
+                  numeric: '1 muaji'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} muajsh'
+              provenance:
+                - 'corpus'
+            year:
+              phrase:
+                single:
+                  numeric: '1 viti'
+                multiple:
+                  countPlacement: none
+                  forms:
+                    default: '{count} vjetësh'
+              provenance:
+                - 'corpus'
+        provenance:
+          - 'corpus'
+      vocative:
+        notApplicable: 'Direct address does not apply to a written bare quantitative duration.'
+        provenance:
+          - 'grammar'
+
+  list:
+    engine: 'conjunction'
+    value: 'dhe'
+
+  formatter:
+    engine: 'profiled'
+    dataUnitFallbackTransform: 'trim-trailing-s'
+
+  phrases:
+    relativeDate:
+      now: 'tani'
+      never: 'kurrë'
+      past:
+        millisecond:
+          single: '1 milisekondë më parë'
+          multiple:
+            forms:
+              default: 'milisekonda'
+            afterCount: 'më parë'
+        second:
+          single: '1 sekondë më parë'
+          multiple:
+            forms:
+              default: 'sekonda'
+            afterCount: 'më parë'
+        minute:
+          single: '1 minutë më parë'
+          multiple:
+            forms:
+              default: 'minuta'
+            afterCount: 'më parë'
+        hour:
+          single: '1 orë më parë'
+          multiple:
+            forms:
+              default: 'orë'
+            afterCount: 'më parë'
+        day:
+          single: 'dje'
+          multiple:
+            forms:
+              default: 'ditë'
+            afterCount: 'më parë'
+        week:
+          single: '1 javë më parë'
+          multiple:
+            forms:
+              default: 'javë'
+            afterCount: 'më parë'
+        month:
+          single: '1 muaj më parë'
+          multiple:
+            forms:
+              default: 'muaj'
+            afterCount: 'më parë'
+        year:
+          single: '1 vit më parë'
+          multiple:
+            forms:
+              default: 'vjet'
+            afterCount: 'më parë'
+      future:
+        millisecond:
+          single: 'pas 1 milisekonde'
+          multiple:
+            forms:
+              default: 'milisekondash'
+            beforeCount: 'pas'
+        second:
+          single: 'pas 1 sekonde'
+          multiple:
+            forms:
+              default: 'sekondash'
+            beforeCount: 'pas'
+        minute:
+          single: 'pas 1 minute'
+          multiple:
+            forms:
+              default: 'minutash'
+            beforeCount: 'pas'
+        hour:
+          single: 'pas 1 ore'
+          multiple:
+            forms:
+              default: 'orësh'
+            beforeCount: 'pas'
+        day:
+          single: 'nesër'
+          multiple:
+            forms:
+              default: 'ditësh'
+            beforeCount: 'pas'
+        week:
+          single: 'pas 1 jave'
+          multiple:
+            forms:
+              default: 'javësh'
+            beforeCount: 'pas'
+        month:
+          single: 'pas 1 muaji'
+          multiple:
+            forms:
+              default: 'muajsh'
+            beforeCount: 'pas'
+        year:
+          single: 'pas 1 viti'
+          multiple:
+            forms:
+              default: 'vjetësh'
+            beforeCount: 'pas'
+    duration:
+      zero: 'pa kohë'
+      age:
+        template: '{value}'
+      millisecond:
+        single:
+          numeric: '1 milisekondë'
+          words: 'një milisekondë'
+        multiple:
+          forms:
+            default: 'milisekonda'
+      second:
+        single:
+          numeric: '1 sekondë'
+          words: 'një sekondë'
+        multiple:
+          forms:
+            default: 'sekonda'
+      minute:
+        single:
+          numeric: '1 minutë'
+          words: 'një minutë'
+        multiple:
+          forms:
+            default: 'minuta'
+      hour:
+        single:
+          numeric: '1 orë'
+          words: 'një orë'
+        multiple:
+          forms:
+            default: 'orë'
+      day:
+        single:
+          numeric: '1 ditë'
+          words: 'një ditë'
+        multiple:
+          forms:
+            default: 'ditë'
+      week:
+        single:
+          numeric: '1 javë'
+          words: 'një javë'
+        multiple:
+          forms:
+            default: 'javë'
+      month:
+        single:
+          numeric: '1 muaj'
+          words: 'një muaj'
+        multiple:
+          forms:
+            default: 'muaj'
+      year:
+        single:
+          numeric: '1 vit'
+          words: 'një vit'
+        multiple:
+          forms:
+            default: 'vjet'
+    dataUnits:
+      bit:
+        forms:
+          default: 'bit'
+        symbol: 'bit'
+      byte:
+        forms:
+          default: 'bajt'
+        symbol: 'B'
+      kilobyte:
+        forms:
+          default: 'kilobajt'
+        symbol: 'KB'
+      megabyte:
+        forms:
+          default: 'megabajt'
+        symbol: 'MB'
+      gigabyte:
+        forms:
+          default: 'gigabajt'
+        symbol: 'GB'
+      terabyte:
+        forms:
+          default: 'terabajt'
+        symbol: 'TB'
+      decimalKilobyte:
+        forms:
+          default: 'kilobajt'
+          singular: 'kilobajt'
+        symbol: 'kB'
+      decimalMegabyte:
+        forms:
+          default: 'megabajt'
+          singular: 'megabajt'
+        symbol: 'MB'
+      decimalGigabyte:
+        forms:
+          default: 'gigabajt'
+          singular: 'gigabajt'
+        symbol: 'GB'
+      decimalTerabyte:
+        forms:
+          default: 'terabajt'
+          singular: 'terabajt'
+        symbol: 'TB'
+      decimalPetabyte:
+        forms:
+          default: 'petabajt'
+          singular: 'petabajt'
+        symbol: 'PB'
+      decimalExabyte:
+        forms:
+          default: 'eksabajt'
+          singular: 'eksabajt'
+        symbol: 'EB'
+      binaryKibibyte:
+        forms:
+          default: 'kibibajt'
+          singular: 'kibibajt'
+        symbol: 'KiB'
+      binaryMebibyte:
+        forms:
+          default: 'mebibajt'
+          singular: 'mebibajt'
+        symbol: 'MiB'
+      binaryGibibyte:
+        forms:
+          default: 'gibibajt'
+          singular: 'gibibajt'
+        symbol: 'GiB'
+      binaryTebibyte:
+        forms:
+          default: 'tebibajt'
+          singular: 'tebibajt'
+        symbol: 'TiB'
+      binaryPebibyte:
+        forms:
+          default: 'pebibajt'
+          singular: 'pebibajt'
+        symbol: 'PiB'
+    timeUnits:
+      millisecond:
+        symbol: 'ms'
+      second:
+        symbol: 's'
+      minute:
+        symbol: 'min'
+      hour:
+        symbol: 'orë'
+      day:
+        symbol: 'ditë'
+      week:
+        symbol: 'javë'
+      month:
+        symbol: 'muaj'
+      year:
+        symbol: 'vit'
+
+  number:
+    words:
+      engine: 'joined-scale'
+      maximumValue: 9223372036854775807
+      zeroWord: 'zero'
+      minusWord: 'minus'
+      negativeJoinWord: ' '
+      joinWord: ' e '
+      scaleCountJoinWord: ' '
+      underHundredJoinWord: ' e '
+      defaultOrdinalSuffix: ''
+      matchingOrdinalSuffix: null
+      ordinalSuffixMatchCharacters: null
+      unitsMap:
+        - 'zero'
+        - 'një'
+        - 'dy'
+        - 'tre'
+        - 'katër'
+        - 'pesë'
+        - 'gjashtë'
+        - 'shtatë'
+        - 'tetë'
+        - 'nëntë'
+        - 'dhjetë'
+        - 'njëmbëdhjetë'
+        - 'dymbëdhjetë'
+        - 'trembëdhjetë'
+        - 'katërmbëdhjetë'
+        - 'pesëmbëdhjetë'
+        - 'gjashtëmbëdhjetë'
+        - 'shtatëmbëdhjetë'
+        - 'tetëmbëdhjetë'
+        - 'nëntëmbëdhjetë'
+      tensMap:
+        - 'zero'
+        - 'dhjetë'
+        - 'njëzet'
+        - 'tridhjetë'
+        - 'dyzet'
+        - 'pesëdhjetë'
+        - 'gjashtëdhjetë'
+        - 'shtatëdhjetë'
+        - 'tetëdhjetë'
+        - 'nëntëdhjetë'
+      hundredsMap:
+        - 'zero'
+        - 'njëqind'
+        - 'dyqind'
+        - 'treqind'
+        - 'katërqind'
+        - 'pesëqind'
+        - 'gjashtëqind'
+        - 'shtatëqind'
+        - 'tetëqind'
+        - 'nëntëqind'
+      scales:
+        -
+          value: 1000000000000000000
+          name: 'trilion'
+          pluralName: 'trilionë'
+        -
+          value: 1000000000000000
+          name: 'biliar'
+          pluralName: 'biliarë'
+        -
+          value: 1000000000000
+          name: 'bilion'
+          pluralName: 'bilionë'
+        -
+          value: 1000000000
+          name: 'miliar'
+          pluralName: 'miliarë'
+        -
+          value: 1000000
+          name: 'milion'
+          pluralName: 'milionë'
+        -
+          value: 1000
+          name: 'mijë'
+      ordinal:
+        masculine:
+          defaultPrefix: 'i '
+          defaultSuffix: ''
+          exactReplacements:
+            0: 'i zerotë'
+            1: 'i parë'
+            2: 'i dytë'
+            3: 'i tretë'
+            4: 'i katërt'
+            5: 'i pestë'
+            6: 'i gjashtë'
+            7: 'i shtatë'
+            8: 'i tetë'
+            9: 'i nëntë'
+            10: 'i dhjetë'
+            20: 'i njëzetë'
+        feminine:
+          defaultPrefix: 'e '
+          defaultSuffix: ''
+          exactReplacements:
+            0: 'e zerotë'
+            1: 'e parë'
+            2: 'e dytë'
+            3: 'e tretë'
+            4: 'e katërt'
+            5: 'e pestë'
+            6: 'e gjashtë'
+            7: 'e shtatë'
+            8: 'e tetë'
+            9: 'e nëntë'
+            10: 'e dhjetë'
+            20: 'e njëzetë'
+        neuterFallback: 'masculine'
+    parse:
+      decimalMarker: 'presje'
+      engine: 'token-map'
+      normalizationProfile: 'LowercaseRemovePeriods'
+      cardinalMap:
+        zero: 0
+        'një': 1
+        nje: 1
+        dy: 2
+        tre: 3
+        'katër': 4
+        kater: 4
+        'pesë': 5
+        pese: 5
+        'gjashtë': 6
+        gjashte: 6
+        'shtatë': 7
+        shtate: 7
+        'tetë': 8
+        tete: 8
+        'nëntë': 9
+        nente: 9
+        'dhjetë': 10
+        dhjete: 10
+        'njëmbëdhjetë': 11
+        njembedhjete: 11
+        'dymbëdhjetë': 12
+        dymbedhjete: 12
+        'trembëdhjetë': 13
+        trembedhjete: 13
+        'katërmbëdhjetë': 14
+        katermbedhjete: 14
+        'pesëmbëdhjetë': 15
+        pesembedhjete: 15
+        'gjashtëmbëdhjetë': 16
+        gjashtembedhjete: 16
+        'shtatëmbëdhjetë': 17
+        shtatembedhjete: 17
+        'tetëmbëdhjetë': 18
+        tetembedhjete: 18
+        'nëntëmbëdhjetë': 19
+        nentembedhjete: 19
+        'njëzet': 20
+        njezet: 20
+        'tridhjetë': 30
+        tridhjete: 30
+        dyzet: 40
+        'pesëdhjetë': 50
+        pesedhjete: 50
+        'gjashtëdhjetë': 60
+        gjashtedhjete: 60
+        'shtatëdhjetë': 70
+        shtatedhjete: 70
+        'tetëdhjetë': 80
+        tetedhjete: 80
+        'nëntëdhjetë': 90
+        nentedhjete: 90
+        'njëqind': 100
+        njeqind: 100
+        dyqind: 200
+        treqind: 300
+        'katërqind': 400
+        katerqind: 400
+        'pesëqind': 500
+        peseqind: 500
+        'gjashtëqind': 600
+        gjashteqind: 600
+        'shtatëqind': 700
+        shtateqind: 700
+        'tetëqind': 800
+        teteqind: 800
+        'nëntëqind': 900
+        nenteqind: 900
+        'mijë': 1000
+        mije: 1000
+        milion: 1000000
+        'milionë': 1000000
+        milione: 1000000
+        miliar: 1000000000
+        'miliarë': 1000000000
+        miliare: 1000000000
+        miliard: 1000000000
+        'miliardë': 1000000000
+        miliarde: 1000000000
+        bilion: 1000000000000
+        'bilionë': 1000000000000
+        bilione: 1000000000000
+        biliar: 1000000000000000
+        'biliarë': 1000000000000000
+        biliare: 1000000000000000
+      ordinalMap:
+        'zerotë': 0
+        zerote: 0
+        'parë': 1
+        pare: 1
+        'dytë': 2
+        dyte: 2
+        'tretë': 3
+        trete: 3
+        'katërt': 4
+        katert: 4
+        'pestë': 5
+        peste: 5
+        'gjashtë': 6
+        gjashte: 6
+        'shtatë': 7
+        shtate: 7
+        'tetë': 8
+        tete: 8
+        'nëntë': 9
+        nente: 9
+        'dhjetë': 10
+        dhjete: 10
+        'njëzetë': 20
+        njezete: 20
+        'i zerotë': 0
+        'e zerotë': 0
+        'i parë': 1
+        'e parë': 1
+        'i pare': 1
+        'e pare': 1
+        'i dytë': 2
+        'e dytë': 2
+        'i dyte': 2
+        'e dyte': 2
+        'i tretë': 3
+        'e tretë': 3
+        'i trete': 3
+        'e trete': 3
+        'i katërt': 4
+        'e katërt': 4
+        'i katert': 4
+        'e katert': 4
+        'i pestë': 5
+        'e pestë': 5
+        'i peste': 5
+        'e peste': 5
+        'i gjashtë': 6
+        'e gjashtë': 6
+        'i gjashte': 6
+        'e gjashte': 6
+        'i shtatë': 7
+        'e shtatë': 7
+        'i shtate': 7
+        'e shtate': 7
+        'i tetë': 8
+        'e tetë': 8
+        'i tete': 8
+        'e tete': 8
+        'i nëntë': 9
+        'e nëntë': 9
+        'i nente': 9
+        'e nente': 9
+        'i dhjetë': 10
+        'e dhjetë': 10
+        'i dhjete': 10
+        'e dhjete': 10
+        'i njëzetë': 20
+        'e njëzetë': 20
+      negativePrefixes:
+        - 'minus '
+      ordinalPrefixes:
+        - 'i '
+        - 'e '
+      ignoredTokens:
+        - 'e'
+      ordinalAbbreviationSuffixes:
+        - '-rë'
+        - '-re'
+        - '-të'
+        - '-te'
+      useHundredMultiplier: true
+      allowTerminalOrdinalToken: true
+      allowInvariantIntegerInput: true
+
+  ordinal:
+    numeric:
+      engine: 'modulo-suffix'
+      defaultSuffix: '-të'
+      useAbsoluteValue: true
+      exactSuffixes:
+        1: '-rë'
+    date:
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'Numeric'
+    dateOnly:
+      pattern: '{day} MMMM yyyy'
+      dayMode: 'Numeric'
+
+  clock:
+    engine: 'phrase-clock'
+    hourMode: 'h12'
+    hourGender: 'feminine'
+    minuteGender: 'feminine'
+    min0: 'ora {hour} {dayPeriod}'
+    defaultTemplate: 'ora {hour} e {minutes} {dayPeriod}'
+    earlyMorning: 'herët në mëngjes'
+    morning: 'paradite'
+    afternoon: 'pasdite'
+    evening: 'në mbrëmje'
+    night: 'natën'
+    eveningStartHour: 18
+    nightStartHour: 21
+
+  compass:
+    full:
+      - 'veri'
+      - 'veri-verilindje'
+      - 'verilindje'
+      - 'lindje-verilindje'
+      - 'lindje'
+      - 'lindje-juglindje'
+      - 'juglindje'
+      - 'jug-juglindje'
+      - 'jug'
+      - 'jug-jugperëndim'
+      - 'jugperëndim'
+      - 'perëndim-jugperëndim'
+      - 'perëndim'
+      - 'perëndim-veriperëndim'
+      - 'veriperëndim'
+      - 'veri-veriperëndim'
+    short:
+      - 'V'
+      - 'VVL'
+      - 'VL'
+      - 'LVL'
+      - 'L'
+      - 'LJL'
+      - 'JL'
+      - 'JJL'
+      - 'J'
+      - 'JJP'
+      - 'JP'
+      - 'PJP'
+      - 'P'
+      - 'PVP'
+      - 'VP'
+      - 'VVP'
