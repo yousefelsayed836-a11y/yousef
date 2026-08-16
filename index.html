@@ -692,10 +692,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     grid.querySelectorAll('.rv').forEach(function(el) { rvObs.observe(el); });
     if (!reduced) apply3DTilt();
     grid.querySelectorAll('.proj-card').forEach(function(card) {
-      card.addEventListener('click', function() {
-        var proj = PROJECTS[+this.dataset.i];
-        if (proj.url) window.open(proj.url, '_blank', 'noopener');
-      });
+      card.addEventListener('click', function() { openSitePreview(PROJECTS[+this.dataset.i]); });
     });
   }
 
@@ -726,15 +723,24 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   /* ---- SITE PREVIEW ---- */
   var siteOv = document.getElementById('site-ov');
   function openSitePreview(proj) {
-    var img = getImg(proj.id);
     var soBg = document.getElementById('site-ov-bg');
     soBg.innerHTML = '';
-    if (img) {
-      var bgImg = document.createElement('img');
-      bgImg.src = img; bgImg.alt = proj.name; bgImg.className = 'site-ov-img';
-      soBg.appendChild(bgImg); soBg.style.background = 'none';
+    soBg.style.background = '#000';
+    if (proj.url) {
+      var fr = document.createElement('iframe');
+      fr.src = proj.url;
+      fr.setAttribute('allowfullscreen','');
+      fr.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+      soBg.appendChild(fr);
     } else {
-      soBg.style.background = proj.gradient || '#0d0d0d';
+      var img = getImg(proj.id);
+      if (img) {
+        var bgImg = document.createElement('img');
+        bgImg.src = img; bgImg.alt = proj.name; bgImg.className = 'site-ov-img';
+        soBg.appendChild(bgImg); soBg.style.background = 'none';
+      } else {
+        soBg.style.background = proj.gradient || '#0d0d0d';
+      }
     }
     siteOv.classList.add('open');
     document.body.style.overflow = 'hidden';
