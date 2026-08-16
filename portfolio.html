@@ -692,7 +692,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     grid.querySelectorAll('.rv').forEach(function(el) { rvObs.observe(el); });
     if (!reduced) apply3DTilt();
     grid.querySelectorAll('.proj-card').forEach(function(card) {
-      card.addEventListener('click', function() { openModal(PROJECTS[+this.dataset.i]); });
+      card.addEventListener('click', function() { openSitePreview(PROJECTS[+this.dataset.i]); });
     });
   }
 
