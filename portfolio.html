@@ -74,7 +74,7 @@ nav.scrolled { background: rgba(4,0,10,0.88); border-color: rgba(168,85,247,0.48
 @keyframes scroll-pulse { 0%,100% { opacity: 0.3; transform: scaleY(0.7); } 50% { opacity: 1; transform: scaleY(1); } }
 @media (prefers-reduced-motion: reduce) {
   .ll, .logo-sub-row, .hero-sub, .hero-scroll, .hero-c { animation: none; opacity: 1 !important; }
-  .scroll-line, .m-live-btn, .site-ov-visit, .orb, .sf { animation: none; }
+  .scroll-line, .m-live-btn, .site-ov-visit, .orb { animation: none; }
 }
 
 /* ORBS + FLOAT */
@@ -125,9 +125,6 @@ nav.scrolled { background: rgba(4,0,10,0.88); border-color: rgba(168,85,247,0.48
 .stat-n { font-size: 2.8rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
 .stat-n span { color: var(--accent); }
 .stat-l { font-family: 'Courier New', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-top: 4px; }
-.skills-float { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
-.sf { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(168,85,247,0.3); padding: 9px 18px; border-radius: 100px; background: rgba(168,85,247,0.05); animation: fl var(--fdur, 6s) ease-in-out infinite var(--fdel, 0s); transition: background 0.2s, border-color 0.2s, box-shadow 0.2s; cursor: default; }
-.sf:hover { background: rgba(168,85,247,0.14); border-color: var(--accent); box-shadow: 0 0 18px rgba(168,85,247,0.22); }
 
 /* CONTACT */
 #contact { padding: 140px 44px; border-top: 1px solid var(--border); }
@@ -412,11 +409,6 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
         <div><div class="stat-n" data-t="12" data-s="+">12<span>+</span></div><div class="stat-l">Technologies</div></div>
       </div>
     </div>
-    <div class="rv">
-      <div class="skills-float" id="skills-float">
-        <span class="sf">React</span><span class="sf">Next.js</span><span class="sf">TypeScript</span><span class="sf">Node.js</span><span class="sf">PostgreSQL</span><span class="sf">MongoDB</span><span class="sf">Docker</span><span class="sf">GraphQL</span><span class="sf">TailwindCSS</span><span class="sf">REST API</span><span class="sf">Git</span><span class="sf">Figma</span>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -625,13 +617,6 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       if (herC) herC.style.animation = 'fl 9s ease-in-out infinite';
     }, maxEndMs + 520);
   })();
-
-  /* ---- SKILLS PILLS FLOAT ---- */
-  document.querySelectorAll('.sf').forEach(function(el) {
-    /* Negative delay = animation starts mid-cycle = organic varied phases */
-    el.style.setProperty('--fdur', (5 + Math.random() * 5).toFixed(1) + 's');
-    el.style.setProperty('--fdel', '-' + (Math.random() * 5).toFixed(1) + 's');
-  });
 
   /* ---- NAV ---- */
   var nav = document.getElementById('nav');
