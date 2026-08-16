@@ -524,7 +524,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   window.addEventListener('resize', function() { resize(); initPts(); }, { passive: true });
   function initPts() {
     isMobile = window.innerWidth < 768;
-    N = isMobile ? 48 : 260; pts = [];
+    N = isMobile ? 30 : 260; pts = [];
     for (var i = 0; i < N; i++) {
       var big = Math.random() < 0.08;
       pts.push({ x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-0.5)*0.07, vy:(Math.random()-0.5)*0.07, r:big ? Math.random()*1.2+0.8 : Math.random()*0.8+0.15, o:big ? Math.random()*0.3+0.65 : Math.random()*0.45+0.2, twinkle:Math.random()*Math.PI*2 });
@@ -560,16 +560,18 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     var herC    = document.querySelector('.hero-c');
     var scrollHint = document.querySelector('.hero-scroll');
 
-    if (reduced) {
+    var mob = window.innerWidth < 768;
+
+    if (reduced || mob) {
       letters.forEach(function(el) { el.style.opacity = '1'; });
       if (subRow) subRow.style.opacity = '1';
       if (herSub) herSub.style.opacity = '1';
+      if (herC) herC.style.animation = 'fl 9s ease-in-out infinite';
       return;
     }
 
-    /* Each letter flies in from a different direction in "space" */
-    var mob = window.innerWidth < 768;
-    var spread = mob ? 130 : 270;
+    /* Each letter flies in from a different direction in "space" (desktop only) */
+    var spread = 270;
     /* Normalized direction vectors (x, y) for each of the 8 letters */
     var dirs = [
       [-1,   -0.85],   /* W - top-left */
