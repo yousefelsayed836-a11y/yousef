@@ -9,7 +9,6 @@
 html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body { background: var(--bg); color: var(--text); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400; line-height: 1.6; overflow-x: hidden; }
 
-#grain { position: fixed; inset: -10%; z-index: 900; pointer-events: none; opacity: 0.038; background-size: 200px 200px; background-repeat: repeat; }
 #pc { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
 /* MODAL */
@@ -38,8 +37,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Helvetica Neue',
 .m-live-btn:hover { background: var(--accent); color: var(--bg); }
 .m-live-btn.hidden { display: none; }
 @media (max-width: 640px) {
-  .modal-wrap { grid-template-columns: 1fr; grid-template-rows: 220px 1fr; height: min(85vh, 580px); }
-  .modal-info { padding: 28px 24px; gap: 10px; }
+  .modal-wrap { grid-template-columns: 1fr; grid-template-rows: 190px 1fr; height: min(88vh, 600px); }
+  .modal-info { padding: 22px 20px 0; gap: 9px; justify-content: flex-start; }
+  .m-live-btn { margin-top: auto; position: sticky; bottom: 0; width: calc(100% + 40px); margin-left: -20px; padding: 14px 20px; text-align: center; background: var(--bg); border-top: 1px solid var(--border); border-left: none; border-right: none; border-bottom: none; animation: none; }
 }
 
 /* NAV */
@@ -57,7 +57,7 @@ nav.scrolled { background: rgba(4,0,10,0.88); border-color: rgba(168,85,247,0.48
 .nav-mono:hover { color:var(--text); }
 
 /* HERO */
-#hero { position: relative; min-height: 100dvh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(ellipse 55% 38% at 18% 72%, rgba(120,30,185,0.24) 0%, transparent 58%), radial-gradient(ellipse 44% 30% at 82% 20%, rgba(70,0,150,0.16) 0%, transparent 55%), radial-gradient(ellipse 70% 55% at 50% 50%, rgba(50,0,90,0.1) 0%, transparent 68%); }
+#hero { position: relative; min-height: 100dvh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(ellipse 90% 55% at 50% 100%, rgba(18,6,48,0.92) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 78% 22%, rgba(90,20,180,0.13) 0%, transparent 58%), radial-gradient(ellipse 40% 32% at 15% 65%, rgba(70,10,150,0.1) 0%, transparent 55%), #00000a; }
 .hero-c { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 32px; animation: fl 8s ease-in-out infinite 1.5s; }
 .logo-hero { width: min(820px, 88vw); height: auto; opacity: 0; animation: logo-in 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s forwards; }
 @keyframes logo-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
@@ -276,7 +276,6 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
 }
 </style>
 
-<div id="grain"></div>
 <div id="cg"></div>
 
 <!-- PASSWORD MODAL -->
@@ -302,7 +301,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     <h2 class="site-ov-name" id="site-ov-name"></h2>
     <p class="site-ov-desc" id="site-ov-desc"></p>
     <div class="site-ov-tags" id="site-ov-tags"></div>
-    <button class="site-ov-visit" id="site-ov-visit" style="display:none">Open Project</button>
+    <button class="site-ov-visit" id="site-ov-visit">No Live URL</button>
   </div>
 </div>
 
@@ -354,7 +353,6 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="mailto:yousefelsayed836@gmail.com" class="nav-cta">Hire Me</a></li>
     </ul>
   </div>
 </nav>
@@ -511,18 +509,6 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   document.getElementById('pwm-cancel').addEventListener('click', closePwdModal);
   pwmIn.addEventListener('keydown', function(e) { if (e.key === 'Enter') submitPwd(); });
 
-  /* ---- GRAIN ---- */
-  var gc = document.createElement('canvas'); gc.width = gc.height = 200;
-  var gctx = gc.getContext('2d');
-  var grainEl = document.getElementById('grain');
-  function mkGrain() {
-    var id = gctx.createImageData(200,200); var d = id.data;
-    for (var i = 0; i < d.length; i+=4) { var v = Math.random()*255|0; d[i]=d[i+1]=d[i+2]=v; d[i+3]=255; }
-    gctx.putImageData(id,0,0);
-    grainEl.style.backgroundImage = 'url('+gc.toDataURL()+')';
-  }
-  mkGrain();
-
   /* ---- PARTICLE CANVAS ---- */
   var canvas = document.getElementById('pc');
   var ctx = canvas.getContext('2d');
@@ -531,22 +517,29 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   resize();
   window.addEventListener('resize', function() { resize(); initPts(); }, { passive: true });
   function initPts() {
-    N = window.innerWidth < 768 ? 48 : 180; pts = [];
-    for (var i = 0; i < N; i++) pts.push({ x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-0.5)*0.13, vy:(Math.random()-0.5)*0.13, r:Math.random()*1.1+0.12, o:Math.random()*0.55+0.22 });
+    N = window.innerWidth < 768 ? 90 : 260; pts = [];
+    for (var i = 0; i < N; i++) {
+      var big = Math.random() < 0.08;
+      pts.push({ x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-0.5)*0.07, vy:(Math.random()-0.5)*0.07, r:big ? Math.random()*1.2+0.8 : Math.random()*0.8+0.15, o:big ? Math.random()*0.3+0.65 : Math.random()*0.45+0.2, twinkle:Math.random()*Math.PI*2 });
+    }
   }
   initPts();
+  var frame = 0;
   function drawPts() {
+    frame++;
     ctx.clearRect(0,0,W,H);
     for (var i = 0; i < pts.length; i++) {
       for (var j = i+1; j < pts.length; j++) {
         var dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
-        if (d < 88) { ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle='rgba(168,85,247,'+((1-d/88)*0.07)+')'; ctx.lineWidth=0.4; ctx.stroke(); }
+        if (d < 80) { ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle='rgba(168,85,247,'+((1-d/80)*0.05)+')'; ctx.lineWidth=0.35; ctx.stroke(); }
       }
     }
     for (var i = 0; i < pts.length; i++) {
-      var p=pts[i]; p.x+=p.vx; p.y+=p.vy;
+      var p=pts[i]; p.x+=p.vx; p.y+=p.vy; p.twinkle+=0.012;
       if (p.x<0) p.x=W; if (p.x>W) p.x=0; if (p.y<0) p.y=H; if (p.y>H) p.y=0;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(168,85,247,'+(p.o||0.5)+')'; ctx.fill();
+      var tw = p.o * (0.65 + 0.35 * Math.sin(p.twinkle));
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(220,215,255,'+tw+')'; ctx.fill();
     }
     requestAnimationFrame(drawPts);
   }
@@ -673,8 +666,16 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     if (img) { soImg.src = img; soImg.style.display = 'block'; soBg.style.background = 'none'; }
     else { soImg.style.display = 'none'; soBg.style.background = proj.gradient || '#0d0d0d'; }
     var visitBtn = document.getElementById('site-ov-visit');
-    if (proj.url) { visitBtn.style.display = 'block'; visitBtn.onclick = function(){ openUrl(proj.url); }; }
-    else { visitBtn.style.display = 'none'; }
+    visitBtn.style.display = 'block';
+    if (proj.url) {
+      visitBtn.textContent = 'Open Project';
+      visitBtn.style.opacity = '1'; visitBtn.style.cursor = 'pointer';
+      visitBtn.onclick = function(){ openUrl(proj.url); };
+    } else {
+      visitBtn.textContent = 'No Live URL';
+      visitBtn.style.opacity = '0.32'; visitBtn.style.cursor = 'default';
+      visitBtn.onclick = null;
+    }
     siteOv.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
