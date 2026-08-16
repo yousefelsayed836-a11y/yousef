@@ -729,13 +729,15 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     var soBg = document.getElementById('site-ov-bg');
     var tabBtn = document.getElementById('site-ov-newtab');
     soBg.innerHTML = '';
-    soBg.style.background = '#000';
+    soBg.style.background = '#111';
     if (proj.url) {
-      var fr = document.createElement('iframe');
-      fr.src = proj.url;
-      fr.setAttribute('allowfullscreen','');
-      fr.style.cssText = 'width:100%;height:100%;border:none;display:block;';
-      soBg.appendChild(fr);
+      /* Use screenshot service — bypasses X-Frame-Options completely */
+      var shot = document.createElement('img');
+      shot.alt = proj.name;
+      shot.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;';
+      shot.src = 'https://image.thum.io/get/width/1920/crop/900/' + proj.url;
+      shot.onclick = function(){ window.open(proj.url,'_blank','noopener'); };
+      soBg.appendChild(shot);
       tabBtn.href = proj.url;
       tabBtn.classList.add('show');
     } else {
