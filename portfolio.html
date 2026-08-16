@@ -324,6 +324,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       <div class="adm-list-hd">
         <span class="adm-list-lbl">Projects</span>
         <button class="adm-new-btn" id="adm-new">+ New</button>
+        <button class="adm-new-btn" id="adm-reset" style="background:var(--dim);margin-left:4px" title="Reset to default projects">↺</button>
       </div>
       <div class="adm-list" id="adm-list"></div>
     </div>
@@ -637,7 +638,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     { id:4, name:'Pulse',    tags:['Next.js','TypeScript'],         year:'2023', color:'#9b5de5', gradient:'linear-gradient(148deg,#120820 0%,#9b5de5 100%)', desc:'Analytics platform with drag-and-drop chart builder, cohort analysis, funnel visualization, and automated scheduled PDF reports.', url:'' },
     { id:5, name:'Relay',    tags:['React','Node.js'],              year:'2022', color:'#e53e3e', gradient:'linear-gradient(148deg,#1a0202 0%,#e53e3e 100%)', desc:'Real-time messaging app with WebSocket channels, file sharing, threaded replies, reactions, and direct messages.', url:'' }
   ];
-  function loadProjects() { try { var s=localStorage.getItem('wn_projects'); if(s) return JSON.parse(s); } catch(e) {} return DEFAULT_PROJECTS; }
+  function loadProjects() { try { var s=localStorage.getItem('wn_projects'); if(s){ var p=JSON.parse(s); return (Array.isArray(p)&&p.length) ? p : DEFAULT_PROJECTS; } } catch(e) {} return DEFAULT_PROJECTS; }
   function saveProjects(ps) { try { localStorage.setItem('wn_projects',JSON.stringify(ps)); } catch(e) { alert('Storage full - remove some project images to free space.'); } }
   var PROJECTS = loadProjects();
 
@@ -939,6 +940,14 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   }
 
   document.getElementById('adm-new').addEventListener('click',function(){showAdminForm(null);});
+  document.getElementById('adm-reset').addEventListener('click',function(){
+    customConfirm('Reset all projects to default?', function(ok){
+      if (!ok) return;
+      localStorage.removeItem('wn_projects');
+      PROJECTS=DEFAULT_PROJECTS.slice();
+      renderGrid(); renderAdminList(); showAdminEmpty();
+    });
+  });
 
   /* ---- ADMIN TRIGGER ---- */
   /* triple-click footer logo (within 2 seconds) OR Ctrl+Shift+A */
