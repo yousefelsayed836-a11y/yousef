@@ -222,23 +222,14 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
 .af-del:hover { border-color: #e53e3e; color: #e53e3e; }
 
 /* SITE PREVIEW OVERLAY */
-.site-ov { position:fixed; inset:0; z-index:550; background:#000; opacity:0; pointer-events:none; transition:opacity 0.4s cubic-bezier(0.16,1,0.3,1); display:grid; grid-template-columns:1fr 400px; }
+.site-ov { position:fixed; inset:0; z-index:550; background:#000; opacity:0; pointer-events:none; transition:opacity 0.4s cubic-bezier(0.16,1,0.3,1); }
 .site-ov.open { opacity:1; pointer-events:all; }
 .site-ov-close { position:absolute; top:22px; right:26px; z-index:10; font-family:'Courier New',monospace; font-size:0.64rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); background:rgba(0,0,0,0.65); border:1px solid rgba(255,255,255,0.16); padding:9px 18px; cursor:pointer; transition:color 0.2s,border-color 0.2s; backdrop-filter:blur(10px); }
 .site-ov-close:hover { color:#fff; border-color:rgba(255,255,255,0.55); }
-.site-ov-bg { position:relative; overflow:hidden; }
+.site-ov-bg { position:absolute; inset:0; overflow:hidden; }
 .site-ov-img { width:100%; height:100%; object-fit:cover; display:block; }
-.site-ov-panel { background:rgba(3,0,7,0.98); border-left:1px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; justify-content:center; padding:64px 44px; gap:16px; overflow-y:auto; }
-.site-ov-eyebrow { font-family:'Courier New',monospace; font-size:0.5rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--accent); }
-.site-ov-name { font-size:clamp(2.2rem,3.2vw,3.4rem); font-weight:900; letter-spacing:-0.04em; text-transform:uppercase; line-height:0.9; color:#fff; }
-.site-ov-desc { font-size:0.875rem; color:rgba(255,255,255,0.38); line-height:1.8; }
-.site-ov-tags { display:flex; flex-wrap:wrap; gap:6px; }
-.site-ov-tag { font-family:'Courier New',monospace; font-size:0.56rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:4px 9px; opacity:0.75; }
-.site-ov-visit { margin-top:10px; width:fit-content; font-family:'Courier New',monospace; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:#fff; background:var(--accent); border:none; padding:13px 28px; cursor:pointer; transition:opacity 0.2s; animation: fl 3.4s ease-in-out infinite; }
-.site-ov-visit:hover { opacity:0.82; }
+.site-ov-panel { display:none; }
 @media (max-width:768px) {
-  .site-ov { grid-template-columns:1fr; grid-template-rows:44vh 1fr; }
-  .site-ov-panel { padding:32px 22px; gap:12px; justify-content:flex-start; }
   .site-ov-close { top:12px; right:14px; padding:7px 13px; font-size:0.58rem; }
 }
 
@@ -734,11 +725,6 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   function openSitePreview(proj) {
     var img = getImg(proj.id);
     var soBg = document.getElementById('site-ov-bg');
-    document.getElementById('site-ov-name').textContent = proj.name;
-    document.getElementById('site-ov-desc').textContent = proj.desc;
-    document.getElementById('site-ov-tags').innerHTML = proj.tags.map(function(t){ return '<span class="site-ov-tag">'+escHtml(t)+'</span>'; }).join('');
-
-    /* Show project image or gradient in left panel */
     soBg.innerHTML = '';
     if (img) {
       var bgImg = document.createElement('img');
@@ -746,16 +732,6 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       soBg.appendChild(bgImg); soBg.style.background = 'none';
     } else {
       soBg.style.background = proj.gradient || '#0d0d0d';
-    }
-
-    /* Visit button — show only when URL exists */
-    var visitBtn = document.getElementById('site-ov-visit');
-    if (proj.url) {
-      visitBtn.textContent = 'Visit Site';
-      visitBtn.style.display = '';
-      visitBtn.onclick = function(){ window.open(proj.url, '_blank', 'noopener'); };
-    } else {
-      visitBtn.style.display = 'none';
     }
     siteOv.classList.add('open');
     document.body.style.overflow = 'hidden';
