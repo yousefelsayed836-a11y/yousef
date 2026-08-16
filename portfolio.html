@@ -236,9 +236,6 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
 .site-ov-tag { font-family:'Courier New',monospace; font-size:0.56rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:4px 9px; opacity:0.75; }
 .site-ov-visit { margin-top:10px; width:fit-content; font-family:'Courier New',monospace; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:#fff; background:var(--accent); border:none; padding:13px 28px; cursor:pointer; transition:opacity 0.2s; animation: fl 3.4s ease-in-out infinite; }
 .site-ov-visit:hover { opacity:0.82; }
-.site-ov-bg iframe { width:100%; height:100%; border:none; display:block; background:#050005; }
-.sov-blocked { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:10px; padding:24px; text-align:center; }
-.sov-blocked-txt { font-family:'Courier New',monospace; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.28); line-height:1.8; }
 @media (max-width:768px) {
   .site-ov { grid-template-columns:1fr; grid-template-rows:44vh 1fr; }
   .site-ov-panel { padding:32px 22px; gap:12px; justify-content:flex-start; }
@@ -740,28 +737,9 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     document.getElementById('site-ov-desc').textContent = proj.desc;
     document.getElementById('site-ov-tags').innerHTML = proj.tags.map(function(t){ return '<span class="site-ov-tag">'+escHtml(t)+'</span>'; }).join('');
 
-    /* Load site in iframe if URL exists, otherwise show image/gradient */
+    /* Show project image or gradient in left panel */
     soBg.innerHTML = '';
-    soBg.style.background = '#050005';
-    if (proj.url) {
-      var frame = document.createElement('iframe');
-      frame.src = proj.url;
-      frame.title = proj.name;
-      frame.style.cssText = 'width:100%;height:100%;border:none;display:block;background:#050005';
-      frame.setAttribute('loading', 'lazy');
-      soBg.appendChild(frame);
-      /* Detect iframe block after 4s and fall back to image */
-      setTimeout(function() {
-        try {
-          if (!frame.contentDocument || !frame.contentDocument.body || frame.contentDocument.body.innerHTML === '') {
-            showBgFallback(soBg, img, proj);
-          }
-        } catch(ex) {
-          /* Cross-origin = blocked by X-Frame-Options, show fallback */
-          showBgFallback(soBg, img, proj);
-        }
-      }, 4000);
-    } else if (img) {
+    if (img) {
       var bgImg = document.createElement('img');
       bgImg.src = img; bgImg.alt = proj.name; bgImg.className = 'site-ov-img';
       soBg.appendChild(bgImg); soBg.style.background = 'none';
@@ -769,29 +747,11 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       soBg.style.background = proj.gradient || '#0d0d0d';
     }
 
+    /* Hide visit button */
     var visitBtn = document.getElementById('site-ov-visit');
-    if (proj.url) {
-      visitBtn.textContent = 'Open in New Tab';
-      visitBtn.style.opacity = '1'; visitBtn.style.cursor = 'pointer';
-      visitBtn.style.display = 'block';
-      visitBtn.onclick = function(){ openUrl(proj.url); };
-    } else {
-      visitBtn.textContent = 'No Live URL';
-      visitBtn.style.opacity = '0.32'; visitBtn.style.cursor = 'default';
-      visitBtn.style.display = 'block';
-      visitBtn.onclick = null;
-    }
+    visitBtn.style.display = 'none';
     siteOv.classList.add('open');
     document.body.style.overflow = 'hidden';
-  }
-  function showBgFallback(soBg, img, proj) {
-    soBg.innerHTML = '';
-    if (img) {
-      var bgImg = document.createElement('img'); bgImg.src = img; bgImg.alt = proj.name; bgImg.className = 'site-ov-img'; soBg.appendChild(bgImg); soBg.style.background = 'none';
-    } else {
-      soBg.style.background = proj.gradient || '#0d0d0d';
-      soBg.innerHTML = '<div class="sov-blocked"><span class="sov-blocked-txt">This site doesn\'t allow<br>embedding in frames.<br>Use "Open in New Tab" to visit.</span></div>';
-    }
   }
   function closeSitePreview() {
     siteOv.classList.remove('open');
