@@ -748,9 +748,15 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       soBg.style.background = proj.gradient || '#0d0d0d';
     }
 
-    /* Hide visit button */
+    /* Visit button — show only when URL exists */
     var visitBtn = document.getElementById('site-ov-visit');
-    visitBtn.style.display = 'none';
+    if (proj.url) {
+      visitBtn.textContent = 'Visit Site';
+      visitBtn.style.display = '';
+      visitBtn.onclick = function(){ window.open(proj.url, '_blank', 'noopener'); };
+    } else {
+      visitBtn.style.display = 'none';
+    }
     siteOv.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
