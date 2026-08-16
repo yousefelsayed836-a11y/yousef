@@ -58,16 +58,23 @@ nav.scrolled { background: rgba(4,0,10,0.88); border-color: rgba(168,85,247,0.48
 
 /* HERO */
 #hero { position: relative; min-height: 100dvh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(ellipse 90% 55% at 50% 100%, rgba(18,6,48,0.92) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 78% 22%, rgba(90,20,180,0.13) 0%, transparent 58%), radial-gradient(ellipse 40% 32% at 15% 65%, rgba(70,10,150,0.1) 0%, transparent 55%), #00000a; }
-.hero-c { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 32px; animation: fl 8s ease-in-out infinite 1.5s; }
-.logo-hero { width: min(820px, 88vw); height: auto; opacity: 0; animation: logo-in 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s forwards; }
+.hero-c { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 32px; }
+/* LOGO ASSEMBLY */
+.logo-hero { width: min(820px, 88vw); display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.logo-letters { display: flex; align-items: baseline; justify-content: center; user-select: none; }
+.ll { display: inline-block; font-size: clamp(42px, 10vw, 98px); font-weight: 200; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: 0.03em; -webkit-text-stroke: 0.8px var(--text); color: transparent; opacity: 0; will-change: transform, opacity; }
+.ls { width: 0.28em; }
+.logo-sub-row { display: flex; align-items: center; gap: 20px; opacity: 0; }
+.logo-line-dec { width: 54px; height: 0.5px; background: currentColor; opacity: 0.38; flex-shrink: 0; }
+.logo-sub-text { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 300; font-size: clamp(0.46rem, 1.3vw, 0.7rem); letter-spacing: 0.3em; color: var(--text); opacity: 0.38; text-transform: uppercase; white-space: nowrap; }
 @keyframes logo-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-.hero-sub { font-family: 'Courier New', monospace; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); opacity: 0; animation: logo-in 0.8s ease 1.1s forwards; }
-.hero-scroll { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); opacity: 0; animation: logo-in 0.8s ease 1.5s forwards; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.hero-sub { font-family: 'Courier New', monospace; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); opacity: 0; }
+.hero-scroll { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); opacity: 0; animation: logo-in 0.8s ease 3.2s forwards; display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .scroll-line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scroll-pulse 2s ease-in-out infinite; }
 @keyframes scroll-pulse { 0%,100% { opacity: 0.3; transform: scaleY(0.7); } 50% { opacity: 1; transform: scaleY(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .logo-hero, .hero-sub, .hero-scroll, .hero-c { animation: none; opacity: 1; }
-  .scroll-line, .m-live-btn, .site-ov-visit, .orb { animation: none; }
+  .ll, .logo-sub-row, .hero-sub, .hero-scroll, .hero-c { animation: none; opacity: 1 !important; }
+  .scroll-line, .m-live-btn, .site-ov-visit, .orb, .sf { animation: none; }
 }
 
 /* ORBS + FLOAT */
@@ -118,9 +125,9 @@ nav.scrolled { background: rgba(4,0,10,0.88); border-color: rgba(168,85,247,0.48
 .stat-n { font-size: 2.8rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
 .stat-n span { color: var(--accent); }
 .stat-l { font-family: 'Courier New', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-top: 4px; }
-.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-.sk { background: var(--bg); padding: 14px 18px; font-family: 'Courier New', monospace; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); transition: background 0.2s, color 0.2s; }
-.sk:hover { background: var(--accent); color: var(--bg); }
+.skills-float { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+.sf { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(168,85,247,0.3); padding: 9px 18px; border-radius: 100px; background: rgba(168,85,247,0.05); animation: fl var(--fdur, 6s) ease-in-out infinite var(--fdel, 0s); transition: background 0.2s, border-color 0.2s, box-shadow 0.2s; cursor: default; }
+.sf:hover { background: rgba(168,85,247,0.14); border-color: var(--accent); box-shadow: 0 0 18px rgba(168,85,247,0.22); }
 
 /* CONTACT */
 #contact { padding: 140px 44px; border-top: 1px solid var(--border); }
@@ -261,7 +268,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   .adm-hd { padding: 0 20px; }
 }
 @media (max-width: 640px) {
-  .logo-hero text { stroke-width: 1.8; }
+  .ll { -webkit-text-stroke-width: 0.6px; letter-spacing: 0.01em; }
   .logo-hero { width: min(820px, 96vw); }
   .mxl { padding: 18px 0; }
   .mxl-item, .mxl-dot { font-size: 34px !important; }
@@ -364,12 +371,16 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
   <div class="hero-c">
-    <svg class="logo-hero" viewBox="0 0 820 175" xmlns="http://www.w3.org/2000/svg">
-      <text x="410" y="106" text-anchor="middle" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-weight="200" font-size="98" textLength="780" lengthAdjust="spacing" fill="none" stroke="currentColor" stroke-width="0.8">WEB NESTS</text>
-      <line x1="185" y1="138" x2="238" y2="138" stroke="currentColor" stroke-width="0.5" opacity="0.38"/>
-      <text x="410" y="143" text-anchor="middle" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-weight="300" font-size="11" textLength="300" lengthAdjust="spacing" fill="currentColor" opacity="0.4">WE BUILD BRANDS ONLINE</text>
-      <line x1="582" y1="138" x2="635" y2="138" stroke="currentColor" stroke-width="0.5" opacity="0.38"/>
-    </svg>
+    <div class="logo-hero" aria-label="Web Nests">
+      <div class="logo-letters" id="logo-letters">
+        <span class="ll">W</span><span class="ll">E</span><span class="ll">B</span><span class="ll ls"></span><span class="ll">N</span><span class="ll">E</span><span class="ll">S</span><span class="ll">T</span><span class="ll">S</span>
+      </div>
+      <div class="logo-sub-row">
+        <div class="logo-line-dec"></div>
+        <span class="logo-sub-text">WE BUILD BRANDS ONLINE</span>
+        <div class="logo-line-dec"></div>
+      </div>
+    </div>
     <p class="hero-sub">Full-Stack Web Development</p>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div></div>
@@ -402,13 +413,8 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       </div>
     </div>
     <div class="rv">
-      <div class="skills-grid">
-        <div class="sk">React</div><div class="sk">Next.js</div>
-        <div class="sk">TypeScript</div><div class="sk">Node.js</div>
-        <div class="sk">PostgreSQL</div><div class="sk">MongoDB</div>
-        <div class="sk">Docker</div><div class="sk">GraphQL</div>
-        <div class="sk">TailwindCSS</div><div class="sk">REST API</div>
-        <div class="sk">Git</div><div class="sk">Figma</div>
+      <div class="skills-float" id="skills-float">
+        <span class="sf">React</span><span class="sf">Next.js</span><span class="sf">TypeScript</span><span class="sf">Node.js</span><span class="sf">PostgreSQL</span><span class="sf">MongoDB</span><span class="sf">Docker</span><span class="sf">GraphQL</span><span class="sf">TailwindCSS</span><span class="sf">REST API</span><span class="sf">Git</span><span class="sf">Figma</span>
       </div>
     </div>
   </div>
@@ -545,6 +551,85 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     requestAnimationFrame(drawPts);
   }
   if (!reduced) drawPts();
+
+  /* ---- LOGO ASSEMBLY FROM SPACE ---- */
+  (function () {
+    var letters = Array.from(document.querySelectorAll('#logo-letters .ll:not(.ls)'));
+    var subRow  = document.querySelector('.logo-sub-row');
+    var herSub  = document.querySelector('.hero-sub');
+    var herC    = document.querySelector('.hero-c');
+    var scrollHint = document.querySelector('.hero-scroll');
+
+    if (reduced) {
+      letters.forEach(function(el) { el.style.opacity = '1'; });
+      if (subRow) subRow.style.opacity = '1';
+      if (herSub) herSub.style.opacity = '1';
+      return;
+    }
+
+    /* Each letter flies in from a different direction in "space" */
+    var mob = window.innerWidth < 768;
+    var spread = mob ? 130 : 270;
+    /* Normalized direction vectors (x, y) for each of the 8 letters */
+    var dirs = [
+      [-1,   -0.85],   /* W - top-left */
+      [ 0.15,-1.0 ],   /* E - top */
+      [ 0.9, -0.7 ],   /* B - top-right */
+      [-0.85, 0.65],   /* N - bottom-left */
+      [ 1,   -0.3 ],   /* E - right */
+      [-0.5, -1.0 ],   /* S - top-center-left */
+      [ 0.7,  0.9 ],   /* T - bottom-right */
+      [-0.2,  1.0 ]    /* S - bottom */
+    ];
+    var maxEndMs = 0;
+
+    letters.forEach(function(el, i) {
+      var jitter = function(v) { return v + (Math.random() - 0.5) * 60; };
+      var d = dirs[i] || [Math.random()*2-1, Math.random()*2-1];
+      var ox = jitter(d[0] * spread);
+      var oy = jitter(d[1] * spread * 0.8);
+
+      el.style.transform = 'translate(' + ox + 'px,' + oy + 'px) scale(0.22)';
+      if (!mob) el.style.filter = 'blur(7px)';
+      el.style.opacity = '0';
+
+      var delayMs = 150 + i * 80;
+      var durMs   = 1100;
+      maxEndMs = Math.max(maxEndMs, delayMs + durMs);
+
+      setTimeout(function() {
+        var tr = 'transform ' + durMs + 'ms cubic-bezier(0.16,1,0.3,1), opacity 650ms ease';
+        if (!mob) tr += ', filter 650ms ease';
+        el.style.transition = tr;
+        el.style.transform   = '';
+        el.style.opacity     = '1';
+        if (!mob) el.style.filter = '';
+      }, delayMs);
+    });
+
+    /* Subtitle row fades in after all letters land */
+    setTimeout(function() {
+      if (subRow) { subRow.style.transition = 'opacity 0.9s ease'; subRow.style.opacity = '1'; }
+    }, maxEndMs + 60);
+
+    /* Hero sub text */
+    setTimeout(function() {
+      if (herSub) { herSub.style.transition = 'opacity 0.7s ease, transform 0.7s ease'; herSub.style.transform = 'translateY(8px)'; herSub.style.opacity = '1'; }
+      setTimeout(function() { if (herSub) herSub.style.transform = ''; }, 50);
+    }, maxEndMs + 260);
+
+    /* Start the hero float AFTER assembly is complete */
+    setTimeout(function() {
+      if (herC) herC.style.animation = 'fl 9s ease-in-out infinite';
+    }, maxEndMs + 520);
+  })();
+
+  /* ---- SKILLS PILLS FLOAT ---- */
+  document.querySelectorAll('.sf').forEach(function(el) {
+    /* Negative delay = animation starts mid-cycle = organic varied phases */
+    el.style.setProperty('--fdur', (5 + Math.random() * 5).toFixed(1) + 's');
+    el.style.setProperty('--fdel', '-' + (Math.random() * 5).toFixed(1) + 's');
+  });
 
   /* ---- NAV ---- */
   var nav = document.getElementById('nav');
