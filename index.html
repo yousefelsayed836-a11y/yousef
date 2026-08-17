@@ -166,6 +166,13 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
 .adm-label { font-family: 'Courier New', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
 .adm-x { margin-left: auto; font-family: 'Courier New', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); background: none; border: none; cursor: pointer; transition: color 0.2s; padding: 8px; }
 .adm-x:hover { color: var(--text); }
+.adm-gh-btn { font-family:'Courier New',monospace; font-size:0.56rem; letter-spacing:0.14em; text-transform:uppercase; background:none; border:1px solid var(--border); color:var(--dim); padding:5px 12px; cursor:pointer; transition:all 0.2s; margin-left:4px; display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.adm-gh-btn:hover { border-color:var(--accent); color:var(--accent); }
+.adm-sync-dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--border); flex-shrink:0; transition:background 0.3s; }
+.adm-sync-dot.ok { background:#22c55e; }
+.adm-sync-dot.err { background:#e53e3e; }
+.adm-sync-dot.syncing { background:var(--accent); animation:pulse-sync 0.9s ease-in-out infinite; }
+@keyframes pulse-sync { 0%,100%{opacity:1} 50%{opacity:0.2} }
 .adm-body { display: grid; grid-template-columns: 320px 1fr; flex: 1; overflow: hidden; }
 .adm-sidebar { border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
 .adm-list-hd { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
@@ -293,6 +300,7 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     <span class="adm-slash">/</span>
     <span class="adm-label">Dashboard</span>
     <button class="adm-settings" id="adm-settings" title="Change password">&#9965;</button>
+    <button class="adm-gh-btn" id="adm-gh-btn" title="GitHub Sync Settings"><span class="adm-sync-dot" id="adm-sync-dot"></span>Sync</button>
     <button class="adm-x" id="adm-x">Close &#215;</button>
   </div>
   <div class="adm-body">
@@ -594,9 +602,62 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     { id:4, name:'Pulse',    tags:['Next.js','TypeScript'],         year:'2023', color:'#9b5de5', gradient:'linear-gradient(148deg,#120820 0%,#9b5de5 100%)', desc:'Analytics platform with drag-and-drop chart builder, cohort analysis, funnel visualization, and automated scheduled PDF reports.', url:'' },
     { id:5, name:'Relay',    tags:['React','Node.js'],              year:'2022', color:'#e53e3e', gradient:'linear-gradient(148deg,#1a0202 0%,#e53e3e 100%)', desc:'Real-time messaging app with WebSocket channels, file sharing, threaded replies, reactions, and direct messages.', url:'' }
   ];
-  function loadProjects() { try { var s=localStorage.getItem('wn_projects'); if(s){ var p=JSON.parse(s); return (Array.isArray(p)&&p.length) ? p : DEFAULT_PROJECTS; } } catch(e) {} return DEFAULT_PROJECTS; }
-  function saveProjects(ps) { try { localStorage.setItem('wn_projects',JSON.stringify(ps)); } catch(e) { alert('Storage full - remove some project images to free space.'); } }
-  var PROJECTS = loadProjects();
+
+  /* ---- GITHUB BACKEND ---- */
+  var GH_OWNER='yousefelsayed836-a11y', GH_REPO='yousef', GH_BRANCH='gh-pages', GH_FILE='projects.json';
+  var GH_RAW='https://raw.githubusercontent.com/'+GH_OWNER+'/'+GH_REPO+'/'+GH_BRANCH+'/'+GH_FILE;
+  var GH_API='https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO+'/contents/'+GH_FILE;
+  function getToken(){try{return localStorage.getItem('wn_gh_token')||'';}catch(e){return '';}}
+  function setToken(t){try{localStorage.setItem('wn_gh_token',t);}catch(e){}}
+
+  function fetchFromGH(cb){
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET',GH_RAW+'?t='+Date.now(),true);
+    xhr.onload=function(){
+      if(xhr.status===200){try{var d=JSON.parse(xhr.responseText);if(Array.isArray(d)&&d.length){cb(null,d);return;}}catch(e){}}
+      cb(new Error('fetch'),null);
+    };
+    xhr.onerror=function(){cb(new Error('network'),null);};
+    xhr.send();
+  }
+  function ghGetSha(tok,cb){
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET',GH_API+'?ref='+GH_BRANCH,true);
+    xhr.setRequestHeader('Authorization','token '+tok);
+    xhr.setRequestHeader('Accept','application/vnd.github.v3+json');
+    xhr.onload=function(){var sha=null;try{sha=JSON.parse(xhr.responseText).sha;}catch(e){}cb(sha);};
+    xhr.onerror=function(){cb(null);};
+    xhr.send();
+  }
+  function ghPut(ps,sha,tok,cb){
+    var content=btoa(unescape(encodeURIComponent(JSON.stringify(ps,null,2))));
+    var body={message:'Update projects via admin',content:content,branch:GH_BRANCH};
+    if(sha)body.sha=sha;
+    var xhr=new XMLHttpRequest();
+    xhr.open('PUT',GH_API,true);
+    xhr.setRequestHeader('Authorization','token '+tok);
+    xhr.setRequestHeader('Accept','application/vnd.github.v3+json');
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.onload=function(){cb((xhr.status===200||xhr.status===201)?null:new Error(xhr.status));};
+    xhr.onerror=function(){cb(new Error('network'));};
+    xhr.send(JSON.stringify(body));
+  }
+
+  function loadProjectsLocal(){try{var s=localStorage.getItem('wn_projects');if(s){var p=JSON.parse(s);return(Array.isArray(p)&&p.length)?p:DEFAULT_PROJECTS;}}catch(e){}return DEFAULT_PROJECTS;}
+  function saveProjects(ps,cb){
+    try{localStorage.setItem('wn_projects',JSON.stringify(ps));}catch(e){alert('Storage full - remove some project images.');}
+    var tok=getToken();
+    if(!tok){if(cb)cb();return;}
+    setSyncStatus('syncing');
+    ghGetSha(tok,function(sha){
+      ghPut(ps,sha,tok,function(err){
+        setSyncStatus(err?'err':'ok');
+        if(cb)cb();
+      });
+    });
+  }
+
+  var PROJECTS=loadProjectsLocal();
 
   /* ---- REVEAL OBSERVER ---- */
   var rvObs = new IntersectionObserver(function(entries) {
@@ -909,8 +970,8 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
   document.getElementById('adm-reset').addEventListener('click',function(){
     customConfirm('Reset all projects to default?', function(ok){
       if (!ok) return;
-      localStorage.removeItem('wn_projects');
       PROJECTS=DEFAULT_PROJECTS.slice();
+      saveProjects(PROJECTS);
       renderGrid(); renderAdminList(); showAdminEmpty();
     });
   });
@@ -928,6 +989,61 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
     history.replaceState(null,'',location.pathname);
     setTimeout(openAdmin, 600);
   }
+
+  /* ---- GITHUB SYNC UI ---- */
+  function setSyncStatus(s){
+    var dot=document.getElementById('adm-sync-dot');
+    if(dot) dot.className='adm-sync-dot'+(s?' '+s:'');
+  }
+  function showGhSettingsModal(){
+    var cur=getToken();
+    var ov=document.createElement('div'); ov.className='cf-ov';
+    ov.innerHTML='<div class="cf-box" style="width:min(420px,90vw);padding:36px 32px">'+
+      '<p style="font-family:Courier New,monospace;font-size:0.52rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">GitHub Sync</p>'+
+      '<p style="font-size:0.75rem;color:var(--dim);line-height:1.65;margin-bottom:18px">Paste a GitHub Personal Access Token (PAT) with <strong style="color:var(--text)">repo</strong> scope. Projects will sync across all devices automatically.</p>'+
+      '<input id="gh-tok-in" type="password" placeholder="ghp_..." autocomplete="off" style="width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:Courier New,monospace;font-size:0.85rem;padding:10px 13px;outline:none;margin-bottom:8px;letter-spacing:0.04em">'+
+      '<div id="gh-tok-st" style="font-family:Courier New,monospace;font-size:0.52rem;min-height:1.2em;margin-bottom:16px;color:var(--dim)"></div>'+
+      '<div class="cf-btns">'+
+        '<button class="cf-yes" id="gh-tok-save" style="background:var(--accent);color:var(--bg)">Save</button>'+
+        '<button class="cf-no" id="gh-tok-test">Test</button>'+
+        '<button class="cf-no" id="gh-tok-cancel">Cancel</button>'+
+      '</div></div>';
+    document.body.appendChild(ov);
+    var inp=ov.querySelector('#gh-tok-in'), st=ov.querySelector('#gh-tok-st');
+    if(cur) inp.value=cur;
+    setTimeout(function(){inp.focus();if(cur)inp.select();},60);
+    ov.querySelector('#gh-tok-save').onclick=function(){
+      var t=inp.value.trim(); setToken(t); ov.remove();
+      if(t){ setSyncStatus('syncing'); fetchFromGH(function(err,data){ setSyncStatus(err?'err':'ok'); if(!err&&data){PROJECTS=data;try{localStorage.setItem('wn_projects',JSON.stringify(data));}catch(e){}renderGrid();if(adm.classList.contains('open'))renderAdminList();} }); }
+      else setSyncStatus('');
+    };
+    ov.querySelector('#gh-tok-test').onclick=function(){
+      var t=inp.value.trim();
+      if(!t){st.textContent='Enter a token first.';st.style.color='#e53e3e';return;}
+      st.textContent='Testing...';st.style.color='var(--dim)';
+      ghGetSha(t,function(sha){
+        if(sha){st.textContent='Connected. File found (SHA: '+sha.slice(0,8)+'...)';st.style.color='#22c55e';}
+        else{st.textContent='Could not connect. Check token and repo permissions.';st.style.color='#e53e3e';}
+      });
+    };
+    ov.querySelector('#gh-tok-cancel').onclick=function(){ov.remove();};
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter')ov.querySelector('#gh-tok-save').click();});
+  }
+  document.getElementById('adm-gh-btn').addEventListener('click',showGhSettingsModal);
+
+  /* Fetch latest data from GitHub on page load */
+  setSyncStatus('syncing');
+  fetchFromGH(function(err,data){
+    if(!err&&data){
+      PROJECTS=data;
+      try{localStorage.setItem('wn_projects',JSON.stringify(data));}catch(e){}
+      renderGrid();
+      if(adm&&adm.classList.contains('open')) renderAdminList();
+      setSyncStatus('ok');
+    } else {
+      setSyncStatus(getToken()?'err':'');
+    }
+  });
 
 })();
 </script>
