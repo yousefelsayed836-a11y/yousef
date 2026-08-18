@@ -1003,18 +1003,22 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       '<p style="font-size:0.75rem;color:var(--dim);line-height:1.65;margin-bottom:18px">Paste a GitHub Personal Access Token (PAT) with <strong style="color:var(--text)">repo</strong> scope. Projects will sync across all devices automatically.</p>'+
       '<input id="gh-tok-in" type="password" placeholder="ghp_..." autocomplete="off" style="width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:Courier New,monospace;font-size:0.85rem;padding:10px 13px;outline:none;margin-bottom:8px;letter-spacing:0.04em">'+
       '<div id="gh-tok-st" style="font-family:Courier New,monospace;font-size:0.52rem;min-height:1.2em;margin-bottom:16px;color:var(--dim)"></div>'+
-      '<div class="cf-btns">'+
-        '<button class="cf-yes" id="gh-tok-save" style="background:var(--accent);color:var(--bg)">Save</button>'+
+      '<div class="cf-btns" style="flex-wrap:wrap;gap:6px">'+
+        '<button class="cf-yes" id="gh-tok-save" style="background:var(--accent);color:var(--bg)">Save &amp; Push</button>'+
+        '<button class="cf-no" id="gh-tok-push">&#8593; Push</button>'+
+        '<button class="cf-no" id="gh-tok-pull">&#8595; Pull</button>'+
         '<button class="cf-no" id="gh-tok-test">Test</button>'+
         '<button class="cf-no" id="gh-tok-cancel">Cancel</button>'+
-      '</div></div>';
+      '</div>'+
+      '<p style="font-family:Courier New,monospace;font-size:0.48rem;color:var(--dim);margin-top:12px;line-height:1.7">Save &amp; Push = احفظ التوكن وارفع تعديلاتك&nbsp;&nbsp;|&nbsp;&nbsp;Push = ارفع بياناتك لكل الاجهزة&nbsp;&nbsp;|&nbsp;&nbsp;Pull = اجيب اخر نسخة من GitHub</p>'+
+      '</div>';
     document.body.appendChild(ov);
     var inp=ov.querySelector('#gh-tok-in'), st=ov.querySelector('#gh-tok-st');
     if(cur) inp.value=cur;
     setTimeout(function(){inp.focus();if(cur)inp.select();},60);
     ov.querySelector('#gh-tok-save').onclick=function(){
       var t=inp.value.trim(); setToken(t); ov.remove();
-      if(t){ setSyncStatus('syncing'); fetchFromGH(function(err,data){ setSyncStatus(err?'err':'ok'); if(!err&&data){PROJECTS=data;try{localStorage.setItem('wn_projects',JSON.stringify(data));}catch(e){}renderGrid();if(adm.classList.contains('open'))renderAdminList();} }); }
+      if(t){ saveProjects(PROJECTS); } /* Push local data to GitHub immediately */
       else setSyncStatus('');
     };
     ov.querySelector('#gh-tok-test').onclick=function(){
@@ -1027,23 +1031,49 @@ footer { border-top: 1px solid var(--border); padding: 22px 44px; display: flex;
       });
     };
     ov.querySelector('#gh-tok-cancel').onclick=function(){ov.remove();};
+    /* Push: local → GitHub */
+    var pushBtn=ov.querySelector('#gh-tok-push');
+    if(pushBtn) pushBtn.onclick=function(){
+      var t=inp.value.trim()||getToken();
+      if(!t){st.textContent='Save a token first.';st.style.color='#e53e3e';return;}
+      st.textContent='Pushing...';st.style.color='var(--dim)';
+      setToken(t);
+      ghGetSha(t,function(sha){ ghPut(PROJECTS,sha,t,function(err){ st.textContent=err?'Push failed.':'Pushed successfully!'; st.style.color=err?'#e53e3e':'#22c55e'; setSyncStatus(err?'err':'ok'); }); });
+    };
+    /* Pull: GitHub → local */
+    var pullBtn=ov.querySelector('#gh-tok-pull');
+    if(pullBtn) pullBtn.onclick=function(){
+      st.textContent='Pulling...';st.style.color='var(--dim)';
+      fetchFromGH(function(err,data){
+        if(!err&&data){PROJECTS=data;try{localStorage.setItem('wn_projects',JSON.stringify(data));}catch(e){}renderGrid();if(adm.classList.contains('open'))renderAdminList();st.textContent='Pulled successfully!';st.style.color='#22c55e';setSyncStatus('ok');}
+        else{st.textContent='Pull failed.';st.style.color='#e53e3e';}
+      });
+    };
     inp.addEventListener('keydown',function(e){if(e.key==='Enter')ov.querySelector('#gh-tok-save').click();});
   }
   document.getElementById('adm-gh-btn').addEventListener('click',showGhSettingsModal);
 
-  /* Fetch latest data from GitHub on page load */
-  setSyncStatus('syncing');
-  fetchFromGH(function(err,data){
-    if(!err&&data){
-      PROJECTS=data;
-      try{localStorage.setItem('wn_projects',JSON.stringify(data));}catch(e){}
-      renderGrid();
-      if(adm&&adm.classList.contains('open')) renderAdminList();
-      setSyncStatus('ok');
-    } else {
-      setSyncStatus(getToken()?'err':'');
+  /* Startup sync: push local → GitHub if token exists, else pull if no local data */
+  (function(){
+    var tok=getToken();
+    var hasLocal=!!localStorage.getItem('wn_projects');
+    if(tok && hasLocal){
+      /* Device has data + token: push local to GitHub so all devices get this version */
+      saveProjects(PROJECTS);
+    } else if(!hasLocal){
+      /* New device with no data: pull from GitHub */
+      setSyncStatus('syncing');
+      fetchFromGH(function(err,data){
+        if(!err&&data){
+          PROJECTS=data;
+          try{localStorage.setItem('wn_projects',JSON.stringify(data));}catch(e){}
+          renderGrid();
+          if(adm&&adm.classList.contains('open')) renderAdminList();
+          setSyncStatus('ok');
+        } else { setSyncStatus(''); }
+      });
     }
-  });
+  })();
 
 })();
 </script>
